@@ -12,11 +12,19 @@ public class Cliente {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private String rut;
+    private int rut;
     
     
    //Constructores
-   public Cliente(){
+   public Cliente(String nom,String apellP,String apellM,int num){
+       this.nombre = nom;
+       this.apellidoPaterno =  apellP;
+       this.apellidoMaterno = apellM;
+       this.rut = num;
+   }
+   
+   public void modificarDatos()
+   {
        
    }
 }

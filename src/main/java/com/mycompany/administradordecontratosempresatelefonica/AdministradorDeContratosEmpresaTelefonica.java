@@ -3,6 +3,9 @@
  */
 
 package com.mycompany.administradordecontratosempresatelefonica;
+import com.mycompany.administradordecontratosempresatelefonica.Clases.Menu;
+import java.util.Scanner;
+
 
 /**
  *
@@ -11,6 +14,9 @@ package com.mycompany.administradordecontratosempresatelefonica;
 public class AdministradorDeContratosEmpresaTelefonica {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+        Scanner lector = new Scanner(System.in);
+        
+        Menu(lector);
     }
 }

@@ -23,9 +23,18 @@ public class Cliente {
        this.rut = num;
    }
    
-   public void modificarDatos()
+   //Metodos
+   
+   public void setDatosClientes(String nom,String apellP,String apellM,int num){
+       this.nombre = nom;
+       this.apellidoPaterno =  apellP;
+       this.apellidoMaterno = apellM;
+       this.rut = num;
+   }
+   
+   public void modificarDatos(String nom,String apellP,String apellM,int num)
    {
-       
+       setDatosClientes(nom,apellP,apellM,num);
    }
 }
 

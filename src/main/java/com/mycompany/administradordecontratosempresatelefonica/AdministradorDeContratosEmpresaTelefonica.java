@@ -15,12 +15,13 @@ import java.util.ArrayList;
 public class AdministradorDeContratosEmpresaTelefonica {
 
     public static void main(String[] args) {
-        
-        ArrayList<Cliente> listaClientes = new ArrayList<>();
-        
+
+        int opcion;
         Scanner lector = new Scanner(System.in);
-                    
-                    
-        Menu(lector);
+        
+        Menu.menuGeneral();
+        
+        lector.close();
+        
     }
 }

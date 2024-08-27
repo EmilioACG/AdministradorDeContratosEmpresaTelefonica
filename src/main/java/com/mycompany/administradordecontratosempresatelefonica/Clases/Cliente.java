@@ -78,6 +78,10 @@ public class Cliente {
        setTieneContrato(tieneContr);
    }
    
+   public String nombreCompleto(){
+        return this.nombre +" "+ this.apellidoPaterno +" "+ this.apellidoMaterno;
+   }
+   
 }
 
 

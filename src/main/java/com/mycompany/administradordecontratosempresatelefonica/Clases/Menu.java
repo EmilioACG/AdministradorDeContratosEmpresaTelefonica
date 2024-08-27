@@ -10,8 +10,8 @@ package com.mycompany.administradordecontratosempresatelefonica.Clases;
  * @author Emilio
  */
 public class Menu {
-    public void menuGeneral(){
 
+    public static void menuGeneral(){
         System.out.println("-----------------------------------------");
         System.out.println("1.- Menú clientes");
         System.out.println("2.- Menú contratos");
@@ -19,7 +19,7 @@ public class Menu {
         System.out.println("-----------------------------------------");
     }
 
-    public void menuCliente(){
+    public static void menuCliente(){
         System.out.println("-----------------------------------------");
         System.out.println("Opciones clientes:");
         System.out.println("  1.- Agregar cliente");
@@ -28,10 +28,11 @@ public class Menu {
         System.out.println("  4.- Eliminar cliente");
         System.out.println("  5.- Mostrar todos los clientes");
         System.out.println("  6.- Buscar cliente");
+        System.out.println("7.- Regresar a la pestaña anterior");
         System.out.println("-----------------------------------------");
     }
 
-    public void menuContratos(){
+    public static void menuContratos(){
         System.out.println("-----------------------------------------");
         System.out.println("Opciones contratos:");
         System.out.println("  1.- Agregar contrato");
@@ -41,7 +42,7 @@ public class Menu {
         System.out.println("-----------------------------------------");
     }
     
-    public void menuPlanes(){
+    public static void menuPlanes(){
         System.out.println("-----------------------------------------");
         System.out.println("Opciones planes:");
         System.out.println("  1.- Agregar un plan");
@@ -51,16 +52,15 @@ public class Menu {
         System.out.println("-----------------------------------------");
     }
     
-    public void menuError(){
+    public static void menuError(){
         System.out.println("-----------------------------------------");
         System.out.println("Ha ocurrido un error, intente de nuevo");
         System.out.println("-----------------------------------------");
     }
     
-    public void menuExit(){
+    public static void menuExit(){
         System.out.println("------------------------------------");
         System.out.println("Saliendo del programa...");
         System.out.println("------------------------------------");
     }
-
 }

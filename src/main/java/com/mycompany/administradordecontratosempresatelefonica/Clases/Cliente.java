@@ -70,17 +70,16 @@ public class Cliente {
     
    
    
-   public void modificarDatosClientes(String nom,String apellP,String apellM,int num,boolean tieneContr){
+   public void modificarDatosClientes(String nom,String apellP,String apellM,int num){
        setNombre(nom);
        setApellidoPaterno(apellP);
        setApellidoMaterno(apellM);
        setRut(num);
-       setTieneContrato(tieneContr);
    }
    
    public String nombreCompleto(){
         return this.nombre +" "+ this.apellidoPaterno +" "+ this.apellidoMaterno;
-   }
+    }
    
 }
 

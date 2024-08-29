@@ -132,7 +132,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     break;
             }
             
-        }while( opcionCliente != "7" );
+        }while(!opcionCliente.equals("7"));
     }
 
 }

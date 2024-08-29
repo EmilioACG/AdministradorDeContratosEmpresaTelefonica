@@ -23,7 +23,7 @@ public class Menu {
         System.out.println("-----------------------------------------");
         System.out.println("Opciones clientes:");
         System.out.println("  1.- Agregar cliente");
-        System.out.println("  2.- Mostrar cliente");
+        System.out.println("  2.- Mostrar un cliente");
         System.out.println("  3.- Modificar datos cliente");
         System.out.println("  4.- Eliminar cliente");
         System.out.println("  5.- Mostrar todos los clientes");

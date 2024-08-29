@@ -78,7 +78,7 @@ public class Plan {
     //Metodos
     /*
     public void contrataPlanBasico(Scanner lector, ArrayList<Plan> planes, Plan[] planesBasicos) {
-        
+
     }
      */
 

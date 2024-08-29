@@ -5,6 +5,7 @@
 
 package com.mycompany.administradordecontratosempresatelefonica.Clases;
 import java.util.Scanner;
+import java.util.ArrayList;
 /**
  *
  * @author Emilio
@@ -15,6 +16,7 @@ public class Cliente {
     private String apellidoMaterno;
     private int rut;
     private boolean tieneContrato = false;
+//    ArrayList<Plan> listaPlanes = new ArrayList<>();
     
     
    //Constructores
@@ -70,17 +72,24 @@ public class Cliente {
     
    
    
-   public void modificarDatosClientes(String nom,String apellP,String apellM,int num){
+   public void modificarDatosClientes(String nom,String apellP,String apellM){
        setNombre(nom);
        setApellidoPaterno(apellP);
        setApellidoMaterno(apellM);
-       setRut(num);
    }
    
-   public String nombreCompleto(){
-        return this.nombre +" "+ this.apellidoPaterno +" "+ this.apellidoMaterno;
+   public String mostrarDatos(){
+       String mensajeAux;
+       if(this.tieneContrato == true)
+           mensajeAux = "\n >El usuario tiene contrato";
+       else
+           mensajeAux = "\n >El usuario no tiene contrato";
+        return "Nombre: " + this.nombre + " "+ this.apellidoPaterno + " "+
+                this.apellidoMaterno + " Rut: " + this.rut + mensajeAux;
     }
    
+
+
 }
 
 

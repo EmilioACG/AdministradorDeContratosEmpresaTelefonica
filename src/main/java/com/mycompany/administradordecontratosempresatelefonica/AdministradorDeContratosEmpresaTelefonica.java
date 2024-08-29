@@ -16,11 +16,11 @@ import java.util.HashMap;
 public class AdministradorDeContratosEmpresaTelefonica {
 
     private static ArrayList<Cliente> listaClientes = new ArrayList<>();
-    private static HashMap<Integer,Cliente> mapClientes = new HashMap<>();
+    private static HashMap<Integer,Cliente> mapaClientes = new HashMap<>();
     
     public static void main(String[] args) {
 
-        int opcion;
+        String opcion;
         Scanner lector = new Scanner(System.in);
         
         listaClientes.add(new Cliente("Pedro","Rodriguez","Perez",1341541));
@@ -34,29 +34,30 @@ public class AdministradorDeContratosEmpresaTelefonica {
         listaClientes.add(new Cliente("Elena", "Castro", "Torres", 66778899));
         listaClientes.add(new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
         
-        mapClientes.put(1341541,new Cliente("Juan", "Pérez", "González", 12345678));
-        mapClientes.put(12345678,new Cliente("Juan", "Pérez", "González", 12345678));
-        mapClientes.put(87654321,new Cliente("Ana", "López", "Ramírez", 87654321));
-        mapClientes.put(11223344,new Cliente("Carlos", "Martínez", "Díaz", 11223344));
-        mapClientes.put(22334455,new Cliente("María", "Rodríguez", "Fernández", 22334455));
-        mapClientes.put(33445566,new Cliente("Pedro", "Gómez", "Morales", 33445566));
-        mapClientes.put(44556677,new Cliente("Lucía", "Sánchez", "Jiménez", 44556677));
-        mapClientes.put(55667788,new Cliente("Jorge", "Hernández", "Ruiz", 55667788));
-        mapClientes.put(66778899,new Cliente("Elena", "Castro", "Torres", 66778899));
-        mapClientes.put(77889900,new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
+        mapaClientes.put(1341541,new Cliente("Pedro","Rodriguez","Perez", 12345678));
+        mapaClientes.put(12345678,new Cliente("Juan", "Pérez", "González", 12345678));
+        mapaClientes.put(87654321,new Cliente("Ana", "López", "Ramírez", 87654321));
+        mapaClientes.put(11223344,new Cliente("Carlos", "Martínez", "Díaz", 11223344));
+        mapaClientes.put(22334455,new Cliente("María", "Rodríguez", "Fernández", 22334455));
+        mapaClientes.put(33445566,new Cliente("Pedro", "Gómez", "Morales", 33445566));
+        mapaClientes.put(44556677,new Cliente("Lucía", "Sánchez", "Jiménez", 44556677));
+        mapaClientes.put(55667788,new Cliente("Jorge", "Hernández", "Ruiz", 55667788));
+        mapaClientes.put(66778899,new Cliente("Elena", "Castro", "Torres", 66778899));
+        mapaClientes.put(77889900,new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
         
         do{
             Menu.menuGeneral();
-            opcion = Integer.parseInt(lector.nextLine());
+            opcion = lector.nextLine();
             switch (opcion){
-                case 1:
+                case "1":
+                    menuCliente(lector);
                     break;
-                case 2:
+                case "2":
                     break;
-                case 3:
+                case "3":
                     break;
         }
-        }while(opcion != 0);
+        }while(!"0".equals(opcion));
 
 
         lector.close();
@@ -73,7 +74,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         do{
             Menu.menuCliente();
             
-            opcionCliente = lector.next();
+            opcionCliente = lector.nextLine();
             
             switch(opcionCliente){
                 case "1":
@@ -87,16 +88,31 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     apeMat = lector.next();
                     System.out.println("Ingrese su rut...");
                     rut = lector.nextInt();
-                    nuevoCliente = new Cliente(nombre,apePat, apeMat, rut);
+                    lector.nextLine();
                     System.out.println("-----------------------------------------");
+                    nuevoCliente = new Cliente(nombre,apePat, apeMat, rut);
+                    listaClientes.add(nuevoCliente);
+                    mapaClientes.put(rut,new Cliente(nombre,apePat, apeMat,rut));
                     break;
                    
-                case "2":
-                    
+                case "2": 
+                    System.out.print("Ingrese el rut del cliente que desea buscar:");
+                    rut = lector.nextInt();
+                    lector.nextLine();
+                    Cliente clienteAux = mapaClientes.get(rut);
+                    if(clienteAux != null){
+                        System.out.println("Los datos del cliente son:");
+                        System.out.println(clienteAux.mostrarDatos()); 
+                    }
+                    else
+                        System.out.println("El usuario no se a encontrado");   
                     break;
                     
                     
                 case "3":
+                    System.out.println("Ingrese el rut del usuario que desea modificar: ");
+                    rut = lector.nextInt();
+                    lector.nextLine();
                     System.out.println("-----------------------------------------");
                     System.out.println("Ingrese su nombre actualizado...");
                     nombre = lector.next();
@@ -104,35 +120,53 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     apePat = lector.next();
                     System.out.println("Ingrese su apellido materno actualizado...");
                     apeMat = lector.next();
-                    System.out.println("Ingrese su rut actualizado..."); //No se deberia actualizar menu
-                    rut = lector.nextInt();
-                    nuevoCliente = new Cliente(nombre,apePat, apeMat, rut);
                     System.out.println("-----------------------------------------");
+                    mapaClientes.get(rut).modificarDatosClientes(nombre, apePat, apeMat);
+                    for(int i = 0; i < listaClientes.size(); i++){
+                        if(listaClientes.get(i).getRut() == rut){
+                            listaClientes.get(i).modificarDatosClientes(nombre, apePat, apeMat);
+                            break;
+                        }  
+                    }
                     break;
                     
                     
                 case "4":
+                    System.out.println("¡ADVERTENCIA!, NO SE RECOMIENDA ELIMINAR CLIENTES");
+                    System.out.println("¿QUIERES SEGUIR?");
+                    System.out.println("SI-Culaquier otro numero");
+                    System.out.println("NO-presione el 0");
+                    opcionCliente = lector.nextLine();
+                    if(!"0".equals(opcionCliente)){
+                        System.out.println("Ingrese el rut del usuario que desea eliminar: ");
+                        rut = lector.nextInt();
+                        lector.nextLine();
+                        mapaClientes.remove(rut);
+                          for(int i = 0; i < listaClientes.size(); i++){
+                            if(listaClientes.get(i).getRut() == rut){
+                                listaClientes.remove(i);
+                                break;
+                            }  
+                        }
+                    }  
                     break;
                     
                     
                 case "5":
+                    for(Cliente cliente:listaClientes)
+                        System.out.println(cliente.mostrarDatos());
                     break;
                     
                     
                 case "6":
                     break;
-                    
-                    
-                case "7":
-                    break;
-                    
-                    
+                             
                 default:
                     Menu.menuError();
                     break;
             }
             
-        }while( opcionCliente != "7" );
+        }while( !"7".equals(opcionCliente) );
     }
 
 }

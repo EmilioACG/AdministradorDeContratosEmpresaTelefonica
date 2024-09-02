@@ -23,6 +23,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         String opcion;
         Scanner lector = new Scanner(System.in);
         
+        //Datos para lista clientes
         listaClientes.add(new Cliente("Pedro","Rodriguez","Perez",1341541));
         listaClientes.add(new Cliente("Juan", "Pérez", "González", 12345678));
         listaClientes.add(new Cliente("Ana", "López", "Ramírez", 87654321));
@@ -34,7 +35,8 @@ public class AdministradorDeContratosEmpresaTelefonica {
         listaClientes.add(new Cliente("Elena", "Castro", "Torres", 66778899));
         listaClientes.add(new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
         
-        mapaClientes.put(1341541,new Cliente("Pedro","Rodriguez","Perez", 12345678));
+        //Datos para el mapa clientes
+        mapaClientes.put(1341541,new Cliente("Pedro","Rodriguez","Perez", 1341541));
         mapaClientes.put(12345678,new Cliente("Juan", "Pérez", "González", 12345678));
         mapaClientes.put(87654321,new Cliente("Ana", "López", "Ramírez", 87654321));
         mapaClientes.put(11223344,new Cliente("Carlos", "Martínez", "Díaz", 11223344));
@@ -62,6 +64,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     menuCliente(lector);
                     break;
                 case "2":
+                    menuContratos(lector);
                     break;
                 case "3":
                     menuPlanes(lector, ofertaPlanes);
@@ -85,10 +88,11 @@ public class AdministradorDeContratosEmpresaTelefonica {
         String nombre;
         String apePat;
         String apeMat;
-        int rut;
+        Cliente clienteAux = null;
+        int rut,rutAux=0;
         
         do{
-            Menu.menuCliente();
+            Menu.menuClientePrint();
             
             opcionCliente = lector.nextLine();
             
@@ -103,19 +107,24 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     System.out.println("Ingrese su apellido materno...");
                     apeMat = lector.next();
                     System.out.println("Ingrese su rut...");
-                    rut = lector.nextInt();
-                    lector.nextLine();
+                    do{
+                        rut = lector.nextInt();
+                        lector.nextLine();
+                        clienteAux = mapaClientes.get(rut);
+                            if(clienteAux != null)
+                                System.out.println("El rut ya existe ingrese otro:");
+                    }while(clienteAux != null);                  
                     System.out.println("-----------------------------------------");
                     nuevoCliente = new Cliente(nombre,apePat, apeMat, rut);
                     listaClientes.add(nuevoCliente);
-                    mapaClientes.put(rut,new Cliente(nombre,apePat, apeMat,rut));
+                    mapaClientes.put(rut,nuevoCliente);
                     break;
                    
                 case "2": 
                     System.out.print("Ingrese el rut del cliente que desea buscar:");
                     rut = lector.nextInt();
                     lector.nextLine();
-                    Cliente clienteAux = mapaClientes.get(rut);
+                    clienteAux = mapaClientes.get(rut);
                     if(clienteAux != null){
                         System.out.println("Los datos del cliente son:");
                         System.out.println(clienteAux.mostrarDatos()); 
@@ -129,21 +138,35 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     System.out.println("Ingrese el rut del usuario que desea modificar: ");
                     rut = lector.nextInt();
                     lector.nextLine();
+                    Menu.menuModificarCliente();
+                    opcionCliente = lector.nextLine();
                     System.out.println("-----------------------------------------");
-                    System.out.println("Ingrese su nombre actualizado...");
-                    nombre = lector.next();
-                    System.out.println("Ingrese su apellido paterno actualizado...");
-                    apePat = lector.next();
-                    System.out.println("Ingrese su apellido materno actualizado...");
-                    apeMat = lector.next();
-                    System.out.println("-----------------------------------------");
-                    mapaClientes.get(rut).modificarDatosClientes(nombre, apePat, apeMat);
-                    for(int i = 0; i < listaClientes.size(); i++){
-                        if(listaClientes.get(i).getRut() == rut){
-                            listaClientes.get(i).modificarDatosClientes(nombre, apePat, apeMat);
+                    if("1".equals(opcionCliente) || "3".equals(opcionCliente)){
+
+                        System.out.println("Ingrese su nombre actualizado...");
+                        nombre = lector.next();
+                        mapaClientes.get(rut).modificarDatosClientes(nombre);
+                        for(int i = 0; i < listaClientes.size(); i++){
+                            if(listaClientes.get(i).getRut() == rut){
+                                listaClientes.get(i).modificarDatosClientes(nombre);
                             break;
-                        }  
+                            }  
+                        }
                     }
+                    if("2".equals(opcionCliente) || "3".equals(opcionCliente)){
+                        System.out.println("Ingrese su apellido paterno actualizado...");
+                        apePat = lector.next();
+                        System.out.println("Ingrese su apellido materno actualizado...");
+                        apeMat = lector.next();
+                        mapaClientes.get(rut).modificarDatosClientes(apePat, apeMat);
+                        for(int i = 0; i < listaClientes.size(); i++){
+                            if(listaClientes.get(i).getRut() == rut){
+                                listaClientes.get(i).modificarDatosClientes(apePat, apeMat);
+                                break;
+                            }  
+                        }
+                    }
+                    System.out.println("-----------------------------------------");
                     break;
                     
                     
@@ -161,20 +184,16 @@ public class AdministradorDeContratosEmpresaTelefonica {
                           for(int i = 0; i < listaClientes.size(); i++){
                             if(listaClientes.get(i).getRut() == rut){
                                 listaClientes.remove(i);
+                                System.out.println("Se a eliminado con exito");
                                 break;
                             }  
                         }
                     }  
-                    break;
-                    
+                    break; 
                     
                 case "5":
                     for(Cliente cliente:listaClientes)
                         System.out.println(cliente.mostrarDatos());
-                    break;
-                    
-                    
-                case "6":
                     break;
                              
                 default:
@@ -183,8 +202,10 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     break;
             }
             
-        }while( !"7".equals(opcionCliente) );
+        }while( !"6".equals(opcionCliente) );
     }
+
+
 
     public static void menuPlanes(Scanner lector, Plan[] ofertaPlanes){
 
@@ -246,4 +267,46 @@ public class AdministradorDeContratosEmpresaTelefonica {
 
         }while( !"5".equals(opcionPlan) );
     }
+
+    
+    public static void menuContratos(Scanner lector){
+        String opcionCliente;
+        do{
+            Menu.menuContratosPrint();
+            opcionCliente = lector.nextLine();
+            int rut,sumaPlanes,largoPlanes;
+            Cliente clienteAux;
+            
+            switch (opcionCliente){
+                case "1":
+                    System.out.println("Ingrese el rut del usuario al cual desea ver el contratto");
+                    rut = lector.nextInt();
+                    lector.nextLine();
+                    clienteAux = mapaClientes.get(rut);
+                    if(clienteAux != null){
+                        if(clienteAux.getTieneContrato()){
+                            System.out.println("El usuario " + clienteAux.getNombreCompleto());
+                            System.out.println("rut : " + clienteAux.getRut());
+                            //largoPlanes = clienteAux.getListaPlanes.size();
+                        }
+                        else 
+                            System.out.println("El usuario no tiene contrato");
+                    }
+                    else
+                        System.out.println("El usuario no se a encontrado");
+                    break;
+                        
+                case "2":
+                            
+                    break;
+                    
+                default:
+                    Menu.menuError();
+                    break;
+            }
+                    
+        }while(!"3".equals(opcionCliente));
+    }
+    
+
 }

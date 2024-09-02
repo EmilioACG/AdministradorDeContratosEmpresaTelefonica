@@ -20,26 +20,32 @@ public class Menu {
         System.out.println("-----------------------------------------");
     }
 
-    public static void menuCliente(){
+    public static void menuClientePrint(){
         System.out.println("-----------------------------------------");
         System.out.println("Opciones clientes:");
         System.out.println("  1.- Agregar cliente");
         System.out.println("  2.- Mostrar un cliente");
         System.out.println("  3.- Modificar datos cliente");
         System.out.println("  4.- Eliminar cliente");
-        System.out.println("  5.- Mostrar todos los clientes");
-        System.out.println("  6.- Buscar cliente");
-        System.out.println("7.- Regresar a la pestaña anterior");
+            System.out.println("  5.- Mostrar todos los clientes");
+        System.out.println("6.- Regresar a la pestaña anterior");
+        System.out.println("-----------------------------------------");
+    }
+    public static void menuModificarCliente(){
+        System.out.println("-----------------------------------------");
+        System.out.println("Que desea modificar:");
+        System.out.println("  1.- Nombre");
+        System.out.println("  2.- Apellidos");
+        System.out.println("  3.- Nombre y Apellido");
         System.out.println("-----------------------------------------");
     }
 
-    public static void menuContratos(){
+    public static void menuContratosPrint(){
         System.out.println("-----------------------------------------");
         System.out.println("Opciones contratos:");
-        System.out.println("  1.- Agregar contrato");
-        System.out.println("  2.- Mostrar contrato");
-        System.out.println("  3.- Modificar contrato");
-        System.out.println("  4.- Eliminar contrato");
+        System.out.println("  1.- Mostrar el contrato de un cliente");
+        System.out.println("  2.- Mostrar todos los contratos");
+        System.out.println("  3.- Regresar a la pestaña anterior");
         System.out.println("-----------------------------------------");
     }
     
@@ -87,4 +93,5 @@ public class Menu {
         System.out.println("    $(Dependerá de los GB y minutos solicitados)");
         System.out.println("-----------------------------------------");
     }
+    
 }

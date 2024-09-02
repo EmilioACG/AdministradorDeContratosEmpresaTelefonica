@@ -75,14 +75,6 @@ public class Plan {
 
 
 
-    //Metodos
-    /*
-    public void contrataPlanBasico(Scanner lector, ArrayList<Plan> planes, Plan[] planesBasicos) {
-
-    }
-     */
-
-
     public static Plan crearPlanPersonalizado() {
         Scanner lector = new Scanner(System.in);
         int cantGigaBytes;
@@ -109,7 +101,6 @@ public class Plan {
         lector.close();
         return nuevoPlan;
     }
-
 
 
     public static void imprimirPlan(Plan plan) {

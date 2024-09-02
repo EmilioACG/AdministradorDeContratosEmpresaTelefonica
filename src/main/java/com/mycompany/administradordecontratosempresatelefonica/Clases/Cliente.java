@@ -7,7 +7,6 @@ package com.mycompany.administradordecontratosempresatelefonica.Clases;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import static com.mycompany.administradordecontratosempresatelefonica.Clases.Plan.crearPlanPersonalizado;
 import static com.mycompany.administradordecontratosempresatelefonica.Clases.Plan.imprimirPlan;
 
 /**

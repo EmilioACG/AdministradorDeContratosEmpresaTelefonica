@@ -83,7 +83,8 @@ public class Plan {
      */
 
 
-    public void crearPlanPersonalizado(Scanner lector, ArrayList<Plan> planes) {
+    public static Plan crearPlanPersonalizado() {
+        Scanner lector = new Scanner(System.in);
         int cantGigaBytes;
         int cantMinutos;
         String numeroTelefono;
@@ -105,26 +106,17 @@ public class Plan {
         Plan nuevoPlan = new Plan(cantGigaBytes, cantMinutos,precio);
         nuevoPlan.setNumeroTelefono(numeroTelefono);
 
-        planes.add(nuevoPlan);
+        lector.close();
+        return nuevoPlan;
     }
 
-    public void mostrarPlanesCliente(Cliente cliente) {
 
-        System.out.println("-----------------------------------------");
-        System.out.println("Planes asociados a " + cliente.getNombre() + ":");
 
-        for (Plan planPrint : cliente.listaPlanes) {
-            imprimirPlan(planPrint);
-        }
-
-        System.out.println("-----------------------------------------");
-    }
-
-    public void imprimirPlan(Plan plan) {
+    public static void imprimirPlan(Plan plan) {
         System.out.println(" " + plan.getNombrePlan());
-        System.out.println(" " + plan.getNumeroTelefono());
-        System.out.println("  " + plan.getCantGigaBytes() + " Gigas Libres");
-        System.out.println("  " + plan.getCantMinutos() + " Minutos Libres");
+        System.out.println("   " + plan.getNumeroTelefono());
+        System.out.println("   " + plan.getCantGigaBytes() + " Gigas Libres");
+        System.out.println("   " + plan.getCantMinutos() + " Minutos Libres");
         System.out.println("   $" + plan.getPrecio() + "\n")   ;
     }
 

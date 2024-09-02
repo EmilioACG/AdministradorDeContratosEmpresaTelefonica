@@ -6,6 +6,10 @@
 package com.mycompany.administradordecontratosempresatelefonica.Clases;
 import java.util.Scanner;
 import java.util.ArrayList;
+
+import static com.mycompany.administradordecontratosempresatelefonica.Clases.Plan.crearPlanPersonalizado;
+import static com.mycompany.administradordecontratosempresatelefonica.Clases.Plan.imprimirPlan;
+
 /**
  *
  * @author Emilio
@@ -16,7 +20,7 @@ public class Cliente {
     private String apellidoMaterno;
     private int rut;
     private boolean tieneContrato = false;
-//    ArrayList<Plan> listaPlanes = new ArrayList<>();
+    ArrayList<Plan> listaPlanes = new ArrayList<>();
     
     
    //Constructores
@@ -89,6 +93,26 @@ public class Cliente {
     }
    
 
+    public void agregarPlan(int planSeleccionado, Plan[] ofertaPlanes){
+       if(planSeleccionado == 4){
+           Plan planPersonalizado = crearPlanPersonalizado();
+           listaPlanes.add(planPersonalizado);
+           return;
+       }
+
+       listaPlanes.add(ofertaPlanes[planSeleccionado-1]);
+    }
+
+    public void mostrarPlanes(){
+        System.out.println("-----------------------------------------");
+        System.out.println("Planes asociados a " + getNombre() + ":");
+
+        for (Plan planPrint : listaPlanes) {
+            imprimirPlan(planPrint);
+        }
+
+        System.out.println("-----------------------------------------");
+    }
 
 }
 

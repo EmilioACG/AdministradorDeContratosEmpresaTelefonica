@@ -44,17 +44,33 @@ public class AdministradorDeContratosEmpresaTelefonica {
         mapaClientes.put(55667788,new Cliente("Jorge", "Hernández", "Ruiz", 55667788));
         mapaClientes.put(66778899,new Cliente("Elena", "Castro", "Torres", 66778899));
         mapaClientes.put(77889900,new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
+
+        Plan ofertaPlanes[] = new Plan[3];
+        ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
+        ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
+        ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
+
         
         do{
             Menu.menuGeneral();
             opcion = lector.nextLine();
             switch (opcion){
+                case "0":
+                    Menu.menuExit();
+                    break;
                 case "1":
                     menuCliente(lector);
                     break;
                 case "2":
                     break;
                 case "3":
+                    menuPlanes(lector, ofertaPlanes);
+                    break;
+                default:
+                    if(!"0".equals(opcion))
+                        Menu.menuError();
+                    else
+                        Menu.menuExit();
                     break;
         }
         }while(!"0".equals(opcion));
@@ -162,11 +178,72 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     break;
                              
                 default:
-                    Menu.menuError();
+                    if(!"7".equals(opcionCliente))
+                        Menu.menuError();
                     break;
             }
             
         }while( !"7".equals(opcionCliente) );
     }
 
+    public static void menuPlanes(Scanner lector, Plan[] ofertaPlanes){
+
+        String opcionPlan;
+        int rut;
+
+        do{
+
+            do{
+                System.out.println("Ingrese el rut del cliente que desea operar sobre sus planes:");
+                rut = lector.nextInt();
+                lector.nextLine();
+                if( mapaClientes.get(rut) == null )
+                    Menu.menuError();
+            }while( mapaClientes.get(rut) == null );
+
+
+            Menu.menuPlanes();
+
+            opcionPlan = lector.nextLine();
+
+            switch(opcionPlan){
+                case "1": //1.- Agregar un plan
+                    Menu.ofertaPlanes();
+
+                    int seleccionPlan;
+                    seleccionPlan = lector.nextInt();
+                    lector.nextLine();
+
+                    for(int i = 0; i < listaClientes.size(); i++){
+                        if(listaClientes.get(i).getRut() == rut){
+                            listaClientes.get(i).agregarPlan(seleccionPlan, ofertaPlanes);
+                        }
+                    }
+
+                    break;
+
+                case "2": //2.- Mostrar planes
+                    for(int i = 0; i < listaClientes.size(); i++){
+                        if(listaClientes.get(i).getRut() == rut){
+                            listaClientes.get(i).mostrarPlanes();
+                        }
+                    }
+                    break;
+
+                case "3": //3.- Modificar plan
+
+                    break;
+
+                case "4": //4.- Eliminar un plan
+
+                    break;
+
+                default:
+                    if( !"5".equals(opcionPlan) )
+                        Menu.menuError();
+                    break;
+            }
+
+        }while( !"5".equals(opcionPlan) );
+    }
 }

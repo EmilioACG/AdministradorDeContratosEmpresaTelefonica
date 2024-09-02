@@ -16,7 +16,7 @@ public class Cliente {
     private String apellidoMaterno;
     private int rut;
     private boolean tieneContrato = false;
-//    ArrayList<Plan> listaPlanes = new ArrayList<>();
+    private ArrayList<Plan> listaPlanes = new ArrayList<>();
     
     
    //Constructores
@@ -49,6 +49,14 @@ public class Cliente {
         return tieneContrato;
     }
     
+    public String getNombreCompleto(){
+        return "nombre: " + this.nombre + " "+ this.apellidoPaterno + " "
+                + this.apellidoMaterno;
+    }
+
+    public ArrayList<Plan> getListaPlanes() {
+        return listaPlanes;
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -69,11 +77,16 @@ public class Cliente {
     public void setTieneContrato(boolean tieneContrato) {
         this.tieneContrato = tieneContrato;
     }
+
+    public void setListaPlanes(ArrayList<Plan> listaPlanes) {
+        this.listaPlanes = listaPlanes;
+    }
     
    
-   
-   public void modificarDatosClientes(String nom,String apellP,String apellM){
+   public void modificarDatosClientes(String nom){
        setNombre(nom);
+   }
+   public void modificarDatosClientes(String apellP,String apellM){
        setApellidoPaterno(apellP);
        setApellidoMaterno(apellM);
    }
@@ -81,9 +94,9 @@ public class Cliente {
    public String mostrarDatos(){
        String mensajeAux;
        if(this.tieneContrato == true)
-           mensajeAux = "\n >El usuario tiene contrato";
+           mensajeAux = "\n >El usuario SI tiene contrato";
        else
-           mensajeAux = "\n >El usuario no tiene contrato";
+           mensajeAux = "\n >El usuario NO tiene contrato";
         return "Nombre: " + this.nombre + " "+ this.apellidoPaterno + " "+
                 this.apellidoMaterno + " Rut: " + this.rut + mensajeAux;
     }

@@ -108,7 +108,7 @@ public class Plan {
         planes.add(nuevoPlan);
     }
 
-    public void mostrarPlanesCliente(Cliente cliente) {
+    /*public void mostrarPlanesCliente(Cliente cliente) {
 
         System.out.println("-----------------------------------------");
         System.out.println("Planes asociados a " + cliente.getNombre() + ":");
@@ -118,7 +118,7 @@ public class Plan {
         }
 
         System.out.println("-----------------------------------------");
-    }
+    }*/
 
     public void imprimirPlan(Plan plan) {
         System.out.println(" " + plan.getNombrePlan());

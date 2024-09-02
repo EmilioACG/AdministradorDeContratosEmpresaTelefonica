@@ -75,32 +75,8 @@ public class Plan {
 
 
 
-    public static Plan crearPlanPersonalizado() {
-        Scanner lector = new Scanner(System.in);
-        int cantGigaBytes;
-        int cantMinutos;
-        String numeroTelefono;
-        double precio;
+    //Metodos
 
-        System.out.println("Ingrese la cantidad de giga bytes mensuales que necesita: ");
-        cantGigaBytes = lector.nextInt();
-        lector.nextLine();
-
-        System.out.println("Ingrese la cantidad de minutos mensuales que necesita: ");
-        cantMinutos = lector.nextInt();
-        lector.nextLine();
-
-        System.out.println("Ingrese el numero de telefono: ");
-        numeroTelefono = lector.nextLine(); //FALTA VERIFICACION DE QUE EL NUMERO NO EXISTA
-
-        precio = cantGigaBytes * 1700 + cantMinutos * 6.93;
-
-        Plan nuevoPlan = new Plan(cantGigaBytes, cantMinutos,precio);
-        nuevoPlan.setNumeroTelefono(numeroTelefono);
-
-        lector.close();
-        return nuevoPlan;
-    }
 
 
     public static void imprimirPlan(Plan plan) {

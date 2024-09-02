@@ -107,11 +107,6 @@ public class Cliente {
    
 
     public void agregarPlan(int planSeleccionado, Plan[] ofertaPlanes){
-       if(planSeleccionado == 4){
-           Plan planPersonalizado = crearPlanPersonalizado();
-           listaPlanes.add(planPersonalizado);
-           return;
-       }
 
        listaPlanes.add(ofertaPlanes[planSeleccionado-1]);
     }

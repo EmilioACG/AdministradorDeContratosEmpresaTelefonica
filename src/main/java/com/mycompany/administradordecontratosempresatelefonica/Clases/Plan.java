@@ -11,8 +11,10 @@ public class Plan {
     private double precio;
 
 
-
+    // -----------------------------------------------------------------------------------------------
     //Constructor
+    // -----------------------------------------------------------------------------------------------
+
     public Plan(String nombrePlan, int cantGigaBytes, int cantMinutos, double cuotaMensual) {
         this.nombrePlan = nombrePlan;
         this.cantGigaBytes = cantGigaBytes;
@@ -27,9 +29,10 @@ public class Plan {
         this.precio = cuotaMensual;
     }
 
+    // -----------------------------------------------------------------------------------------------
+    // Getters
+    // -----------------------------------------------------------------------------------------------
 
-
-    //Getters
     public String getNombrePlan() {
         return nombrePlan;
     }
@@ -50,9 +53,10 @@ public class Plan {
         return precio;
     }
 
+    // -----------------------------------------------------------------------------------------------
+    // Setters
+    // -----------------------------------------------------------------------------------------------
 
-
-    //Setters
     public void setNombrePlan(String nombrePlan) {
         this.nombrePlan = nombrePlan;
     }
@@ -73,15 +77,13 @@ public class Plan {
         this.precio = precio;
     }
 
-
-
-    //Metodos
-
-
+    // -----------------------------------------------------------------------------------------------
+    // Metodos
+    // -----------------------------------------------------------------------------------------------
 
     public static void imprimirPlan(Plan plan) {
         System.out.println(" " + plan.getNombrePlan());
-        System.out.println("   " + plan.getNumeroTelefono());
+        System.out.println("   +56 9" + plan.getNumeroTelefono());
         System.out.println("   " + plan.getCantGigaBytes() + " Gigas Libres");
         System.out.println("   " + plan.getCantMinutos() + " Minutos Libres");
         System.out.println("   $" + plan.getPrecio() + "\n")   ;

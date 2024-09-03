@@ -4,6 +4,8 @@
  */
 
 package com.mycompany.administradordecontratosempresatelefonica.Clases;
+import net.datafaker.Faker;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -20,17 +22,31 @@ public class Cliente {
     private int rut;
     private boolean tieneContrato = false;
     private ArrayList<Plan> listaPlanes = new ArrayList<>();
-    
-    
-   //Constructores
+
+    // -----------------------------------------------------------------------------------------------
+    // Constructores
+    // -----------------------------------------------------------------------------------------------
+
    public Cliente(String nom,String apellP,String apellM,int num){
        this.nombre = nom;
        this.apellidoPaterno =  apellP;
        this.apellidoMaterno = apellM;
        this.rut = num;
    }
-   
-   //Metodos
+
+   public Cliente(String nom, String apellP, String apellM, int num, Plan[] ofertaPlanes, int planSeleccionado, String telefono){
+       this.nombre = nom;
+       this.apellidoPaterno =  apellP;
+       this.apellidoMaterno = apellM;
+       this.rut = num;
+       Plan copiaPlan = ofertaPlanes[planSeleccionado];
+       copiaPlan.setNumeroTelefono(telefono);
+       this.listaPlanes.add(copiaPlan);
+   }
+
+    // -----------------------------------------------------------------------------------------------
+    // Getters
+    // -----------------------------------------------------------------------------------------------
    
     public String getNombre() {
         return nombre;
@@ -61,6 +77,10 @@ public class Cliente {
         return listaPlanes;
     }
 
+    // -----------------------------------------------------------------------------------------------
+    // Setters
+    // -----------------------------------------------------------------------------------------------
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -84,42 +104,47 @@ public class Cliente {
     public void setListaPlanes(ArrayList<Plan> listaPlanes) {
         this.listaPlanes = listaPlanes;
     }
-    
-   
+
+    // -----------------------------------------------------------------------------------------------
+    // Metodos
+    // -----------------------------------------------------------------------------------------------
+
    public void modificarDatosClientes(String nom){
        setNombre(nom);
    }
+
    public void modificarDatosClientes(String apellP,String apellM){
        setApellidoPaterno(apellP);
        setApellidoMaterno(apellM);
    }
-   
+
    public String mostrarDatos(){
        String mensajeAux;
        if(this.tieneContrato == true)
            mensajeAux = "\n >El usuario SI tiene contrato";
        else
            mensajeAux = "\n >El usuario NO tiene contrato";
-        return "Nombre: " + this.nombre + " "+ this.apellidoPaterno + " "+
-                this.apellidoMaterno + " Rut: " + this.rut + mensajeAux;
-    }
+       return "Nombre: " + this.nombre + " "+ this.apellidoPaterno + " "+
+               this.apellidoMaterno + " Rut: " + this.rut + mensajeAux;
+   }
    
 
-    public void agregarPlan(int planSeleccionado, Plan[] ofertaPlanes){
-
+   public void agregarPlan(int planSeleccionado, Plan[] ofertaPlanes, String numeroTelefono){
+       Plan copiaPlan = ofertaPlanes[planSeleccionado];
+       copiaPlan.setNumeroTelefono(numeroTelefono);
        listaPlanes.add(ofertaPlanes[planSeleccionado-1]);
-    }
+   }
 
-    public void mostrarPlanes(){
-        System.out.println("-----------------------------------------");
-        System.out.println("Planes asociados a " + getNombre() + ":");
+   public void mostrarPlanes(){
+       System.out.println("-----------------------------------------");
+       System.out.println("Planes asociados a " + getNombre() + ":");
 
-        for (Plan planPrint : listaPlanes) {
-            imprimirPlan(planPrint);
-        }
+       for (Plan planPrint : listaPlanes) {
+           imprimirPlan(planPrint);
+       }
 
-        System.out.println("-----------------------------------------");
-    }
+       System.out.println("-----------------------------------------");
+   }
 
 }
 

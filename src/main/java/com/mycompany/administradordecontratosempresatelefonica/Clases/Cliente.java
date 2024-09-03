@@ -33,23 +33,23 @@ public class Cliente {
    //Metodos
    
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     public String getApellidoPaterno() {
-        return apellidoPaterno;
+        return this.apellidoPaterno;
     }
 
     public String getApellidoMaterno() {
-        return apellidoMaterno;
+        return this.apellidoMaterno;
     }
 
     public int getRut() {
-        return rut;
+        return this.rut;
     }
 
     public boolean getTieneContrato() {
-        return tieneContrato;
+        return this.tieneContrato;
     }
     
     public String getNombreCompleto(){
@@ -58,7 +58,7 @@ public class Cliente {
     }
 
     public ArrayList<Plan> getListaPlanes() {
-        return listaPlanes;
+        return this.listaPlanes;
     }
 
     public void setNombre(String nombre) {

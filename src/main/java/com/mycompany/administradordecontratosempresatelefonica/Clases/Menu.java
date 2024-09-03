@@ -54,9 +54,8 @@ public class Menu {
         System.out.println("Opciones planes:");
         System.out.println("  1.- Agregar un plan");
         System.out.println("  2.- Mostrar planes");
-        System.out.println("  3.- Modificar plan");
-        System.out.println("  4.- Eliminar un plan");
-        System.out.println("5.- Volver a la pestaña anterior");
+        System.out.println("  3.- Eliminar un plan");
+        System.out.println("4.- Volver a la pestaña anterior");
         System.out.println("-----------------------------------------");
     }
     

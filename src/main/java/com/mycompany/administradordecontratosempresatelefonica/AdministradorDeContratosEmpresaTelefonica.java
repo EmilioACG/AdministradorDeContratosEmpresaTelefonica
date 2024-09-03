@@ -51,7 +51,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
         ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
         ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
-
+        
         
         do{
             Menu.menuGeneral();
@@ -251,11 +251,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     }
                     break;
 
-                case "3": //3.- Modificar plan
-
-                    break;
-
-                case "4": //4.- Eliminar un plan
+                case "3": //3.- Eliminar un plan
 
                     break;
 
@@ -265,7 +261,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     break;
             }
 
-        }while( !"5".equals(opcionPlan) );
+        }while( !"4".equals(opcionPlan) );
     }
 
     
@@ -274,30 +270,62 @@ public class AdministradorDeContratosEmpresaTelefonica {
         do{
             Menu.menuContratosPrint();
             opcionCliente = lector.nextLine();
-            int rut,sumaPlanes,largoPlanes;
+            int rut,largoPlanes;
+            double sumaPlanes;
             Cliente clienteAux;
             
             switch (opcionCliente){
                 case "1":
-                    System.out.println("Ingrese el rut del usuario al cual desea ver el contratto");
+                    /*|System.out.println("Ingrese el rut del usuario al cual desea ver el contratto");
                     rut = lector.nextInt();
                     lector.nextLine();
-                    clienteAux = mapaClientes.get(rut);
+                    clienteAux = listaClientes.get();
                     if(clienteAux != null){
                         if(clienteAux.getTieneContrato()){
-                            System.out.println("El usuario " + clienteAux.getNombreCompleto());
+                            System.out.println("-----------------------------------------");
+                            System.out.println("El cliente " + clienteAux.getNombreCompleto());
                             System.out.println("rut : " + clienteAux.getRut());
-                            //largoPlanes = clienteAux.getListaPlanes.size();
+                            sumaPlanes = 0;
+                            largoPlanes=clienteAux.getListaPlanes().size();
+                            for(int i = 0; i < largoPlanes; i++)
+                               sumaPlanes += clienteAux.getListaPlanes().get(i).getPrecio();
+                            System.out.println("El contrato del cliente tiene un valor de " + sumaPlanes);
+                            System.out.println("-----------------------------------------");
                         }
-                        else 
-                            System.out.println("El usuario no tiene contrato");
+                        else{
+                            System.out.println("-----------------------------------------");
+                            System.out.println("El cliente " + clienteAux.getNombreCompleto());
+                            System.out.println("rut : " + clienteAux.getRut());
+                            System.out.println("NO TIENE CONTRATO ");
+                            System.out.println("-----------------------------------------");
+                        }
                     }
                     else
-                        System.out.println("El usuario no se a encontrado");
+                        System.out.println("El usuario no se a encontrado");*/
                     break;
                         
                 case "2":
-                            
+                    for(int i = 0; i < listaClientes.size(); i++){
+                        clienteAux = listaClientes.get(i);
+                        if(clienteAux.getTieneContrato()){
+                            System.out.println("-----------------------------------------");
+                            System.out.println("El cliente " + clienteAux.getNombreCompleto());
+                            System.out.println("rut : " + clienteAux.getRut());
+                            sumaPlanes = 0;
+                            largoPlanes = clienteAux.getListaPlanes().size();
+                            for(int k = 0; k < largoPlanes; k++)
+                               sumaPlanes += clienteAux.getListaPlanes().get(k).getPrecio();
+                            System.out.println("El contrato del cliente tiene un valor de " + sumaPlanes);
+                            System.out.println("-----------------------------------------");
+                        }
+                        else{
+                            System.out.println("-----------------------------------------");
+                            System.out.println("El cliente " + clienteAux.getNombreCompleto());
+                            System.out.println("rut : " + clienteAux.getRut());
+                            System.out.println("NO TIENE CONTRATO ");
+                            System.out.println("-----------------------------------------");
+                        }
+                    }        
                     break;
                     
                 default:

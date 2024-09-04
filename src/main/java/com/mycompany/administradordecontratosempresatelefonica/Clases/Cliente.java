@@ -132,25 +132,34 @@ public class Cliente {
 
    public void agregarPlan(int planSeleccionado, Plan[] ofertaPlanes, String numeroTelefono){
        this.tieneContrato = true;
-       Plan copiaPlan = ofertaPlanes[planSeleccionado];
+       Plan copiaPlan = new Plan( ofertaPlanes[planSeleccionado] );
        copiaPlan.setNumeroTelefono(numeroTelefono);
-       listaPlanes.add(ofertaPlanes[planSeleccionado]);
+       listaPlanes.add(copiaPlan);
    }
 
    public void mostrarPlanes(){
        System.out.println("-----------------------------------------");
        System.out.println("Planes asociados a " + getNombre() + ":");
-       System.out.println("Aqui-1");
-       int tamaño = listaPlanes.size();
-       System.out.println("El tamaño es" + tamaño);
-       for (Plan planPrint : listaPlanes) {
-           System.out.println("Entra al for");
-           imprimirPlan(planPrint);
+       for (int i = 0; i < listaPlanes.size(); i++) {
+           System.out.print(i+1);
+           imprimirPlan(listaPlanes.get(i));
        }
 
        System.out.println("-----------------------------------------");
    }
 
+   public void eliminarPlan(Scanner lector){
+       mostrarPlanes();
+
+       int posEliminar;
+
+       System.out.println("Ingrese el numero del plan que desear eliminar: ");
+
+       posEliminar = lector.nextInt();
+       lector.nextLine();
+
+       listaPlanes.remove(posEliminar-1);
+   }
 }
 
 

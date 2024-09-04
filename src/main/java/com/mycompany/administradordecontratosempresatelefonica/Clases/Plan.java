@@ -29,6 +29,15 @@ public class Plan {
         this.precio = cuotaMensual;
     }
 
+    public Plan(Plan ofertaPlanes) {
+        this.nombrePlan = ofertaPlanes.nombrePlan;
+        this.numeroTelefono = ofertaPlanes.numeroTelefono;
+        this.cantGigaBytes = ofertaPlanes.cantGigaBytes;
+        this.cantMinutos = ofertaPlanes.cantMinutos;
+        this.precio = ofertaPlanes.precio;
+
+    }
+
     // -----------------------------------------------------------------------------------------------
     // Getters
     // -----------------------------------------------------------------------------------------------
@@ -82,7 +91,6 @@ public class Plan {
     // -----------------------------------------------------------------------------------------------
 
     public static void imprimirPlan(Plan plan) {
-        System.out.println("Imprime");
         System.out.println(" " + plan.getNombrePlan());
         System.out.println("   +56 9" + plan.getNumeroTelefono());
         System.out.println("   " + plan.getCantGigaBytes() + " Gigas Libres");

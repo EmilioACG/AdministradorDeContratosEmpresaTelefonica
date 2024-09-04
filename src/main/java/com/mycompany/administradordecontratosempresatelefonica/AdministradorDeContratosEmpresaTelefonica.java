@@ -4,6 +4,8 @@
 
 package com.mycompany.administradordecontratosempresatelefonica;
 import com.mycompany.administradordecontratosempresatelefonica.Clases.*;
+import net.datafaker.Faker;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,18 +19,24 @@ public class AdministradorDeContratosEmpresaTelefonica {
 
     private static ArrayList<Cliente> listaClientes = new ArrayList<>();
     private static HashMap<Integer,Cliente> mapaClientes = new HashMap<>();
+    private static HashMap<String, Cliente> mapaTelefonos = new HashMap<>();
     
     public static void main(String[] args) {
 
         String opcion;
         Scanner lector = new Scanner(System.in);
+
+        Plan ofertaPlanes[] = new Plan[3];
+        ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
+        ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
+        ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
         
         //Datos para lista clientes
-        listaClientes.add(new Cliente("Pedro","Rodriguez","Perez",1341541));
-        listaClientes.add(new Cliente("Juan", "Pérez", "González", 12345678));
-        listaClientes.add(new Cliente("Ana", "López", "Ramírez", 87654321));
-        listaClientes.add(new Cliente("Carlos", "Martínez", "Díaz", 11223344));
-        listaClientes.add(new Cliente("María", "Rodríguez", "Fernández", 22334455));
+        listaClientes.add(new Cliente("Pedro","Rodriguez","Perez",1341541, ofertaPlanes, 0,"56780976" ));
+        listaClientes.add(new Cliente("Juan", "Pérez", "González", 12345678, ofertaPlanes, 2,"56780977" ));
+        listaClientes.add(new Cliente("Ana", "López", "Ramírez", 87654321, ofertaPlanes, 0,"56780978" ));
+        listaClientes.add(new Cliente("Carlos", "Martínez", "Díaz", 11223344, ofertaPlanes, 1,"56780979" ));
+        listaClientes.add(new Cliente("María", "Rodríguez", "Fernández", 22334455, ofertaPlanes, 1,"56780980" ));
         listaClientes.add(new Cliente("Pedro", "Gómez", "Morales", 33445566));
         listaClientes.add(new Cliente("Lucía", "Sánchez", "Jiménez", 44556677));
         listaClientes.add(new Cliente("Jorge", "Hernández", "Ruiz", 55667788));
@@ -36,22 +44,23 @@ public class AdministradorDeContratosEmpresaTelefonica {
         listaClientes.add(new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
         
         //Datos para el mapa clientes
-        mapaClientes.put(1341541,new Cliente("Pedro","Rodriguez","Perez", 1341541));
-        mapaClientes.put(12345678,new Cliente("Juan", "Pérez", "González", 12345678));
-        mapaClientes.put(87654321,new Cliente("Ana", "López", "Ramírez", 87654321));
-        mapaClientes.put(11223344,new Cliente("Carlos", "Martínez", "Díaz", 11223344));
-        mapaClientes.put(22334455,new Cliente("María", "Rodríguez", "Fernández", 22334455));
+        mapaClientes.put(1341541,new Cliente("Pedro","Rodriguez","Perez", 1341541, ofertaPlanes, 0,"56780976" ));
+        mapaClientes.put(12345678,new Cliente("Juan", "Pérez", "González", 12345678, ofertaPlanes, 2,"56780977" ));
+        mapaClientes.put(87654321,new Cliente("Ana", "López", "Ramírez", 87654321, ofertaPlanes, 0,"56780978" ));
+        mapaClientes.put(11223344,new Cliente("Carlos", "Martínez", "Díaz", 11223344, ofertaPlanes, 1,"56780979" ));
+        mapaClientes.put(22334455,new Cliente("María", "Rodríguez", "Fernández", 22334455, ofertaPlanes, 1,"56780980" ));
         mapaClientes.put(33445566,new Cliente("Pedro", "Gómez", "Morales", 33445566));
         mapaClientes.put(44556677,new Cliente("Lucía", "Sánchez", "Jiménez", 44556677));
         mapaClientes.put(55667788,new Cliente("Jorge", "Hernández", "Ruiz", 55667788));
         mapaClientes.put(66778899,new Cliente("Elena", "Castro", "Torres", 66778899));
         mapaClientes.put(77889900,new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
 
-        Plan ofertaPlanes[] = new Plan[3];
-        ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
-        ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
-        ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
-        
+        //Datos para el mapa de numero telefonicos existentes
+        mapaTelefonos.put("56780976", listaClientes.get(0));
+        mapaTelefonos.put("56780977", listaClientes.get(1));
+        mapaTelefonos.put("56780978", listaClientes.get(2));
+        mapaTelefonos.put("56780979", listaClientes.get(3));
+        mapaTelefonos.put("56780980", listaClientes.get(4));
         
         do{
             Menu.menuGeneral();
@@ -210,6 +219,8 @@ public class AdministradorDeContratosEmpresaTelefonica {
     public static void menuPlanes(Scanner lector, Plan[] ofertaPlanes){
 
         String opcionPlan;
+        String numeroTelefono;
+        Faker generarNumero = new Faker();
         int rut;
 
         do{
@@ -235,18 +246,27 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     seleccionPlan = lector.nextInt();
                     lector.nextLine();
 
-                    for(int i = 0; i < listaClientes.size(); i++){
-                        if(listaClientes.get(i).getRut() == rut){
-                            listaClientes.get(i).agregarPlan(seleccionPlan, ofertaPlanes);
+                    do{
+                        numeroTelefono = generarNumero.numerify("########");
+                    }while( mapaTelefonos.get(numeroTelefono) != null );
+
+
+                    for (Cliente cliente : listaClientes) {
+                        if (cliente.getRut() == rut) {
+                            cliente.agregarPlan(seleccionPlan, ofertaPlanes, numeroTelefono);
+                            mapaTelefonos.put(numeroTelefono, cliente);
+                            mapaClientes.get(rut).agregarPlan(seleccionPlan, ofertaPlanes, numeroTelefono);
+                            break;
                         }
                     }
 
                     break;
 
                 case "2": //2.- Mostrar planes
-                    for(int i = 0; i < listaClientes.size(); i++){
-                        if(listaClientes.get(i).getRut() == rut){
-                            listaClientes.get(i).mostrarPlanes();
+                    for (Cliente cliente : listaClientes) {
+                        if (cliente.getRut() == rut) {
+                            cliente.mostrarPlanes();
+                            break;
                         }
                     }
                     break;

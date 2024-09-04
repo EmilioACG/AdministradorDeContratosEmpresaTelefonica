@@ -27,7 +27,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         String opcion;
         Scanner lector = new Scanner(System.in);
         //Se llama al metodo que inicializa datos
-        DatosIniciales();
+        datosIniciales();
         
         do{
             Menu.menuGeneral();
@@ -320,7 +320,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         }while(!"3".equals(opcionCliente));
     }
     
-    public static void DatosIniciales(){
+    public static void datosIniciales(){
         //Se crean las 3 ofertas de planes
         ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
         ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);

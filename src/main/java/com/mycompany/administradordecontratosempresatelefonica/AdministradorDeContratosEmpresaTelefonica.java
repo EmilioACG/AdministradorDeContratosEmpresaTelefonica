@@ -48,10 +48,8 @@ public class AdministradorDeContratosEmpresaTelefonica {
                 default:
                     if(!"0".equals(opcion))
                         Menu.menuError();
-                    else
-                        Menu.menuExit();
                     break;
-        }
+            }
         }while(!"0".equals(opcion));
 
 
@@ -94,6 +92,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     nuevoCliente = new Cliente(nombre,apePat, apeMat, rut);
                     listaClientes.add(nuevoCliente);
                     mapaClientes.put(rut,nuevoCliente);
+                    System.out.println("tamaño planes lista " + mapaClientes.get(rut).getListaPlanes().size());
                     break;
                    
                 case "2": 
@@ -181,7 +180,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     break;
                              
                 default:
-                    if(!"7".equals(opcionCliente))
+                    if(!"6".equals(opcionCliente))
                         Menu.menuError();
                     break;
             }
@@ -228,34 +227,23 @@ public class AdministradorDeContratosEmpresaTelefonica {
 
                     for (Cliente cliente : listaClientes) {
                         if (cliente.getRut() == rut) {
-                            cliente.agregarPlan(seleccionPlan-1, ofertaPlanes.clone(), numeroTelefono);
+                            cliente.agregarPlan(seleccionPlan - 1, ofertaPlanes.clone(), numeroTelefono);
                             mapaTelefonos.put(numeroTelefono, cliente);
-                            int tamaño = cliente.getListaPlanes().size();
-                            System.out.println("funcion agregar El tamaño es" + tamaño);
                             break;
                         }
                     }
-
                     break;
 
                 case "2": //2.- Mostrar planes
-                    for (Cliente cliente : listaClientes) {
-                        if (cliente.getRut() == rut) {
-                            int tamaño = cliente.getListaPlanes().size();
-                            System.out.println("funcion mostrar El tamaño es" + tamaño);
-                            System.out.println("Entra al if");
-                            cliente.mostrarPlanes();
-                            break;
-                        }
-                    }
+                    mapaClientes.get(rut).mostrarPlanes();
                     break;
 
                 case "3": //3.- Eliminar un plan
-
+                    mapaClientes.get(rut).eliminarPlan(lector);
                     break;
 
                 default:
-                    if( !"5".equals(opcionPlan) )
+                    if( !"4".equals(opcionPlan) )
                         Menu.menuError();
                     break;
             }
@@ -275,7 +263,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
             
             switch (opcionCliente){
                 case "1":
-                    System.out.println("Ingrese el rut del usuario al cual desea ver el contratto");
+                    System.out.println("Ingrese el rut del usuario al cual desea ver el contrato");
                     rut = lector.nextInt();
                     lector.nextLine();
                     clienteAux = mapaClientes.get(rut);
@@ -328,7 +316,8 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     break;
                     
                 default:
-                    Menu.menuError();
+                    if (!"3".equals(opcionCliente))
+                        Menu.menuError();
                     break;
             }
                     

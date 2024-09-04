@@ -82,6 +82,7 @@ public class Plan {
     // -----------------------------------------------------------------------------------------------
 
     public static void imprimirPlan(Plan plan) {
+        System.out.println("Imprime");
         System.out.println(" " + plan.getNombrePlan());
         System.out.println("   +56 9" + plan.getNumeroTelefono());
         System.out.println("   " + plan.getCantGigaBytes() + " Gigas Libres");

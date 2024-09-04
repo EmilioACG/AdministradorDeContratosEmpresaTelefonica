@@ -86,10 +86,6 @@ public class Menu {
         System.out.println("    300 Gigas");
         System.out.println("    1000 Minutos");
         System.out.println("    $13.592\n");
-        System.out.println("4.- Plan Personalizado");
-        System.out.println("    Cantidad de gigas a elección");
-        System.out.println("    Cantidad de minutos a elección");
-        System.out.println("    $(Dependerá de los GB y minutos solicitados)");
         System.out.println("-----------------------------------------");
     }
     

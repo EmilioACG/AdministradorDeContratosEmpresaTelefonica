@@ -39,6 +39,7 @@ public class Cliente {
        this.apellidoPaterno =  apellP;
        this.apellidoMaterno = apellM;
        this.rut = num;
+       this.tieneContrato = true;
        Plan copiaPlan = ofertaPlanes[planSeleccionado];
        copiaPlan.setNumeroTelefono(telefono);
        this.listaPlanes.add(copiaPlan);
@@ -130,16 +131,20 @@ public class Cliente {
    
 
    public void agregarPlan(int planSeleccionado, Plan[] ofertaPlanes, String numeroTelefono){
+       this.tieneContrato = true;
        Plan copiaPlan = ofertaPlanes[planSeleccionado];
        copiaPlan.setNumeroTelefono(numeroTelefono);
-       listaPlanes.add(ofertaPlanes[planSeleccionado-1]);
+       listaPlanes.add(ofertaPlanes[planSeleccionado]);
    }
 
    public void mostrarPlanes(){
        System.out.println("-----------------------------------------");
        System.out.println("Planes asociados a " + getNombre() + ":");
-
+       System.out.println("Aqui-1");
+       int tamaño = listaPlanes.size();
+       System.out.println("El tamaño es" + tamaño);
        for (Plan planPrint : listaPlanes) {
+           System.out.println("Entra al for");
            imprimirPlan(planPrint);
        }
 

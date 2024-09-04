@@ -20,19 +20,20 @@ public class AdministradorDeContratosEmpresaTelefonica {
     private static ArrayList<Cliente> listaClientes = new ArrayList<>();
     private static HashMap<Integer,Cliente> mapaClientes = new HashMap<>();
     private static HashMap<String, Cliente> mapaTelefonos = new HashMap<>();
+    private static Plan ofertaPlanes[] = new Plan[3];
     
     public static void main(String[] args) {
 
         String opcion;
         Scanner lector = new Scanner(System.in);
-
-        Plan ofertaPlanes[] = new Plan[3];
+        
         ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
         ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
         ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
         
+        Cliente clientePrueba1 = new Cliente("Pedro","Rodriguez","Perez",1341541, ofertaPlanes, 0,"56780976");
         //Datos para lista clientes
-        listaClientes.add(new Cliente("Pedro","Rodriguez","Perez",1341541, ofertaPlanes, 0,"56780976"));
+        listaClientes.add(clientePrueba);
         listaClientes.add(new Cliente("Juan", "Pérez", "González", 12345678, ofertaPlanes, 2,"56780977" ));
         listaClientes.add(new Cliente("Ana", "López", "Ramírez", 87654321, ofertaPlanes, 0,"56780978" ));
         listaClientes.add(new Cliente("Carlos", "Martínez", "Díaz", 11223344, ofertaPlanes, 1,"56780979" ));
@@ -44,7 +45,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         listaClientes.add(new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
         
         //Datos para el mapa clientes
-        mapaClientes.put(1341541,new Cliente("Pedro","Rodriguez","Perez", 1341541, ofertaPlanes, 0,"56780976" ));
+        mapaClientes.put(1341541,clientePrueba);
         mapaClientes.put(12345678,new Cliente("Juan", "Pérez", "González", 12345678, ofertaPlanes, 2,"56780977" ));
         mapaClientes.put(87654321,new Cliente("Ana", "López", "Ramírez", 87654321, ofertaPlanes, 0,"56780978" ));
         mapaClientes.put(11223344,new Cliente("Carlos", "Martínez", "Díaz", 11223344, ofertaPlanes, 1,"56780979" ));
@@ -125,8 +126,8 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     }while(clienteAux != null);                  
                     System.out.println("-----------------------------------------");
                     nuevoCliente = new Cliente(nombre,apePat, apeMat, rut);
-                    listaClientes.add(nuevoCliente);
-                    mapaClientes.put(rut,nuevoCliente);
+                    listaClientes.add(new Cliente(nombre,apePat, apeMat, rut));
+                    mapaClientes.put(rut,new Cliente(nombre,apePat, apeMat, rut));
                     break;
                    
                 case "2": 
@@ -155,25 +156,14 @@ public class AdministradorDeContratosEmpresaTelefonica {
                         System.out.println("Ingrese su nombre actualizado...");
                         nombre = lector.next();
                         mapaClientes.get(rut).modificarDatosClientes(nombre);
-                        for(int i = 0; i < listaClientes.size(); i++){
-                            if(listaClientes.get(i).getRut() == rut){
-                                listaClientes.get(i).modificarDatosClientes(nombre);
-                            break;
-                            }  
-                        }
                     }
+                    
                     if("2".equals(opcionCliente) || "3".equals(opcionCliente)){
                         System.out.println("Ingrese su apellido paterno actualizado...");
                         apePat = lector.next();
                         System.out.println("Ingrese su apellido materno actualizado...");
                         apeMat = lector.next();
                         mapaClientes.get(rut).modificarDatosClientes(apePat, apeMat);
-                        for(int i = 0; i < listaClientes.size(); i++){
-                            if(listaClientes.get(i).getRut() == rut){
-                                listaClientes.get(i).modificarDatosClientes(apePat, apeMat);
-                                break;
-                            }  
-                        }
                     }
                     System.out.println("-----------------------------------------");
                     break;
@@ -190,7 +180,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
                         rut = lector.nextInt();
                         lector.nextLine();
                         mapaClientes.remove(rut);
-                          for(int i = 0; i < listaClientes.size(); i++){
+                        for(int i = 0; i < listaClientes.size(); i++){
                             if(listaClientes.get(i).getRut() == rut){
                                 listaClientes.remove(i);
                                 System.out.println("Se a eliminado con exito");
@@ -253,9 +243,8 @@ public class AdministradorDeContratosEmpresaTelefonica {
 
                     for (Cliente cliente : listaClientes) {
                         if (cliente.getRut() == rut) {
-                            cliente.agregarPlan(seleccionPlan-1, ofertaPlanes, numeroTelefono);
+                            cliente.agregarPlan(seleccionPlan-1, ofertaPlanes.clone(), numeroTelefono);
                             mapaTelefonos.put(numeroTelefono, cliente);
-                            mapaClientes.get(rut).agregarPlan(seleccionPlan-1, ofertaPlanes, numeroTelefono);
                             int tamaño = cliente.getListaPlanes().size();
                             System.out.println("funcion agregar El tamaño es" + tamaño);
                             break;
@@ -361,5 +350,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         }while(!"3".equals(opcionCliente));
     }
     
-
+    public static void DatosIniciales(){
+        
+    }
 }

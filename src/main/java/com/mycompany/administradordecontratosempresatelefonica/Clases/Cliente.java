@@ -40,7 +40,7 @@ public class Cliente {
        this.apellidoMaterno = apellM;
        this.rut = num;
        this.tieneContrato = true;
-       Plan copiaPlan = ofertaPlanes[planSeleccionado];
+       Plan copiaPlan = new Plan( ofertaPlanes[planSeleccionado] );
        copiaPlan.setNumeroTelefono(telefono);
        this.listaPlanes.add(copiaPlan);
    }

@@ -26,42 +26,8 @@ public class AdministradorDeContratosEmpresaTelefonica {
 
         String opcion;
         Scanner lector = new Scanner(System.in);
-        
-        ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
-        ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
-        ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
-        
-        Cliente clientePrueba1 = new Cliente("Pedro","Rodriguez","Perez",1341541, ofertaPlanes, 0,"56780976");
-        //Datos para lista clientes
-        listaClientes.add(clientePrueba);
-        listaClientes.add(new Cliente("Juan", "Pérez", "González", 12345678, ofertaPlanes, 2,"56780977" ));
-        listaClientes.add(new Cliente("Ana", "López", "Ramírez", 87654321, ofertaPlanes, 0,"56780978" ));
-        listaClientes.add(new Cliente("Carlos", "Martínez", "Díaz", 11223344, ofertaPlanes, 1,"56780979" ));
-        listaClientes.add(new Cliente("María", "Rodríguez", "Fernández", 22334455, ofertaPlanes, 1,"56780980" ));
-        listaClientes.add(new Cliente("Pedro", "Gómez", "Morales", 33445566));
-        listaClientes.add(new Cliente("Lucía", "Sánchez", "Jiménez", 44556677));
-        listaClientes.add(new Cliente("Jorge", "Hernández", "Ruiz", 55667788));
-        listaClientes.add(new Cliente("Elena", "Castro", "Torres", 66778899));
-        listaClientes.add(new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
-        
-        //Datos para el mapa clientes
-        mapaClientes.put(1341541,clientePrueba);
-        mapaClientes.put(12345678,new Cliente("Juan", "Pérez", "González", 12345678, ofertaPlanes, 2,"56780977" ));
-        mapaClientes.put(87654321,new Cliente("Ana", "López", "Ramírez", 87654321, ofertaPlanes, 0,"56780978" ));
-        mapaClientes.put(11223344,new Cliente("Carlos", "Martínez", "Díaz", 11223344, ofertaPlanes, 1,"56780979" ));
-        mapaClientes.put(22334455,new Cliente("María", "Rodríguez", "Fernández", 22334455, ofertaPlanes, 1,"56780980" ));
-        mapaClientes.put(33445566,new Cliente("Pedro", "Gómez", "Morales", 33445566));
-        mapaClientes.put(44556677,new Cliente("Lucía", "Sánchez", "Jiménez", 44556677));
-        mapaClientes.put(55667788,new Cliente("Jorge", "Hernández", "Ruiz", 55667788));
-        mapaClientes.put(66778899,new Cliente("Elena", "Castro", "Torres", 66778899));
-        mapaClientes.put(77889900,new Cliente("Luis", "Mendoza", "Ortiz", 77889900));
-
-        //Datos para el mapa de numero telefonicos existentes
-        mapaTelefonos.put("56780976", listaClientes.get(0));
-        mapaTelefonos.put("56780977", listaClientes.get(1));
-        mapaTelefonos.put("56780978", listaClientes.get(2));
-        mapaTelefonos.put("56780979", listaClientes.get(3));
-        mapaTelefonos.put("56780980", listaClientes.get(4));
+        //Se llama al metodo que inicializa datos
+        DatosIniciales();
         
         do{
             Menu.menuGeneral();
@@ -351,6 +317,52 @@ public class AdministradorDeContratosEmpresaTelefonica {
     }
     
     public static void DatosIniciales(){
+        //Se crean las 3 ofertas de planes
+        ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
+        ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
+        ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
         
+        //Se crean 10 clientes 
+        Cliente clientePrueba1 = new Cliente("Pedro","Rodriguez","Perez",1341541, ofertaPlanes, 0,"56780976");
+        Cliente clientePrueba2 = new Cliente("Juan", "Pérez", "González", 12345678, ofertaPlanes, 2,"56780977");
+        Cliente clientePrueba3 = new Cliente("Ana", "López", "Ramírez", 87654321, ofertaPlanes, 0,"56780978");
+        Cliente clientePrueba4 = new Cliente("Carlos", "Martínez", "Díaz", 11223344, ofertaPlanes, 1,"56780979");
+        Cliente clientePrueba5 = new Cliente("María", "Rodríguez", "Fernández", 22334455, ofertaPlanes, 1,"56780980");
+        Cliente clientePrueba6 = new Cliente("Pedro", "Gómez", "Morales", 33445566);
+        Cliente clientePrueba7 = new Cliente("Lucía", "Sánchez", "Jiménez", 44556677);
+        Cliente clientePrueba8 = new Cliente("Jorge", "Hernández", "Ruiz", 55667788);
+        Cliente clientePrueba9 = new Cliente("Elena", "Castro", "Torres", 66778899);
+        Cliente clientePrueba10 = new Cliente("Luis", "Mendoza", "Ortiz", 77889900);
+
+        //Datos para lista clientes
+        listaClientes.add(clientePrueba1);
+        listaClientes.add(clientePrueba2);
+        listaClientes.add(clientePrueba3);
+        listaClientes.add(clientePrueba4);
+        listaClientes.add(clientePrueba5);
+        listaClientes.add(clientePrueba6);
+        listaClientes.add(clientePrueba7);
+        listaClientes.add(clientePrueba8);
+        listaClientes.add(clientePrueba9);
+        listaClientes.add(clientePrueba10);
+        
+        //Datos para el mapa clientes
+        mapaClientes.put(1341541,clientePrueba1);
+        mapaClientes.put(12345678,clientePrueba2);
+        mapaClientes.put(87654321,clientePrueba3);
+        mapaClientes.put(11223344,clientePrueba4);
+        mapaClientes.put(22334455,clientePrueba5);
+        mapaClientes.put(33445566,clientePrueba6);
+        mapaClientes.put(44556677,clientePrueba7);
+        mapaClientes.put(55667788,clientePrueba8);
+        mapaClientes.put(66778899,clientePrueba9);
+        mapaClientes.put(77889900,clientePrueba10);
+
+        //Datos para el mapa de numero telefonicos existentes
+        mapaTelefonos.put("56780976", listaClientes.get(0));
+        mapaTelefonos.put("56780977", listaClientes.get(1));
+        mapaTelefonos.put("56780978", listaClientes.get(2));
+        mapaTelefonos.put("56780979", listaClientes.get(3));
+        mapaTelefonos.put("56780980", listaClientes.get(4));
     }
 }

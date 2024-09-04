@@ -5,7 +5,6 @@
 
 package com.mycompany.administradordecontratosempresatelefonica.Clases;
 import net.datafaker.Faker;
-
 import java.util.Scanner;
 import java.util.ArrayList;
 

@@ -65,7 +65,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         String apePat;
         String apeMat;
         Cliente clienteAux = null;
-        int rut,rutAux=0;
+        int rut,largo;
         
         do{
             Menu.menuClientePrint();
@@ -92,8 +92,8 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     }while(clienteAux != null);                  
                     System.out.println("-----------------------------------------");
                     nuevoCliente = new Cliente(nombre,apePat, apeMat, rut);
-                    listaClientes.add(new Cliente(nombre,apePat, apeMat, rut));
-                    mapaClientes.put(rut,new Cliente(nombre,apePat, apeMat, rut));
+                    listaClientes.add(nuevoCliente);
+                    mapaClientes.put(rut,nuevoCliente);
                     break;
                    
                 case "2": 
@@ -142,9 +142,24 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     System.out.println("NO-presione el 0");
                     opcionCliente = lector.nextLine();
                     if(!"0".equals(opcionCliente)){
+                        
                         System.out.println("Ingrese el rut del usuario que desea eliminar: ");
                         rut = lector.nextInt();
                         lector.nextLine();
+                        clienteAux = mapaClientes.get(rut);
+                        if(clienteAux == null){
+                            System.out.println("El usuario no se a encontrado");
+                            break;
+                        }     
+                        
+                        largo = mapaClientes.get(rut).getListaPlanes().size();
+                        for(int i = 0; i < largo; i++){
+                            System.out.println("la clave  es " + mapaClientes.get(rut).getListaPlanes().get(i).getNumeroTelefono());
+                            mapaTelefonos.remove(mapaClientes.get(rut).getListaPlanes().get(i).getNumeroTelefono());    
+                        }
+                        for(String key:mapaTelefonos.keySet())
+                            System.out.println("numero " + key);
+                        
                         mapaClientes.remove(rut);
                         for(int i = 0; i < listaClientes.size(); i++){
                             if(listaClientes.get(i).getRut() == rut){
@@ -159,6 +174,10 @@ public class AdministradorDeContratosEmpresaTelefonica {
                 case "5":
                     for(Cliente cliente:listaClientes)
                         System.out.println(cliente.mostrarDatos());
+                    break;
+                case "10":
+                    for(String key:mapaTelefonos.keySet())
+                            System.out.println("numero " + key+"cliente"+mapaTelefonos.get(key).getNombre());
                     break;
                              
                 default:
@@ -359,10 +378,10 @@ public class AdministradorDeContratosEmpresaTelefonica {
         mapaClientes.put(77889900,clientePrueba10);
 
         //Datos para el mapa de numero telefonicos existentes
-        mapaTelefonos.put("56780976", listaClientes.get(0));
-        mapaTelefonos.put("56780977", listaClientes.get(1));
-        mapaTelefonos.put("56780978", listaClientes.get(2));
-        mapaTelefonos.put("56780979", listaClientes.get(3));
-        mapaTelefonos.put("56780980", listaClientes.get(4));
+        mapaTelefonos.put("56780976", clientePrueba1);
+        mapaTelefonos.put("56780977", clientePrueba2);
+        mapaTelefonos.put("56780978", clientePrueba3);
+        mapaTelefonos.put("56780979", clientePrueba4);
+        mapaTelefonos.put("56780980", clientePrueba5);
     }
 }

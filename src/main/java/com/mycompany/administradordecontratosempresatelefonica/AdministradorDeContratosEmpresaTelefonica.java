@@ -174,10 +174,6 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     for(Cliente cliente:listaClientes)
                         System.out.println(cliente.mostrarDatos());
                     break;
-                case "10":
-                    for(String key:mapaTelefonos.keySet())
-                            System.out.println("numero " + key+"cliente"+mapaTelefonos.get(key).getNombre());
-                    break;
                              
                 default:
                     if(!"6".equals(opcionCliente))
@@ -332,7 +328,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         
         //Se crean 10 clientes 
         Cliente clientePrueba1 = new Cliente("Pedro","Rodriguez","Perez",1341541, ofertaPlanes, 0,"56780976");
-        Cliente clientePrueba2 = new Cliente("Juan", "Pérez", "González", 12345678, ofertaPlanes, 2,"56780977");
+        Cliente clientePrueba2 = new Cliente("Juan", "Pérez", "González", 112341, ofertaPlanes, 2,"56780977");
         Cliente clientePrueba3 = new Cliente("Ana", "López", "Ramírez", 87654321, ofertaPlanes, 0,"56780978");
         Cliente clientePrueba4 = new Cliente("Carlos", "Martínez", "Díaz", 11223344, ofertaPlanes, 1,"56780979");
         Cliente clientePrueba5 = new Cliente("María", "Rodríguez", "Fernández", 22334455, ofertaPlanes, 1,"56780980");

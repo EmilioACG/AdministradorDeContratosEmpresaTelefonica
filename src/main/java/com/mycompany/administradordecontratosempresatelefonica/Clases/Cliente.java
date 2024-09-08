@@ -137,6 +137,10 @@ public class Cliente {
    }
 
    public void mostrarPlanes(){
+       if(!getTieneContrato()){
+           System.out.println("Este usuario no posee planes.");
+           return;
+       }
        System.out.println("-----------------------------------------");
        System.out.println("Planes asociados a " + getNombre() + ":");
        for (int i = 0; i < listaPlanes.size(); i++) {
@@ -147,9 +151,20 @@ public class Cliente {
        System.out.println("-----------------------------------------");
    }
 
+    public void eliminarPlan(){
+        if(!getTieneContrato()) {
+            System.out.println("Este usuario no posee planes.");
+            return;
+        }
+
+        listaPlanes.clear();
+
+       setTieneContrato(false);
+    }
+
    public void eliminarPlan(Scanner lector){
        if(!getTieneContrato()) {
-           System.out.println("Este usuario no posee contratos.");
+           System.out.println("Este usuario no posee planes.");
            return;
        }
 

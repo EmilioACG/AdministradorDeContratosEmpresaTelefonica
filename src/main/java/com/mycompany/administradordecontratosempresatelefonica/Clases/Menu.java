@@ -55,13 +55,20 @@ public class Menu {
         System.out.println("  1.- Agregar un plan");
         System.out.println("  2.- Mostrar planes");
         System.out.println("  3.- Eliminar un plan");
-        System.out.println("4.- Volver a la pestaña anterior");
+        System.out.println("  4.- Eliminar todos los planes");
+        System.out.println("5.- Volver a la pestaña anterior");
         System.out.println("-----------------------------------------");
     }
     
     public static void menuError(){
         System.out.println("-----------------------------------------");
         System.out.println("Ha ocurrido un error, intente de nuevo");
+        System.out.println("-----------------------------------------");
+    }
+
+    public static void menuError(String cadena){
+        System.out.println("-----------------------------------------");
+        System.out.println(cadena);
         System.out.println("-----------------------------------------");
     }
     

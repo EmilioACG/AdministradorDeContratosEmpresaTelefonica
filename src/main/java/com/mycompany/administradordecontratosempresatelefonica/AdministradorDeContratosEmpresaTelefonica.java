@@ -200,7 +200,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
                 rut = lector.nextInt();
                 lector.nextLine();
                 if( mapaClientes.get(rut) == null )
-                    Menu.menuError();
+                    Menu.menuError("Usuario "+rut+" no ha sido encontrado.");
             }while( mapaClientes.get(rut) == null );
 
 
@@ -238,13 +238,17 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     mapaClientes.get(rut).eliminarPlan(lector);
                     break;
 
+                case "4": //4.- Eliminar todos los planes
+                    mapaClientes.get(rut).eliminarPlan();
+                    break;
+
                 default:
-                    if( !"4".equals(opcionPlan) )
+                    if( !"5".equals(opcionPlan) )
                         Menu.menuError();
                     break;
             }
 
-        }while( !"4".equals(opcionPlan) );
+        }while( !"5".equals(opcionPlan) );
     }
 
     

@@ -148,6 +148,11 @@ public class Cliente {
    }
 
    public void eliminarPlan(Scanner lector){
+       if(!getTieneContrato()) {
+           System.out.println("Este usuario no posee contratos.");
+           return;
+       }
+
        mostrarPlanes();
 
        int posEliminar;
@@ -158,6 +163,9 @@ public class Cliente {
        lector.nextLine();
 
        listaPlanes.remove(posEliminar-1);
+
+       if (listaPlanes.isEmpty())
+           setTieneContrato(false);
    }
 }
 

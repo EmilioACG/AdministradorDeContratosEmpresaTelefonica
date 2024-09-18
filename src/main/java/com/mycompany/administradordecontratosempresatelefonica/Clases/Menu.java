@@ -27,7 +27,7 @@ public class Menu {
         System.out.println("  2.- Mostrar un cliente");
         System.out.println("  3.- Modificar datos cliente");
         System.out.println("  4.- Eliminar cliente");
-            System.out.println("  5.- Mostrar todos los clientes");
+        System.out.println("  5.- Mostrar todos los clientes");
         System.out.println("6.- Regresar a la pestaña anterior");
         System.out.println("-----------------------------------------");
     }

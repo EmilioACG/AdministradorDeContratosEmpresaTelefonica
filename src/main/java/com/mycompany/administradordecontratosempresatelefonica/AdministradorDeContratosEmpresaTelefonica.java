@@ -9,6 +9,7 @@ import net.datafaker.Faker;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JFrame;
 
 
 /**
@@ -22,12 +23,21 @@ public class AdministradorDeContratosEmpresaTelefonica {
     private static HashMap<String, Cliente> mapaTelefonos = new HashMap<>();
     private static Plan ofertaPlanes[] = new Plan[3];
     
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         String opcion;
         Scanner lector = new Scanner(System.in);
         //Se llama al metodo que inicializa datos
         datosIniciales();
+        
+        java.awt.EventQueue.invokeLater(new Runnable(){
+        
+            public void run(){
+                MenuGeneral vv = new MenuGeneral();
+                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setVisible(true);
+                }
+            });
         
         do{
             Menu.menuGeneral();

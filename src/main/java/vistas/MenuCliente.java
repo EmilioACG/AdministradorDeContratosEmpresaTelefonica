@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/Application.java to edit this template
  */
-package com.mycompany.administradordecontratosempresatelefonica.Clases;
+package vistas;
 
+import com.mycompany.administradordecontratosempresatelefonica.Clases.Cliente;
+import com.mycompany.administradordecontratosempresatelefonica.Clases.Cliente;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JFrame;
 
 /**
@@ -12,6 +16,9 @@ import javax.swing.JFrame;
  */
 public class MenuCliente extends javax.swing.JFrame {
 
+    private ArrayList<Cliente> clientesList;
+    private HashMap<Integer,Cliente> clientesMap;
+    private HashMap<String, Cliente> telefonosMap;
     /**
      * Creates new form MenuCliente
      */
@@ -50,7 +57,6 @@ public class MenuCliente extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(820, 600));
 
         butOpcionExit.setText("Volver a la pestaña anterior");
         butOpcionExit.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +234,7 @@ public class MenuCliente extends javax.swing.JFrame {
 
     private void butOpcionExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butOpcionExitActionPerformed
         // TODO add your handling code here:
-        MenuGeneral vv = new MenuGeneral();
+        MenuGeneral vv = new MenuGeneral(clientesList,clientesMap,telefonosMap);
         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         vv.setVisible(true);
         dispose();

@@ -3,6 +3,7 @@
  */
 
 package com.mycompany.administradordecontratosempresatelefonica;
+import vistas.MenuGeneral;
 import com.mycompany.administradordecontratosempresatelefonica.Clases.*;
 import net.datafaker.Faker;
 
@@ -33,7 +34,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         java.awt.EventQueue.invokeLater(new Runnable(){
         
             public void run(){
-                MenuGeneral vv = new MenuGeneral();
+                MenuGeneral vv = new MenuGeneral(listaClientes, mapaClientes, mapaTelefonos);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 vv.setVisible(true);
                 }

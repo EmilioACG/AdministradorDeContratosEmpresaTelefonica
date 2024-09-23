@@ -2,18 +2,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/Application.java to edit this template
  */
-package com.mycompany.administradordecontratosempresatelefonica.Clases;
+package vistas;
+
+import com.mycompany.administradordecontratosempresatelefonica.Clases.Cliente;
+import vistas.MenuCliente;
+import vistas.MenuPlan;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author Emilio
  */
-public class MenuContrato extends javax.swing.JFrame {
+public class MenuGeneral extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuContrato
+     * Creates new form MenuGeneral
      */
-    public MenuContrato() {
+    
+   private static ArrayList<Cliente> clientesList;
+   private static HashMap<Integer,Cliente> clientesMap;
+   private static HashMap<String, Cliente> telefonosMap;
+    
+    public MenuGeneral(ArrayList<Cliente> clientesList, HashMap<Integer,Cliente> clientesMap, 
+              HashMap<String, Cliente> telefonosMap) {
+        MenuGeneral.clientesList = clientesList;
+        MenuGeneral.clientesMap = clientesMap;
+        MenuGeneral.telefonosMap = telefonosMap;
         initComponents();
     }
 
@@ -26,6 +41,10 @@ public class MenuContrato extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jlabelInicio = new javax.swing.JLabel();
+        butMenuCliente = new javax.swing.JButton();
+        butMenuPlanes = new javax.swing.JButton();
+        butMenuContratos = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -42,6 +61,26 @@ public class MenuContrato extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jlabelInicio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlabelInicio.setText("Bienvenido al mejor portal de telefonia del mundo ");
+        jlabelInicio.setToolTipText("");
+
+        butMenuCliente.setText("Menu Clientes");
+        butMenuCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butMenuClienteActionPerformed(evt);
+            }
+        });
+
+        butMenuPlanes.setText("Menu Planes");
+        butMenuPlanes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butMenuPlanesActionPerformed(evt);
+            }
+        });
+
+        butMenuContratos.setText("Menu Contratos");
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -110,11 +149,30 @@ public class MenuContrato extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(189, Short.MAX_VALUE)
+                .addComponent(jlabelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(181, 181, 181))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(333, 333, 333)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(butMenuContratos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(butMenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(butMenuPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(jlabelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
+                .addComponent(butMenuCliente)
+                .addGap(18, 18, 18)
+                .addComponent(butMenuPlanes)
+                .addGap(18, 18, 18)
+                .addComponent(butMenuContratos)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,6 +181,23 @@ public class MenuContrato extends javax.swing.JFrame {
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void butMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMenuClienteActionPerformed
+        // TODO add your handling code here:
+        MenuCliente clienteV  = new MenuCliente();
+        
+        clienteV.setAlwaysOnTop(rootPaneCheckingEnabled);
+        clienteV.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_butMenuClienteActionPerformed
+
+    private void butMenuPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMenuPlanesActionPerformed
+        MenuPlan ventanaPlanes = new MenuPlan(clientesList,clientesMap,telefonosMap);
+        
+        ventanaPlanes.setAlwaysOnTop(rootPaneCheckingEnabled);
+        ventanaPlanes.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_butMenuPlanesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,26 +216,30 @@ public class MenuContrato extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuContrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuContrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuContrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuContrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuGeneral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuContrato().setVisible(true);
+                new MenuGeneral(clientesList, clientesMap, telefonosMap).setVisible(true);
             }
         });
     }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JButton butMenuCliente;
+    private javax.swing.JButton butMenuContratos;
+    private javax.swing.JButton butMenuPlanes;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
@@ -169,6 +248,7 @@ public class MenuContrato extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JLabel jlabelInicio;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;

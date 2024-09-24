@@ -155,7 +155,7 @@ public class MenuCliente extends javax.swing.JFrame {
             .addGap(0, 577, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Eliga la opción que desea realizar:");
+        jLabel1.setText("Elija la opción que desea realizar:");
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -344,7 +344,6 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JPanel panelOpcion3;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;

@@ -27,7 +27,7 @@
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlbTituloOpContratos" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbTituloOpciones" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Component id="btnMostrarContratos" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnMostrarContratoCliente" alignment="0" max="32767" attributes="0"/>
@@ -42,7 +42,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
-              <Component id="jlbTituloOpContratos" min="-2" max="-2" attributes="0"/>
+              <Component id="jlbTituloOpciones" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="btnMostrarContratoCliente" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jlbTituloOpContratos">
+    <Component class="javax.swing.JLabel" name="jlbTituloOpciones">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>

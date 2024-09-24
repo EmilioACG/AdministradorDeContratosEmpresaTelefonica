@@ -52,7 +52,7 @@ public class MenuContrato extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlbTituloOpContratos = new javax.swing.JLabel();
+        jlbTituloOpciones = new javax.swing.JLabel();
         btnMostrarContratoCliente = new javax.swing.JButton();
         btnMostrarContratos = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
@@ -60,8 +60,8 @@ public class MenuContrato extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jlbTituloOpContratos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlbTituloOpContratos.setText("Eliga la opción que desea realizar:");
+        jlbTituloOpciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jlbTituloOpciones.setText("Eliga la opción que desea realizar:");
 
         btnMostrarContratoCliente.setText("1.- Mostrar el contrato de un cliente");
         btnMostrarContratoCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -100,7 +100,7 @@ public class MenuContrato extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVolver)
-                    .addComponent(jlbTituloOpContratos)
+                    .addComponent(jlbTituloOpciones)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnMostrarContratos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMostrarContratoCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -111,7 +111,7 @@ public class MenuContrato extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(154, 154, 154)
-                .addComponent(jlbTituloOpContratos)
+                .addComponent(jlbTituloOpciones)
                 .addGap(32, 32, 32)
                 .addComponent(btnMostrarContratoCliente)
                 .addGap(18, 18, 18)
@@ -168,7 +168,7 @@ public class MenuContrato extends javax.swing.JFrame {
     private javax.swing.JButton btnMostrarContratoCliente;
     private javax.swing.JButton btnMostrarContratos;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel jlbTituloOpContratos;
+    private javax.swing.JLabel jlbTituloOpciones;
     private javax.swing.JPanel jpnlPanelesOpciones;
     // End of variables declaration//GEN-END:variables
 

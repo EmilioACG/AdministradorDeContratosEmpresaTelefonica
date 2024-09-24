@@ -5,8 +5,6 @@
 package vistas;
 
 import com.mycompany.administradordecontratosempresatelefonica.Clases.Cliente;
-import vistas.MenuCliente;
-import vistas.MenuPlan;
 import java.util.ArrayList;
 import java.util.HashMap;
 

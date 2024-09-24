@@ -4,12 +4,7 @@
  */
 package vistas;
 
-<<<<<<< HEAD
 import java.awt.BorderLayout;
-=======
-import modelo.Cliente;
-import java.awt.Color;
->>>>>>> 84fdd84a99707e7c1ce4d7fc6a5421d0114b5512
 import javax.swing.JButton;
 import javax.swing.JPanel;
 

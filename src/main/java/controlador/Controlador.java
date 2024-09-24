@@ -22,6 +22,7 @@ public class Controlador implements ActionListener {
     //Listas y mapas
     private MenuGeneral menuG;
     private MenuCliente menuCliente;
+    private ClienteOpPanel1 panelAgregar;
     private MenuPlan menuPlan;
     private MenuContrato MenuContrato;
     
@@ -54,8 +55,9 @@ public class Controlador implements ActionListener {
         }
         //Opciones de cambio de menu
         if(ae.getSource() == menuCliente.getButOpcionAgregar()){
-            ClienteOpPanel1 panelAgregar = new ClienteOpPanel1();
+            panelAgregar = new ClienteOpPanel1();
             menuCliente.mostrarPanel(panelAgregar);
+            agregarCliente(panelAgregar);
             return;
         }
         if(ae.getSource() == menuCliente.getButOpcionMostarCliente()){
@@ -92,8 +94,7 @@ public class Controlador implements ActionListener {
         }
         if(ae.getSource() == menuG.getbutMenuContratos()){
             MenuContrato = new MenuContrato();
-            MenuContrato.setVisible(true);
-             
+            MenuContrato.setVisible(true);   
             return;
         }
         
@@ -102,9 +103,21 @@ public class Controlador implements ActionListener {
             menuCliente.dispose();
             return;
         }
-        if(ae.getSource() == menuPlan.getButVolver()){
+        /*if(ae.getSource() == menuPlan.getButVolver()){
             menuPlan.dispose();
             return;
-        }
+        }*/
+    }
+    public static void agregarCliente(ClienteOpPanel1 panelAgregar){
+        panelAgregar.getButEnviarAgregarCliente().addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+                String nombre = panelAgregar.getTxtFiNombre();
+                String apellPat = panelAgregar.getTxtFiApellPat();
+                String apellMat = panelAgregar.getTxtFiApellMate();
+                int rut = Integer.parseInt(panelAgregar.getTxtFiRut());
+                System.out.println(nombre+apellPat+apellMat+rut);
+            }
+        });
     }
 }

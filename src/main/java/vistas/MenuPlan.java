@@ -44,8 +44,10 @@ public class MenuPlan extends javax.swing.JFrame {
         btnEliminarPlanes = new javax.swing.JButton();
         btnBuscarRutValido = new javax.swing.JButton();
         jlbValidacionRut = new javax.swing.JLabel();
+        jpnlPanelesOpciones = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(824, 600));
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +67,11 @@ public class MenuPlan extends javax.swing.JFrame {
 
         btnAgregarPlan.setText("1.- Agregar un plan");
         btnAgregarPlan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAgregarPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPlanActionPerformed(evt);
+            }
+        });
 
         btnMostrarPlanes.setText("2.- Mostrar planes");
         btnMostrarPlanes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -84,28 +91,46 @@ public class MenuPlan extends javax.swing.JFrame {
 
         jlbValidacionRut.setText("Ingrese un rut sin puntos, ni guion ni digito verificador");
 
+        jpnlPanelesOpciones.setBackground(new java.awt.Color(255, 255, 255));
+        jpnlPanelesOpciones.setToolTipText("");
+
+        javax.swing.GroupLayout jpnlPanelesOpcionesLayout = new javax.swing.GroupLayout(jpnlPanelesOpciones);
+        jpnlPanelesOpciones.setLayout(jpnlPanelesOpcionesLayout);
+        jpnlPanelesOpcionesLayout.setHorizontalGroup(
+            jpnlPanelesOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 408, Short.MAX_VALUE)
+        );
+        jpnlPanelesOpcionesLayout.setVerticalGroup(
+            jpnlPanelesOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVolver)
-                    .addComponent(jlbTituloPlanes)
-                    .addComponent(jlbTituloOpciones)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnAgregarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMostrarPlanes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminarPlanes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnBuscarRutValido)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlbValidacionRut))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(406, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(btnVolver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbTituloPlanes)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnBuscarRutValido)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jlbValidacionRut))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlbTituloOpciones)
+                            .addComponent(btnAgregarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMostrarPlanes, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarPlanes))))
+                .addGap(18, 18, 18)
+                .addComponent(jpnlPanelesOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,19 +143,20 @@ public class MenuPlan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscarRutValido)
                     .addComponent(jlbValidacionRut))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbTituloOpciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregarPlan)
                 .addGap(18, 18, 18)
                 .addComponent(btnMostrarPlanes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnEliminarPlan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnEliminarPlanes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addComponent(btnVolver)
                 .addGap(44, 44, 44))
+            .addComponent(jpnlPanelesOpciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -158,6 +184,10 @@ public class MenuPlan extends javax.swing.JFrame {
             jlbValidacionRut.setForeground(Color.RED);
         }
     }//GEN-LAST:event_btnBuscarRutValidoActionPerformed
+
+    private void btnAgregarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPlanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarPlanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,7 +235,11 @@ public class MenuPlan extends javax.swing.JFrame {
     private javax.swing.JLabel jlbTituloOpciones;
     private javax.swing.JLabel jlbTituloPlanes;
     private javax.swing.JLabel jlbValidacionRut;
+    private javax.swing.JPanel jpnlPanelesOpciones;
     private javax.swing.JTextPane txtpValidarRut;
     // End of variables declaration//GEN-END:variables
 
+    public javax.swing.JButton getBtnBuscarRutValido(){
+        return btnBuscarRutValido;
+    }
 }

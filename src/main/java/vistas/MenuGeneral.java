@@ -7,6 +7,7 @@ package vistas;
 import com.mycompany.administradordecontratosempresatelefonica.Clases.Cliente;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JButton;
 
 /**
  *
@@ -22,11 +23,7 @@ public class MenuGeneral extends javax.swing.JFrame {
    private static HashMap<Integer,Cliente> clientesMap;
    private static HashMap<String, Cliente> telefonosMap;
     
-    public MenuGeneral(ArrayList<Cliente> clientesList, HashMap<Integer,Cliente> clientesMap, 
-              HashMap<String, Cliente> telefonosMap) {
-        MenuGeneral.clientesList = clientesList;
-        MenuGeneral.clientesMap = clientesMap;
-        MenuGeneral.telefonosMap = telefonosMap;
+    public MenuGeneral() {
         initComponents();
     }
 
@@ -79,6 +76,11 @@ public class MenuGeneral extends javax.swing.JFrame {
         });
 
         butMenuContratos.setText("Menu Contratos");
+        butMenuContratos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butMenuContratosActionPerformed(evt);
+            }
+        });
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -177,26 +179,32 @@ public class MenuGeneral extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
+
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void butMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMenuClienteActionPerformed
-        // TODO add your handling code here:
-        MenuCliente clienteV  = new MenuCliente();
-        
-        clienteV.setAlwaysOnTop(rootPaneCheckingEnabled);
-        clienteV.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_butMenuClienteActionPerformed
 
     private void butMenuPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMenuPlanesActionPerformed
-        MenuPlan ventanaPlanes = new MenuPlan(clientesList,clientesMap,telefonosMap);
-        
-        ventanaPlanes.setAlwaysOnTop(rootPaneCheckingEnabled);
-        ventanaPlanes.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_butMenuPlanesActionPerformed
 
+    private void butMenuContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMenuContratosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_butMenuContratosActionPerformed
+    
+    public JButton getButCliente(){
+        return butMenuCliente;
+    }
+    
+    public JButton getbutMenuPlanes(){
+        return butMenuPlanes;
+    }
+    public JButton getbutMenuContratos(){
+        return butMenuContratos;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -227,7 +235,7 @@ public class MenuGeneral extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuGeneral(clientesList, clientesMap, telefonosMap).setVisible(true);
+                new MenuGeneral().setVisible(true);
             }
         });
     }

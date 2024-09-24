@@ -4,7 +4,7 @@
  */
 package vistas;
 
-import com.mycompany.administradordecontratosempresatelefonica.Clases.Cliente;
+import modelo.Cliente;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.BorderLayout;

@@ -3,8 +3,10 @@
  */
 
 package com.mycompany.administradordecontratosempresatelefonica;
+import modelo.Cliente;
+import modelo.Menu;
+import modelo.Plan;
 import vistas.MenuGeneral;
-import com.mycompany.administradordecontratosempresatelefonica.Clases.*;
 import net.datafaker.Faker;
 import controlador.*;
 

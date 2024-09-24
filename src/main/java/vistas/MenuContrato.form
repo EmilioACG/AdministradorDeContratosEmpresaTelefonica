@@ -67,11 +67,14 @@
     <Component class="javax.swing.JButton" name="btnMostrarContratoCliente">
       <Properties>
         <Property name="text" type="java.lang.String" value="1.- Mostrar el contrato de un cliente"/>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="horizontalTextPosition" type="int" value="2"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnMostrarContratos">
       <Properties>
         <Property name="text" type="java.lang.String" value="2.- Mostrar todos los contratos"/>
+        <Property name="horizontalAlignment" type="int" value="2"/>
         <Property name="horizontalTextPosition" type="int" value="2"/>
       </Properties>
     </Component>

@@ -267,9 +267,6 @@ public class MenuCliente extends javax.swing.JFrame {
 
     private void butOpcionAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butOpcionAgregarActionPerformed
         // TODO add your handling code here:
-        /*ClienteOpPanel1 p1 = new ClienteOpPanel1();
-        MostrarPanel(p1);*/
-        
     }//GEN-LAST:event_butOpcionAgregarActionPerformed
 
     private void butOpcionMostarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butOpcionMostarClienteActionPerformed

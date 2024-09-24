@@ -6,6 +6,7 @@ package com.mycompany.administradordecontratosempresatelefonica;
 import vistas.MenuGeneral;
 import com.mycompany.administradordecontratosempresatelefonica.Clases.*;
 import net.datafaker.Faker;
+import controlador.*;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -31,14 +32,9 @@ public class AdministradorDeContratosEmpresaTelefonica {
         //Se llama al metodo que inicializa datos
         datosIniciales();
         
-        java.awt.EventQueue.invokeLater(new Runnable(){
-        
-            public void run(){
-                MenuGeneral vv = new MenuGeneral(listaClientes, mapaClientes, mapaTelefonos);
-                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setVisible(true);
-                }
-            });
+        Controlador controladorV = new Controlador();
+        controladorV.iniciar();
+       
         
         do{
             Menu.menuGeneral();

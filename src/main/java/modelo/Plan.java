@@ -1,4 +1,4 @@
-package com.mycompany.administradordecontratosempresatelefonica.Clases;
+package modelo;
 
 import java.util.ArrayList;
 import java.util.Scanner;

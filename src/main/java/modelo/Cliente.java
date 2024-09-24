@@ -3,12 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package com.mycompany.administradordecontratosempresatelefonica.Clases;
+package modelo;
+import modelo.Plan;
 import net.datafaker.Faker;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import static com.mycompany.administradordecontratosempresatelefonica.Clases.Plan.imprimirPlan;
+import static modelo.Plan.imprimirPlan;
 
 /**
  *

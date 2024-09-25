@@ -23,16 +23,16 @@ public class Controlador implements ActionListener {
     private MenuGeneral menuG;
     private MenuCliente menuCliente;
     private ClienteOpPanel1 panelAgregar;
+    private MenuContrato menuContrato;
     private MenuPlan menuPlan;
-    private MenuContrato MenuContrato;
-    
-    
+
+  
     public void iniciar(){
         
         menuG = new MenuGeneral();
         menuG.getButCliente().addActionListener(this);
-        menuG.getbutMenuPlanes().addActionListener(this);
         menuG.getbutMenuContratos().addActionListener(this);
+        menuG.getbutMenuPlanes().addActionListener(this);
         menuG.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         menuG.setVisible(true);
 
@@ -80,33 +80,80 @@ public class Controlador implements ActionListener {
             menuCliente.mostrarPanel(panelAgregar);
             return;
         }
-        //Ventana menu planes
-        if(ae.getSource() == menuG.getbutMenuPlanes()){
-            menuPlan = new MenuPlan();
-            menuPlan.getButBuscarRutValido().addActionListener(this);
-            menuPlan.getButAgregarPlan().addActionListener(this);
-            menuPlan.getButMostrarPlanes().addActionListener(this);
-            menuPlan.getButEliminarPlan().addActionListener(this);
-            menuPlan.getButEliminarPlanes().addActionListener(this);
-            menuPlan.getButVolver().addActionListener(this);
-            menuPlan.setVisible(true);
-            return;
-        }
-        if(ae.getSource() == menuG.getbutMenuContratos()){
-            MenuContrato = new MenuContrato();
-            MenuContrato.setVisible(true);   
-            return;
-        }
-        
         //Opciones de salir de la ventana
         if(ae.getSource() == menuCliente.getButOpcionExit()){
             menuCliente.dispose();
             return;
         }
-        /*if(ae.getSource() == menuPlan.getButVolver()){
+        
+        //Ventana menu contratos
+        if(ae.getSource() == menuG.getbutMenuContratos()){
+            menuContrato = new MenuContrato();
+            menuContrato.getBtnMostrarContratoCliente().addActionListener(this);
+            menuContrato.getBtnMostrarContratos().addActionListener(this);
+            menuContrato.getBtnVolver().addActionListener(this);
+            menuContrato.setVisible(true);
+            return;
+        }
+        
+        //Opciones de cambio de menu contratos
+        if(ae.getSource() == menuContrato.getBtnMostrarContratoCliente()){
+            ContratoOpPanel1 panelAgregar = new ContratoOpPanel1();
+            menuContrato.mostrarPanel(panelAgregar);
+            return;
+        }
+        if(ae.getSource() == menuContrato.getBtnMostrarContratos()){
+            ContratoOpPanel2 panelAgregar = new ContratoOpPanel2();
+            menuContrato.mostrarPanel(panelAgregar);
+            return;
+        }
+        if(ae.getSource() == menuContrato.getBtnVolver()){
+            menuContrato.dispose();
+            return;
+        }
+        
+        //Ventana menu planes
+        if(ae.getSource() == menuG.getbutMenuPlanes()){
+            menuPlan = new MenuPlan();
+            menuPlan.getBtnBuscarRut().addActionListener(this);
+            menuPlan.getBtnAgregarPlan().addActionListener(this);
+            menuPlan.getBtnMostrarPlanes().addActionListener(this);
+            menuPlan.getBtnEliminarPlan().addActionListener(this);
+            menuPlan.getBtnEliminarPlanes().addActionListener(this);
+            menuPlan.getBtnVolver().addActionListener(this);
+            menuPlan.setVisible(true);
+            return;
+        }
+        
+        //Opciones de cambio de menu contratos
+        if(ae.getSource() == menuPlan.getBtnBuscarRut()){
+            return;
+        }
+        if(ae.getSource() == menuPlan.getBtnAgregarPlan()){
+            PlanOpPanel1 panelAgregar = new PlanOpPanel1();
+            menuPlan.mostrarPanel(panelAgregar);
+            return;
+        }
+        if(ae.getSource() == menuPlan.getBtnMostrarPlanes()){
+            PlanOpPanel2 panelAgregar = new PlanOpPanel2();
+            menuPlan.mostrarPanel(panelAgregar);
+            return;
+        }
+        if(ae.getSource() == menuPlan.getBtnEliminarPlan()){
+            PlanOpPanel3 panelAgregar = new PlanOpPanel3();
+            menuPlan.mostrarPanel(panelAgregar);
+            return;
+        }
+        if(ae.getSource() == menuPlan.getBtnEliminarPlanes()){
+            PlanOpPanel4 panelAgregar = new PlanOpPanel4();
+            menuPlan.mostrarPanel(panelAgregar);
+            return;
+        }
+        if(ae.getSource() == menuPlan.getBtnVolver()){
             menuPlan.dispose();
             return;
-        }*/
+        
+        }
     }
     public static void agregarCliente(ClienteOpPanel1 panelAgregar){
         panelAgregar.getButEnviarAgregarCliente().addActionListener(new ActionListener() {

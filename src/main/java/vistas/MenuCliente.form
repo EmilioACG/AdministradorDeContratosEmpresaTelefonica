@@ -234,7 +234,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Eliga la opci&#xf3;n que desea realizar:"/>
+        <Property name="text" type="java.lang.String" value="Elija la opci&#xf3;n que desea realizar:"/>
       </Properties>
     </Component>
   </SubComponents>

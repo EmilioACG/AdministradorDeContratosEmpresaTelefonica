@@ -96,7 +96,7 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addGap(128, 128, 128)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlbSeleccPlan)
                     .addGroup(layout.createSequentialGroup()
@@ -123,12 +123,12 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
                                 .addComponent(jlbPrecioPlanTres)
                                 .addComponent(jlbMinutosPlanTres)
                                 .addComponent(jlbGigasPlanTres)))))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(77, 77, 77)
                 .addComponent(jlbSeleccPlan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlbTituloPlanUno)
@@ -160,7 +160,7 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
                 .addComponent(jlbPrecioPlanTres)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSelecPlanTres)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

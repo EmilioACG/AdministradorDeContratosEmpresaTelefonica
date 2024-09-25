@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
+import com.opencsv.exceptions.CsvValidationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -11,6 +12,8 @@ import vistasPanel.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Modelo;
 import vistas.MenuPlan;
 
@@ -164,6 +167,13 @@ public class Controlador implements ActionListener {
                 String apellMat = panelAgregar.getTxtFiApellMate();
                 int rut = Integer.parseInt(panelAgregar.getTxtFiRut());
                 System.out.println(nombre+apellPat+apellMat+rut);
+            try {
+                boolean agregoClientte = Modelo.agregarCliente(nombre,apellPat,apellMat,rut);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    
+                
             }
         });
     }

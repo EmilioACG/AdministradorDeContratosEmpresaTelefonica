@@ -3,15 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import vistas.*;
 import vistasPanel.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import modelo.Modelo;
 import vistas.MenuPlan;
 
 /**

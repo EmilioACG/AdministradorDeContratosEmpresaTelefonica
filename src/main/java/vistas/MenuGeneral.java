@@ -37,10 +37,10 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void initComponents() {
 
         jlabelInicio = new javax.swing.JLabel();
-        ButMenuCliente = new javax.swing.JButton();
-        ButMenuPlanes = new javax.swing.JButton();
-        ButMenuContratos = new javax.swing.JButton();
-        ButExitPr = new javax.swing.JButton();
+        btnMenuCliente = new javax.swing.JButton();
+        btnMenuPlanes = new javax.swing.JButton();
+        btnMenuContratos = new javax.swing.JButton();
+        btnExitPr = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -62,31 +62,31 @@ public class MenuGeneral extends javax.swing.JFrame {
         jlabelInicio.setText("Bienvenido al mejor portal de telefonia del mundo ");
         jlabelInicio.setToolTipText("");
 
-        ButMenuCliente.setText("Menu Clientes");
-        ButMenuCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnMenuCliente.setText("Menu Clientes");
+        btnMenuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButMenuClienteActionPerformed(evt);
+                btnMenuClienteActionPerformed(evt);
             }
         });
 
-        ButMenuPlanes.setText("Menu Planes");
-        ButMenuPlanes.addActionListener(new java.awt.event.ActionListener() {
+        btnMenuPlanes.setText("Menu Planes");
+        btnMenuPlanes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButMenuPlanesActionPerformed(evt);
+                btnMenuPlanesActionPerformed(evt);
             }
         });
 
-        ButMenuContratos.setText("Menu Contratos");
-        ButMenuContratos.addActionListener(new java.awt.event.ActionListener() {
+        btnMenuContratos.setText("Menu Contratos");
+        btnMenuContratos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButMenuContratosActionPerformed(evt);
+                btnMenuContratosActionPerformed(evt);
             }
         });
 
-        ButExitPr.setText("Salir");
-        ButExitPr.addActionListener(new java.awt.event.ActionListener() {
+        btnExitPr.setText("Salir");
+        btnExitPr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButExitPrActionPerformed(evt);
+                btnExitPrActionPerformed(evt);
             }
         });
 
@@ -160,9 +160,9 @@ public class MenuGeneral extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(333, 333, 333)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(ButMenuContratos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ButMenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ButMenuPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnMenuContratos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMenuPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(189, Short.MAX_VALUE)
@@ -171,7 +171,7 @@ public class MenuGeneral extends javax.swing.JFrame {
                         .addComponent(jlabelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(181, 181, 181))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(ButExitPr)
+                        .addComponent(btnExitPr)
                         .addGap(350, 350, 350))))
         );
         layout.setVerticalGroup(
@@ -180,13 +180,13 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addComponent(jlabelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72)
-                .addComponent(ButMenuCliente)
+                .addComponent(btnMenuCliente)
                 .addGap(18, 18, 18)
-                .addComponent(ButMenuPlanes)
+                .addComponent(btnMenuPlanes)
                 .addGap(18, 18, 18)
-                .addComponent(ButMenuContratos)
+                .addComponent(btnMenuContratos)
                 .addGap(18, 18, 18)
-                .addComponent(ButExitPr)
+                .addComponent(btnExitPr)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
@@ -197,35 +197,35 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void ButMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButMenuClienteActionPerformed
+    private void btnMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuClienteActionPerformed
 
-    }//GEN-LAST:event_ButMenuClienteActionPerformed
+    }//GEN-LAST:event_btnMenuClienteActionPerformed
 
-    private void ButMenuPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButMenuPlanesActionPerformed
+    private void btnMenuPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPlanesActionPerformed
 
-    }//GEN-LAST:event_ButMenuPlanesActionPerformed
+    }//GEN-LAST:event_btnMenuPlanesActionPerformed
 
-    private void ButMenuContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButMenuContratosActionPerformed
+    private void btnMenuContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuContratosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ButMenuContratosActionPerformed
+    }//GEN-LAST:event_btnMenuContratosActionPerformed
 
-    private void ButExitPrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButExitPrActionPerformed
+    private void btnExitPrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitPrActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ButExitPrActionPerformed
+    }//GEN-LAST:event_btnExitPrActionPerformed
     
-    public JButton getButCliente(){
-        return ButMenuCliente;
+    public JButton getBtnCliente(){
+        return btnMenuCliente;
     }
     
-    public JButton getButMenuPlanes(){
-        return ButMenuPlanes;
+    public JButton getBtnMenuPlanes(){
+        return btnMenuPlanes;
     }
-    public JButton getButMenuContratos(){
-        return ButMenuContratos;
+    public JButton getBtnMenuContratos(){
+        return btnMenuContratos;
     }
 
-    public JButton getButExitPr() {
-        return ButExitPr;
+    public JButton getBtnExitPr() {
+        return btnExitPr;
     }
     
     
@@ -266,11 +266,11 @@ public class MenuGeneral extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButExitPr;
-    private javax.swing.JButton ButMenuCliente;
-    private javax.swing.JButton ButMenuContratos;
-    private javax.swing.JButton ButMenuPlanes;
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JButton btnExitPr;
+    private javax.swing.JButton btnMenuCliente;
+    private javax.swing.JButton btnMenuContratos;
+    private javax.swing.JButton btnMenuPlanes;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;

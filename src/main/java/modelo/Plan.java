@@ -28,6 +28,14 @@ public class Plan {
         this.cantMinutos = cantMinutos;
         this.precio = cuotaMensual;
     }
+    
+    public Plan(String nombrePlan, String numeroTelefono, int cantGigaBytes, int cantMinutos, double cuotaMensual) {
+        this.nombrePlan = nombrePlan;
+        this.numeroTelefono = numeroTelefono;
+        this.cantGigaBytes = cantGigaBytes;
+        this.cantMinutos = cantMinutos;
+        this.precio = cuotaMensual;
+    }
 
     public Plan(Plan ofertaPlanes) {
         this.nombrePlan = ofertaPlanes.nombrePlan;

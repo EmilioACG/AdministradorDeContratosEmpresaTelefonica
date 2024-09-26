@@ -143,7 +143,7 @@ public class Cliente {
        copiaPlan.setNumeroTelefono(numeroTelefono);
        listaPlanes.add(copiaPlan);
    }
-
+   
    public void mostrarPlanes(){
        if(!getTieneContrato()){
            System.out.println("Este usuario no posee planes.");

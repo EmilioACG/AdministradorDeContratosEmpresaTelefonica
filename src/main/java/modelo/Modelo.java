@@ -19,6 +19,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Arrays;
+import modelo.Plan;
 
 /**
  *
@@ -29,31 +31,29 @@ public class Modelo {
     private static HashMap<Integer,Cliente> mapaClientes = new HashMap<>();
     private static HashMap<String, Cliente> mapaTelefonos = new HashMap<>();
     private static Plan ofertaPlanes[] = new Plan[3];
-    private static final String path ="src\\main\\resources\\DataBase\\DBTelefonia.csv";
+    private static final String path = "src\\main\\resources\\DataBase\\DBTelefonia.csv";
+    private static final String pathTelefonos = "src\\main\\resources\\DataBase\\telefonos.csv";
     private static Cliente nuevoCliente; 
     
     
     public Modelo () throws CsvValidationException{
         leerCsv();
+        leerCsvTelefonos();
         datosIniciales();
     }
     public static void leerCsv() throws CsvValidationException{
-        System.out.println("1");
-        
         File file = new File(path);
         try{
             FileReader inputFile = new FileReader(file);
             CSVParser parser = new CSVParserBuilder()
                                     .withSeparator(',')
                                     .build();
-             System.out.println("2");
             CSVReader csvReader = new CSVReaderBuilder(inputFile)
                                                 .withCSVParser(parser)
                                                 .build();
             
             String[] datos;
             int i=0; //Primer linea es un header, por lo que se salta
-            System.out.println("3");
             while((datos = csvReader.readNext())!= null){
                 if(i>0){
                     if(datos.length >= 5){
@@ -62,7 +62,6 @@ public class Modelo {
                         String apellidoMaterno = datos[2];
                         int rut = Integer.parseInt(datos[3]);
                         boolean tieneContrato = Boolean.parseBoolean(datos[4]);
-                        System.out.println("4");
                         Cliente cliente = new Cliente(nombre,apellidoPaterno,apellidoMaterno,rut,tieneContrato);
                         listaClientes.add(cliente);
                         mapaClientes.put(rut,cliente);
@@ -80,10 +79,69 @@ public class Modelo {
         }finally{
             System.out.println("Programa corriendo...");
         }
-        System.out.println("5");
-        for(Cliente cliente:listaClientes){
-            System.out.println(cliente.getRut());
+    }
+    
+    public static void leerCsvTelefonos() throws CsvValidationException {
+        System.out.println("1 telefonos");
+
+        File fileTelefonos = new File(pathTelefonos);
+        try {   
+                FileReader inputFile = new FileReader(fileTelefonos);
+                CSVParser parser = new CSVParserBuilder()
+                                                                            .withSeparator(',')
+                                                                            .build();
+            
+                System.out.println("2 telefonos");
+                CSVReader csvReader = new CSVReaderBuilder(inputFile)
+                                                                                        .withCSVParser(parser)
+                                                                                        .build();
+            
+                String[] datosTelefonos;
+                int i=0; //Primer linea es un header, por lo que se salta
+                System.out.println("3 telefonos");
+                while( (datosTelefonos = csvReader.readNext()) != null) {
+                        System.out.println("3.25 telefonos");
+                        System.out.println(Arrays.toString(datosTelefonos));
+                        if(i>0) {
+                            System.out.println("3.5 telefonos");
+                            System.out.println(datosTelefonos.length);
+                            if(datosTelefonos.length >= 6){
+                                System.out.println("entre");
+                                int rut = Integer.parseInt(datosTelefonos[0]);
+                                System.out.println("entre"+ rut);
+                                String nombrePlan = datosTelefonos[1];
+                                System.out.println("entre"+ nombrePlan);
+                                String numeroTelefono = datosTelefonos[2];
+                                int cantGigaBytes =  Integer.parseInt(datosTelefonos[3]);
+                                int cantMinutos =  Integer.parseInt(datosTelefonos[4]);
+                                double precio = Double.parseDouble(datosTelefonos[5]);
+                                System.out.println("4 telefonos");
+                                Plan plan = new Plan(nombrePlan, numeroTelefono, cantGigaBytes, cantMinutos, precio);
+                        
+                                for (Cliente auxCliente : listaClientes) {
+                                    if(auxCliente.getRut() == rut){
+                                        auxCliente.getListaPlanes().add(plan);
+                                        mapaTelefonos.put(numeroTelefono,auxCliente);
+                                        System.out.print(rut+" "+plan);
+                                    }
+                                }
+                            }
+                        }
+                       i++;   
+                }
+                    
+                csvReader.close();
+                inputFile.close();
+        }catch(IOException e){
+            System.out.print("error");
+            e.printStackTrace();
+        }catch(ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }finally{
+            System.out.println("Programa corriendo...");
         }
+        System.out.println("5 telefonos");
+        
     }
 
     private static Reader newFileReader(String path) {
@@ -115,9 +173,18 @@ public class Modelo {
     
     public void guardarDatos(){
         
-        File file = new File(path);
-        if (file.exists()) {
-            if (file.delete()) {
+        File fileDb = new File(path);
+         File fileTelefonos = new File(pathTelefonos);
+        if (fileDb.exists()) {
+            if (fileDb.delete()) {
+                System.out.println("Archivo existente eliminado: " + path);
+            } else {
+                System.out.println("No se pudo eliminar el archivo: " + path);
+                return;
+            }
+        }
+        if (fileTelefonos.exists()) {
+            if (fileTelefonos.delete()) {
                 System.out.println("Archivo existente eliminado: " + path);
             } else {
                 System.out.println("No se pudo eliminar el archivo: " + path);
@@ -147,9 +214,11 @@ public class Modelo {
             e.printStackTrace();
         }
     } 
-    public boolean guardarDatos(String nomb,String apellPat,String apellMat,int rut) throws CsvValidationException{
+    //este metodo no funciona
+    /*public boolean guardarDatos(String nomb,String apellPat,String apellMat,int rut) throws CsvValidationException{
         nuevoCliente = new Cliente(nomb,apellPat,apellMat,rut);
         String rutaArchivo = path;
+        String rutaArchivTelef = pathTelefonos;
 
         // Intenta escribir en el archivo CSV
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
@@ -163,6 +232,8 @@ public class Modelo {
         } catch (IOException e) {
             e.printStackTrace(); // Manejo de excepciones
         }
+        
+        
         return true;
     }
     /*public void datosIniciales(){

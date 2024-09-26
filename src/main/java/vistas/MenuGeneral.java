@@ -26,7 +26,7 @@ public class MenuGeneral extends javax.swing.JFrame {
     public MenuGeneral() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,9 +37,10 @@ public class MenuGeneral extends javax.swing.JFrame {
     private void initComponents() {
 
         jlabelInicio = new javax.swing.JLabel();
-        butMenuCliente = new javax.swing.JButton();
-        butMenuPlanes = new javax.swing.JButton();
-        butMenuContratos = new javax.swing.JButton();
+        ButMenuCliente = new javax.swing.JButton();
+        ButMenuPlanes = new javax.swing.JButton();
+        ButMenuContratos = new javax.swing.JButton();
+        ButExitPr = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -61,24 +62,31 @@ public class MenuGeneral extends javax.swing.JFrame {
         jlabelInicio.setText("Bienvenido al mejor portal de telefonia del mundo ");
         jlabelInicio.setToolTipText("");
 
-        butMenuCliente.setText("Menu Clientes");
-        butMenuCliente.addActionListener(new java.awt.event.ActionListener() {
+        ButMenuCliente.setText("Menu Clientes");
+        ButMenuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butMenuClienteActionPerformed(evt);
+                ButMenuClienteActionPerformed(evt);
             }
         });
 
-        butMenuPlanes.setText("Menu Planes");
-        butMenuPlanes.addActionListener(new java.awt.event.ActionListener() {
+        ButMenuPlanes.setText("Menu Planes");
+        ButMenuPlanes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butMenuPlanesActionPerformed(evt);
+                ButMenuPlanesActionPerformed(evt);
             }
         });
 
-        butMenuContratos.setText("Menu Contratos");
-        butMenuContratos.addActionListener(new java.awt.event.ActionListener() {
+        ButMenuContratos.setText("Menu Contratos");
+        ButMenuContratos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butMenuContratosActionPerformed(evt);
+                ButMenuContratosActionPerformed(evt);
+            }
+        });
+
+        ButExitPr.setText("Salir");
+        ButExitPr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButExitPrActionPerformed(evt);
             }
         });
 
@@ -150,16 +158,21 @@ public class MenuGeneral extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(189, Short.MAX_VALUE)
-                .addComponent(jlabelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(181, 181, 181))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(333, 333, 333)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(butMenuContratos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(butMenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(butMenuPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ButMenuContratos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButMenuCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButMenuPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(189, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jlabelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(181, 181, 181))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(ButExitPr)
+                        .addGap(350, 350, 350))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,12 +180,14 @@ public class MenuGeneral extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addComponent(jlabelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72)
-                .addComponent(butMenuCliente)
+                .addComponent(ButMenuCliente)
                 .addGap(18, 18, 18)
-                .addComponent(butMenuPlanes)
+                .addComponent(ButMenuPlanes)
                 .addGap(18, 18, 18)
-                .addComponent(butMenuContratos)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addComponent(ButMenuContratos)
+                .addGap(18, 18, 18)
+                .addComponent(ButExitPr)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,28 +197,37 @@ public class MenuGeneral extends javax.swing.JFrame {
 
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void butMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMenuClienteActionPerformed
+    private void ButMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButMenuClienteActionPerformed
 
-    }//GEN-LAST:event_butMenuClienteActionPerformed
+    }//GEN-LAST:event_ButMenuClienteActionPerformed
 
-    private void butMenuPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMenuPlanesActionPerformed
+    private void ButMenuPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButMenuPlanesActionPerformed
 
-    }//GEN-LAST:event_butMenuPlanesActionPerformed
+    }//GEN-LAST:event_ButMenuPlanesActionPerformed
 
-    private void butMenuContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMenuContratosActionPerformed
+    private void ButMenuContratosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButMenuContratosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_butMenuContratosActionPerformed
+    }//GEN-LAST:event_ButMenuContratosActionPerformed
+
+    private void ButExitPrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButExitPrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButExitPrActionPerformed
     
     public JButton getButCliente(){
-        return butMenuCliente;
+        return ButMenuCliente;
     }
     
-    public JButton getbutMenuPlanes(){
-        return butMenuPlanes;
+    public JButton getButMenuPlanes(){
+        return ButMenuPlanes;
     }
-    public JButton getbutMenuContratos(){
-        return butMenuContratos;
+    public JButton getButMenuContratos(){
+        return ButMenuContratos;
     }
+
+    public JButton getButExitPr() {
+        return ButExitPr;
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -242,10 +266,11 @@ public class MenuGeneral extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButExitPr;
+    private javax.swing.JButton ButMenuCliente;
+    private javax.swing.JButton ButMenuContratos;
+    private javax.swing.JButton ButMenuPlanes;
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JButton butMenuCliente;
-    private javax.swing.JButton butMenuContratos;
-    private javax.swing.JButton butMenuPlanes;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;

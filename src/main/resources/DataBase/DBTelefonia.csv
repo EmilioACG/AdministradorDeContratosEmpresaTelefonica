@@ -1,1 +1,2 @@
-﻿nombre,apellidoPaterno,apellidoMaterno,rut
+﻿nombre,apellidoPat,apellidoMat,rut,tieneContrato
+hola,mundo,2,333,false

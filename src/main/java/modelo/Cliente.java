@@ -33,6 +33,13 @@ public class Cliente {
        this.apellidoMaterno = apellM;
        this.rut = num;
    }
+   public Cliente(String nom,String apellP,String apellM,int num, boolean tieneContr){
+       this.nombre = nom;
+       this.apellidoPaterno =  apellP;
+       this.apellidoMaterno = apellM;
+       this.rut = num;
+       this.tieneContrato = tieneContr;
+   }
 
    public Cliente(String nom, String apellP, String apellM, int num, Plan[] ofertaPlanes, int planSeleccionado, String telefono){
        this.nombre = nom;

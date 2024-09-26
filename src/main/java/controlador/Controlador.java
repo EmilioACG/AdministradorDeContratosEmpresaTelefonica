@@ -25,12 +25,10 @@ public class Controlador implements ActionListener {
     private MenuCliente menuCliente;
     private MenuContrato menuContrato;
     private MenuPlan menuPlan;
-    private Modelo modelo;
     
     private ClienteOpPanel1 panelAgregar;
     
     public Controlador () {
-        modelo.leerArchivo();
         inicializarVentanas();
     }
     
@@ -72,18 +70,8 @@ public class Controlador implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         
         if(ae.getSource() == menuG.getButCliente()){ //Ventana menu clientes
-            /*
-            if(menuCliente == null){
-                menuCliente = new MenuCliente();
-                menuCliente.getButOpcionAgregar().addActionListener(this);
-                menuCliente.getButOpcionMostarCliente().addActionListener(this);
-                menuCliente.getButOpcionModificarCliente().addActionListener(this);
-                menuCliente.getButOpcionEliminarCliente().addActionListener(this);
-                menuCliente.getButOpcionListarClientes().addActionListener(this);
-                menuCliente.getButOpcionExit().addActionListener(this);
-            }
-            */
             menuCliente.setVisible(true);
+            menuG.setVisible(false);
             return;
         } else if(ae.getSource() == menuCliente.getButOpcionAgregar()){  //Opciones de cambio de menu clientes
             panelAgregar = new ClienteOpPanel1();
@@ -108,18 +96,11 @@ public class Controlador implements ActionListener {
             return;
         }else if(ae.getSource() == menuCliente.getButOpcionExit()){ //Opcion salir de la ventana cliente
             menuCliente.dispose();
-            //menuCliente = null;
+            menuG.setVisible(true);
             return;
         }else if(ae.getSource() == menuG.getbutMenuContratos()){ //Ventana menu contratos
-            /*
-            if(menuContrato == null){
-                menuContrato = new MenuContrato();
-                menuContrato.getBtnMostrarContratoCliente().addActionListener(this);
-                menuContrato.getBtnMostrarContratos().addActionListener(this);
-                menuContrato.getBtnVolver().addActionListener(this);
-            }
-            */
             menuContrato.setVisible(true);
+            menuG.setVisible(false);
             return;
         }else if(ae.getSource() == menuContrato.getBtnMostrarContratoCliente()){ //Opciones de cambio de menu contratos
             ContratoOpPanel1 panelAgregar = new ContratoOpPanel1();
@@ -131,21 +112,11 @@ public class Controlador implements ActionListener {
             return;
         }else if(ae.getSource() == menuContrato.getBtnVolver()){ //Opcion salir de la ventana contrato
             menuContrato.dispose();
-            //menuContrato = null;
+            menuG.setVisible(true);
             return;
         }else if(ae.getSource() == menuG.getbutMenuPlanes()){ //Ventana menu planes
-            /*
-            if (menuPlan == null) {
-                menuPlan = new MenuPlan();
-                menuPlan.getBtnBuscarRut().addActionListener(this);
-                menuPlan.getBtnAgregarPlan().addActionListener(this);
-                menuPlan.getBtnMostrarPlanes().addActionListener(this);
-                menuPlan.getBtnEliminarPlan().addActionListener(this);
-                menuPlan.getBtnEliminarPlanes().addActionListener(this);
-                menuPlan.getBtnVolver().addActionListener(this);
-            }
-            */  
             menuPlan.setVisible(true);
+            menuG.setVisible(false);
             return;
         }else if(ae.getSource() == menuPlan.getBtnBuscarRut()){ //Opciones de cambio de menu planes
             return;
@@ -167,7 +138,7 @@ public class Controlador implements ActionListener {
             return;
         }else if(ae.getSource() == menuPlan.getBtnVolver()){ //Opcion salir de la ventana planes
             menuPlan.dispose();
-            //menuPlan = null;
+            menuG.setVisible(true);
             return;
         
         }

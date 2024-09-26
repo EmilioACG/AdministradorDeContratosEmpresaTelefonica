@@ -54,7 +54,7 @@ public class Modelo {
     }
     public void agregarClaseCSV(Cliente nuevoCl)throws CsvValidationException{
         
-    }
+    } 
     public static void datosIniciales(){
         //Se crean las 3 ofertas de planes
         ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);

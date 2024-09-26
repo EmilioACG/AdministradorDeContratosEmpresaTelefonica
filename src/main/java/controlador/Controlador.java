@@ -160,9 +160,11 @@ public class Controlador implements ActionListener {
                 String apellPat = panelAgregar.getTxtFiApellPat();
                 String apellMat = panelAgregar.getTxtFiApellMate();
                 int rut = Integer.parseInt(panelAgregar.getTxtFiRut());
-                System.out.println(nombre+apellPat+apellMat+rut);    
+                System.out.println(nombre+apellPat+apellMat+rut);
                 modeloG.agregarCliente(nombre, apellPat, apellMat, rut);
+            return;
             }
+            
         });
     }
     public void buscarCliente(ClienteOpPanel2 panelBuscar){

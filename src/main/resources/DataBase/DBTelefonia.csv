@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 "Nombre","Apellido Paterno","Apellido Materno","RUT","Tiene Contrato"
 "qwrqweq","qewqe","qweqwe","1231","false"
 "qwrqweq","qewqe","qweqwe","1231","false"
 "qwrqweq","qewqe","qweqwe","1231","false"
 "dddd","aaa","ssss","556326","false"
 "dddd","aaa","ssss","556326","false"
+=======
+﻿nombre,apellidoPat,apellidoMat,rut,tieneContrato
+hola,mundo,2,333,false
+>>>>>>> origin/master

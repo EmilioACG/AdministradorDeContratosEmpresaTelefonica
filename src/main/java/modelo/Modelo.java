@@ -191,6 +191,7 @@ public class Modelo {
                 return;
             }
         }
+        //Se ecriben los datos de CSV clientes
         try (CSVWriter writer = new CSVWriter(new FileWriter(path))) {
         // Agregar el encabezado al nuevo archivo CSV
         String[] encabezado = {"Nombre", "Apellido Paterno", "Apellido Materno", "RUT", "Tiene Contrato"};
@@ -213,6 +214,32 @@ public class Modelo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        //Se ecriben los datos en el CSV  de telefonia
+          try (CSVWriter writer = new CSVWriter(new FileWriter(pathTelefonos))) {
+        String[] encabezado = {"Rut", "NombrePlan", "numeroFono", "cantGigaBytes", "CantMinutos","precio"};
+        writer.writeNext(encabezado);
+        
+        // Escribir los datos de la lista de clientes en el archivo CSV
+        for (Integer rut :mapaClientes.get(this)) {
+            Cliente clienteAux = mapaClientes.get(rut);
+            
+            String[] datosFono = {
+                String.valueOf(rut),
+                clienteAux.,
+                clienteAux.getApellidoMaterno(),
+                String.valueOf(cliente.getRut()),
+                String.valueOf(cliente.getTieneContrato())
+            };
+            writer.writeNext(datosFono);
+        }
+        
+        System.out.println("Nuevo archivo CSV creado: " + path);
+        
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     } 
     //este metodo no funciona
     /*public boolean guardarDatos(String nomb,String apellPat,String apellMat,int rut) throws CsvValidationException{

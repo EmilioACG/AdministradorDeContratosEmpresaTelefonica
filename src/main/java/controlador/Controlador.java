@@ -3,11 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
+
+import com.opencsv.exceptions.CsvValidationException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import vistas.*;
 import vistasPanel.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Modelo;
 import vistas.MenuPlan;
 
 /**
@@ -20,7 +25,37 @@ public class Controlador implements ActionListener {
     private MenuCliente menuCliente;
     private MenuContrato menuContrato;
     private MenuPlan menuPlan;
-
+    private Modelo modelo;
+    
+    private ClienteOpPanel1 panelAgregar;
+    
+    public Controlador () {
+        modelo.leerArchivo();
+        inicializarVentanas();
+    }
+    
+    public void inicializarVentanas() {
+        menuCliente = new MenuCliente();
+        menuCliente.getButOpcionAgregar().addActionListener(this);
+        menuCliente.getButOpcionMostarCliente().addActionListener(this);
+        menuCliente.getButOpcionModificarCliente().addActionListener(this);
+        menuCliente.getButOpcionEliminarCliente().addActionListener(this);
+        menuCliente.getButOpcionListarClientes().addActionListener(this);
+        menuCliente.getButOpcionExit().addActionListener(this);
+        
+        menuContrato = new MenuContrato();
+        menuContrato.getBtnMostrarContratoCliente().addActionListener(this);
+        menuContrato.getBtnMostrarContratos().addActionListener(this);
+        menuContrato.getBtnVolver().addActionListener(this);
+        
+        menuPlan = new MenuPlan();
+        menuPlan.getBtnBuscarRut().addActionListener(this);
+        menuPlan.getBtnAgregarPlan().addActionListener(this);
+        menuPlan.getBtnMostrarPlanes().addActionListener(this);
+        menuPlan.getBtnEliminarPlan().addActionListener(this);
+        menuPlan.getBtnEliminarPlanes().addActionListener(this);
+        menuPlan.getBtnVolver().addActionListener(this);
+    }
   
     public void iniciar(){
         
@@ -36,115 +71,124 @@ public class Controlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         
-        //Ventana menu clientes
-        if(ae.getSource() == menuG.getButCliente()){
-            menuCliente = new MenuCliente();
-            menuCliente.getButOpcionAgregar().addActionListener(this);
-            menuCliente.getButOpcionMostarCliente().addActionListener(this);
-            menuCliente.getButOpcionModificarCliente().addActionListener(this);
-            menuCliente.getButOpcionEliminarCliente().addActionListener(this);
-            menuCliente.getButOpcionListarClientes().addActionListener(this);
-            menuCliente.getButOpcionExit().addActionListener(this);
+        if(ae.getSource() == menuG.getButCliente()){ //Ventana menu clientes
+            /*
+            if(menuCliente == null){
+                menuCliente = new MenuCliente();
+                menuCliente.getButOpcionAgregar().addActionListener(this);
+                menuCliente.getButOpcionMostarCliente().addActionListener(this);
+                menuCliente.getButOpcionModificarCliente().addActionListener(this);
+                menuCliente.getButOpcionEliminarCliente().addActionListener(this);
+                menuCliente.getButOpcionListarClientes().addActionListener(this);
+                menuCliente.getButOpcionExit().addActionListener(this);
+            }
+            */
             menuCliente.setVisible(true);
             return;
-        }
-        //Opciones de cambio de menu
-        if(ae.getSource() == menuCliente.getButOpcionAgregar()){
-            ClienteOpPanel1 panelAgregar = new ClienteOpPanel1();
+        } else if(ae.getSource() == menuCliente.getButOpcionAgregar()){  //Opciones de cambio de menu clientes
+            panelAgregar = new ClienteOpPanel1();
             menuCliente.mostrarPanel(panelAgregar);
+            agregarCliente(panelAgregar);
             return;
-        }
-        if(ae.getSource() == menuCliente.getButOpcionMostarCliente()){
+        }else if(ae.getSource() == menuCliente.getButOpcionMostarCliente()){
             ClienteOpPanel2 panelAgregar = new ClienteOpPanel2();
             menuCliente.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() ==  menuCliente.getButOpcionModificarCliente()){
+        }else if(ae.getSource() ==  menuCliente.getButOpcionModificarCliente()){
             ClienteOpPanel3 panelAgregar = new ClienteOpPanel3();
             menuCliente.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() ==  menuCliente.getButOpcionEliminarCliente()){
+        }else if(ae.getSource() ==  menuCliente.getButOpcionEliminarCliente()){
             ClienteOpPanel4 panelAgregar = new ClienteOpPanel4();
             menuCliente.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() ==  menuCliente.getButOpcionListarClientes()){
+        }else if(ae.getSource() ==  menuCliente.getButOpcionListarClientes()){
             ClienteOpPanel5 panelAgregar = new ClienteOpPanel5();
             menuCliente.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() == menuCliente.getButOpcionExit()){
+        }else if(ae.getSource() == menuCliente.getButOpcionExit()){ //Opcion salir de la ventana cliente
             menuCliente.dispose();
+            //menuCliente = null;
             return;
-        }
-        
-        //Ventana menu contratos
-        if(ae.getSource() == menuG.getbutMenuContratos()){
-            menuContrato = new MenuContrato();
-            menuContrato.getBtnMostrarContratoCliente().addActionListener(this);
-            menuContrato.getBtnMostrarContratos().addActionListener(this);
-            menuContrato.getBtnVolver().addActionListener(this);
+        }else if(ae.getSource() == menuG.getbutMenuContratos()){ //Ventana menu contratos
+            /*
+            if(menuContrato == null){
+                menuContrato = new MenuContrato();
+                menuContrato.getBtnMostrarContratoCliente().addActionListener(this);
+                menuContrato.getBtnMostrarContratos().addActionListener(this);
+                menuContrato.getBtnVolver().addActionListener(this);
+            }
+            */
             menuContrato.setVisible(true);
             return;
-        }
-        
-        //Opciones de cambio de menu contratos
-        if(ae.getSource() == menuContrato.getBtnMostrarContratoCliente()){
+        }else if(ae.getSource() == menuContrato.getBtnMostrarContratoCliente()){ //Opciones de cambio de menu contratos
             ContratoOpPanel1 panelAgregar = new ContratoOpPanel1();
             menuContrato.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() == menuContrato.getBtnMostrarContratos()){
+        }else if(ae.getSource() == menuContrato.getBtnMostrarContratos()){
             ContratoOpPanel2 panelAgregar = new ContratoOpPanel2();
             menuContrato.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() == menuContrato.getBtnVolver()){
+        }else if(ae.getSource() == menuContrato.getBtnVolver()){ //Opcion salir de la ventana contrato
             menuContrato.dispose();
+            //menuContrato = null;
             return;
-        }
-        
-        //Ventana menu planes
-        if(ae.getSource() == menuG.getbutMenuPlanes()){
-            menuPlan = new MenuPlan();
-            menuPlan.getBtnBuscarRut().addActionListener(this);
-            menuPlan.getBtnAgregarPlan().addActionListener(this);
-            menuPlan.getBtnMostrarPlanes().addActionListener(this);
-            menuPlan.getBtnEliminarPlan().addActionListener(this);
-            menuPlan.getBtnEliminarPlanes().addActionListener(this);
-            menuPlan.getBtnVolver().addActionListener(this);
+        }else if(ae.getSource() == menuG.getbutMenuPlanes()){ //Ventana menu planes
+            /*
+            if (menuPlan == null) {
+                menuPlan = new MenuPlan();
+                menuPlan.getBtnBuscarRut().addActionListener(this);
+                menuPlan.getBtnAgregarPlan().addActionListener(this);
+                menuPlan.getBtnMostrarPlanes().addActionListener(this);
+                menuPlan.getBtnEliminarPlan().addActionListener(this);
+                menuPlan.getBtnEliminarPlanes().addActionListener(this);
+                menuPlan.getBtnVolver().addActionListener(this);
+            }
+            */  
             menuPlan.setVisible(true);
             return;
-        }
-        
-        //Opciones de cambio de menu contratos
-        if(ae.getSource() == menuPlan.getBtnBuscarRut()){
+        }else if(ae.getSource() == menuPlan.getBtnBuscarRut()){ //Opciones de cambio de menu planes
             return;
-        }
-        if(ae.getSource() == menuPlan.getBtnAgregarPlan()){
+        }else if(ae.getSource() == menuPlan.getBtnAgregarPlan()){
             PlanOpPanel1 panelAgregar = new PlanOpPanel1();
             menuPlan.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() == menuPlan.getBtnMostrarPlanes()){
+        }else if(ae.getSource() == menuPlan.getBtnMostrarPlanes()){
             PlanOpPanel2 panelAgregar = new PlanOpPanel2();
             menuPlan.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() == menuPlan.getBtnEliminarPlan()){
+        }else if(ae.getSource() == menuPlan.getBtnEliminarPlan()){
             PlanOpPanel3 panelAgregar = new PlanOpPanel3();
             menuPlan.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() == menuPlan.getBtnEliminarPlanes()){
+        }else if(ae.getSource() == menuPlan.getBtnEliminarPlanes()){
             PlanOpPanel4 panelAgregar = new PlanOpPanel4();
             menuPlan.mostrarPanel(panelAgregar);
             return;
-        }
-        if(ae.getSource() == menuPlan.getBtnVolver()){
+        }else if(ae.getSource() == menuPlan.getBtnVolver()){ //Opcion salir de la ventana planes
             menuPlan.dispose();
+            //menuPlan = null;
             return;
+        
         }
+    }
+    public static void agregarCliente(ClienteOpPanel1 panelAgregar){
+        panelAgregar.getButEnviarAgregarCliente().addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+                String nombre = panelAgregar.getTxtFiNombre();
+                String apellPat = panelAgregar.getTxtFiApellPat();
+                String apellMat = panelAgregar.getTxtFiApellMate();
+                int rut = Integer.parseInt(panelAgregar.getTxtFiRut());
+                System.out.println(nombre+apellPat+apellMat+rut);
+            try {
+                boolean agregoClientte = Modelo.agregarCliente(nombre,apellPat,apellMat,rut);
+            } catch (CsvValidationException ex) {
+                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    
+                
+            }
+        });
     }
 }

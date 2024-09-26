@@ -9,11 +9,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import vistas.*;
 import vistasPanel.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Cliente;
 import modelo.Modelo;
 import vistas.MenuPlan;
 
@@ -28,14 +29,17 @@ public class Controlador implements ActionListener {
     private ClienteOpPanel1 panelAgregar;
     private MenuContrato menuContrato;
     private MenuPlan menuPlan;
+    private Modelo modeloG;
 
   
-    public void iniciar(){
+    public void iniciar() throws CsvValidationException{
         
+        modeloG = new Modelo();
         menuG = new MenuGeneral();
         menuG.getButCliente().addActionListener(this);
-        menuG.getbutMenuContratos().addActionListener(this);
-        menuG.getbutMenuPlanes().addActionListener(this);
+        menuG.getButMenuContratos().addActionListener(this);
+        menuG.getButMenuPlanes().addActionListener(this);
+        menuG.getButExitPr().addActionListener(this);
         menuG.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         menuG.setVisible(true);
 
@@ -64,8 +68,9 @@ public class Controlador implements ActionListener {
             return;
         }
         if(ae.getSource() == menuCliente.getButOpcionMostarCliente()){
-            ClienteOpPanel2 panelAgregar = new ClienteOpPanel2();
-            menuCliente.mostrarPanel(panelAgregar);
+            ClienteOpPanel2 panelBuscar = new ClienteOpPanel2();
+            menuCliente.mostrarPanel(panelBuscar);
+            buscarCliente(panelBuscar);
             return;
         }
         if(ae.getSource() ==  menuCliente.getButOpcionModificarCliente()){
@@ -90,7 +95,7 @@ public class Controlador implements ActionListener {
         }
         
         //Ventana menu contratos
-        if(ae.getSource() == menuG.getbutMenuContratos()){
+        if(ae.getSource() == menuG.getButMenuContratos()){
             menuContrato = new MenuContrato();
             menuContrato.getBtnMostrarContratoCliente().addActionListener(this);
             menuContrato.getBtnMostrarContratos().addActionListener(this);
@@ -116,7 +121,7 @@ public class Controlador implements ActionListener {
         }
         
         //Ventana menu planes
-        if(ae.getSource() == menuG.getbutMenuPlanes()){
+        if(ae.getSource() == menuG.getButMenuPlanes()){
             menuPlan = new MenuPlan();
             menuPlan.getBtnBuscarRut().addActionListener(this);
             menuPlan.getBtnAgregarPlan().addActionListener(this);
@@ -152,13 +157,15 @@ public class Controlador implements ActionListener {
             menuPlan.mostrarPanel(panelAgregar);
             return;
         }
-        if(ae.getSource() == menuPlan.getBtnVolver()){
-            menuPlan.dispose();
+        if(ae.getSource() == menuG.getButExitPr()){
+            System.exit(0);
             return;
         
         }
+        //if(ae.getSource() == menuPlan.getBtnVolver())
+            
     }
-    public static void agregarCliente(ClienteOpPanel1 panelAgregar){
+    public void agregarCliente(ClienteOpPanel1 panelAgregar){
         panelAgregar.getButEnviarAgregarCliente().addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -166,15 +173,35 @@ public class Controlador implements ActionListener {
                 String apellPat = panelAgregar.getTxtFiApellPat();
                 String apellMat = panelAgregar.getTxtFiApellMate();
                 int rut = Integer.parseInt(panelAgregar.getTxtFiRut());
-                System.out.println(nombre+apellPat+apellMat+rut);
-            try {
-                boolean agregoClientte = Modelo.agregarCliente(nombre,apellPat,apellMat,rut);
-            } catch (CsvValidationException ex) {
-                Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    
+                System.out.println(nombre+apellPat+apellMat+rut);    
                 
             }
         });
     }
+    public void buscarCliente(ClienteOpPanel2 panelBuscar){
+        HashMap<Integer, Cliente> mapaClientes = modeloG.mostrarCliente();
+        panelBuscar.getButEnviarBusCliente().addActionListener(new ActionListener() {
+        @Override   
+        public void actionPerformed(ActionEvent ae) {
+                int rutBuscar = Integer.parseInt(panelBuscar.getTextFieldRutBuscar());
+                Cliente clienteAux = mapaClientes.get(rutBuscar);
+                if(clienteAux != null){
+                    panelBuscar.setLabelViewNombre("Nombre: " + clienteAux.getNombre());
+                    panelBuscar.setLabelViewApllPat("Apellido Paterno: " + clienteAux.getApellidoPaterno());
+                    panelBuscar.setLabelViewApllMat("Apellido Materno: " + clienteAux.getApellidoMaterno());
+                    panelBuscar.setLabelViewRut("Rut: " +  clienteAux.getRut());
+                    boolean tieneContrato = clienteAux.getTieneContrato();
+                    if(tieneContrato)
+                        panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: SI");
+                    else
+                        panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: NO");
+                }
+                else{
+                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡NO SE ENCONTRO!");
+                }
+            }
+        });
+    }
+    
+                
 }

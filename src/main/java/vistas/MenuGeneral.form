@@ -119,18 +119,26 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="189" max="32767" attributes="0"/>
-              <Component id="jlabelInicio" min="-2" pref="410" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="333" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="butMenuContratos" max="32767" attributes="0"/>
-                  <Component id="butMenuCliente" max="32767" attributes="0"/>
-                  <Component id="butMenuPlanes" alignment="1" max="32767" attributes="0"/>
+                  <Component id="ButMenuContratos" max="32767" attributes="0"/>
+                  <Component id="ButMenuCliente" max="32767" attributes="0"/>
+                  <Component id="ButMenuPlanes" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="189" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jlabelInicio" min="-2" pref="410" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="ButExitPr" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="350" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,12 +148,14 @@
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Component id="jlabelInicio" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-              <Component id="butMenuCliente" min="-2" max="-2" attributes="0"/>
+              <Component id="ButMenuCliente" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="butMenuPlanes" min="-2" max="-2" attributes="0"/>
+              <Component id="ButMenuPlanes" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="butMenuContratos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="121" max="32767" attributes="0"/>
+              <Component id="ButMenuContratos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="ButExitPr" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="80" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -160,28 +170,36 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="butMenuCliente">
+    <Component class="javax.swing.JButton" name="ButMenuCliente">
       <Properties>
         <Property name="text" type="java.lang.String" value="Menu Clientes"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butMenuClienteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButMenuClienteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="butMenuPlanes">
+    <Component class="javax.swing.JButton" name="ButMenuPlanes">
       <Properties>
         <Property name="text" type="java.lang.String" value="Menu Planes"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butMenuPlanesActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButMenuPlanesActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="butMenuContratos">
+    <Component class="javax.swing.JButton" name="ButMenuContratos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Menu Contratos"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butMenuContratosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButMenuContratosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="ButExitPr">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButExitPrActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -3,6 +3,7 @@
  */
 
 package com.mycompany.administradordecontratosempresatelefonica;
+import com.opencsv.exceptions.CsvValidationException;
 import modelo.Cliente;
 import modelo.Menu;
 import modelo.Plan;
@@ -27,7 +28,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
     private static HashMap<String, Cliente> mapaTelefonos = new HashMap<>();
     private static Plan ofertaPlanes[] = new Plan[3];
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws CsvValidationException{
 
         String opcion;
         Scanner lector = new Scanner(System.in);

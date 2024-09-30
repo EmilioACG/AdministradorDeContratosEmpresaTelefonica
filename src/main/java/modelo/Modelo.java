@@ -281,6 +281,20 @@ public class Modelo {
             }          
         }
     }
+
+    public Plan ultimoPlanContratado(int rutCliente) {
+        Plan ultPlan = null;
+        int posUltPlan;
+        for(Cliente auxCliente : listaClientes) {
+            if(auxCliente.getRut() == rutCliente) {
+                posUltPlan = auxCliente.getListaPlanes().size() - 1;
+                ultPlan = auxCliente.getListaPlanes().get(posUltPlan);
+                break;
+            }
+        }
+        
+        return ultPlan;
+    }
     
    
 }

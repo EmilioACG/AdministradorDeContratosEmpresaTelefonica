@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Cliente;
 import modelo.Modelo;
+import modelo.Plan;
 import vistas.MenuPlan;
 
 /**
@@ -169,6 +170,7 @@ public class Controlador implements ActionListener {
         }
             
     }
+    
     // -----------------------------------------------------------------------------------------------
     // Metodos Ventana MenuCliente.java
     // -----------------------------------------------------------------------------------------------        
@@ -245,6 +247,19 @@ public class Controlador implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 modeloG.agregarPlan(0, rut);
+                Plan planContratado = modeloG.ultimoPlanContratado(rut);
+                
+                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + "Gigabytes");
+                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + "Minutos");
+                panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
+                panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
+                panelAgregarPlan.setJlbNewPrecio(planContratado.getPrecio()+"");
+                
+                panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
+                panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
+                panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
+                panelAgregarPlan.getJlbNewNumTelefono().setVisible(true);
+                panelAgregarPlan.getJlbNewPrecio().setVisible(true);
             }
         }
         );
@@ -253,6 +268,19 @@ public class Controlador implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 modeloG.agregarPlan(1,rut);
+                Plan planContratado = modeloG.ultimoPlanContratado(rut);
+                
+                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + "Gigabytes");
+                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + "Minutos");
+                panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
+                panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
+                panelAgregarPlan.setJlbNewPrecio(planContratado.getPrecio()+"");
+                
+                panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
+                panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
+                panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
+                panelAgregarPlan.getJlbNewNumTelefono().setVisible(true);
+                panelAgregarPlan.getJlbNewPrecio().setVisible(true);
             }
         }
         );
@@ -261,8 +289,22 @@ public class Controlador implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 modeloG.agregarPlan(2,rut);
+                Plan planContratado = modeloG.ultimoPlanContratado(rut);
+                
+                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + "Gigabytes");
+                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + "Minutos");
+                panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
+                panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
+                panelAgregarPlan.setJlbNewPrecio(planContratado.getPrecio()+"");
+                
+                panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
+                panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
+                panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
+                panelAgregarPlan.getJlbNewNumTelefono().setVisible(true);
+                panelAgregarPlan.getJlbNewPrecio().setVisible(true);
             }
         }
         );
+        
     }            
 }

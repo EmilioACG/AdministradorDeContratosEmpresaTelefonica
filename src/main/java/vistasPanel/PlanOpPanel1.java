@@ -5,6 +5,7 @@
 package vistasPanel;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -17,6 +18,12 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
      */
     public PlanOpPanel1() {
         initComponents();
+        jlbNewCantGigas.setVisible(false);
+        jlbNewCantMinutos.setVisible(false);
+        jlbNewNombrePlan.setVisible(false);
+        jlbNewNumTelefono.setVisible(false);
+        jlbNewPrecio.setVisible(false);
+        
     }
 
     public JButton getBtnSelecPlanDos() {
@@ -29,6 +36,47 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
 
     public JButton getBtnSelecPlanUno() {
         return btnSelecPlanUno;
+    }
+
+    public void setJlbNewCantGigas(String msg) {
+        this.jlbNewCantGigas.setText(msg);
+    }
+
+    public void setJlbNewCantMinutos(String msg) {
+        this.jlbNewCantMinutos.setText(msg);
+    }
+
+    public void setJlbNewNombrePlan(String msg) {
+        this.jlbNewNombrePlan.setText(msg);
+    }
+
+    public void setJlbNewNumTelefono(String msg) {
+        this.jlbNewNumTelefono.setText(msg);
+    }
+
+    public void setJlbNewPrecio(String msg) {
+        this.jlbNewPrecio.setText(msg);
+    }
+
+    
+    public JLabel getJlbNewCantGigas() {
+        return jlbNewCantGigas;
+    }
+
+    public JLabel getJlbNewCantMinutos() {
+        return jlbNewCantMinutos;
+    }
+
+    public JLabel getJlbNewNombrePlan() {
+        return jlbNewNombrePlan;
+    }
+
+    public JLabel getJlbNewNumTelefono() {
+        return jlbNewNumTelefono;
+    }
+
+    public JLabel getJlbNewPrecio() {
+        return jlbNewPrecio;
     }
     
     
@@ -58,6 +106,13 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
         jlbMinutosPlanTres = new javax.swing.JLabel();
         jlbPrecioPlanTres = new javax.swing.JLabel();
         btnSelecPlanTres = new javax.swing.JButton();
+        jlbNuevoPlanAdquirido = new javax.swing.JLabel();
+        jlbNewNombrePlan = new javax.swing.JLabel();
+        jlbPrefijoNumero = new javax.swing.JLabel();
+        jlbNewNumTelefono = new javax.swing.JLabel();
+        jlbNewCantGigas = new javax.swing.JLabel();
+        jlbNewCantMinutos = new javax.swing.JLabel();
+        jlbNewPrecio = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(406, 599));
 
@@ -107,76 +162,129 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
             }
         });
 
+        jlbNuevoPlanAdquirido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlbNuevoPlanAdquirido.setText("Nuevo plan adquirido:");
+
+        jlbNewNombrePlan.setText("nombre plan");
+
+        jlbPrefijoNumero.setText("+56 9");
+
+        jlbNewNumTelefono.setText("numero telefono");
+
+        jlbNewCantGigas.setText("cantidad de giga bytes");
+
+        jlbNewCantMinutos.setText("cantidad de minutos libres");
+
+        jlbNewPrecio.setText("precio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbSeleccPlan)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlbTituloPlanTres)
-                            .addComponent(jlbTituloPlanDos)
-                            .addComponent(jlbTituloPlanUno)))
+                            .addComponent(jlbNuevoPlanAdquirido)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbTituloPlanUno)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnSelecPlanUno)
+                                            .addComponent(jlbPrecioPlanUno)
+                                            .addComponent(jlbMinutosPlanUno)
+                                            .addComponent(jlbGigasPlanUno))))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbTituloPlanDos)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnSelecPlanDos)
+                                            .addComponent(jlbPrecioPlanDos)
+                                            .addComponent(jlbMinutosPlanDos)
+                                            .addComponent(jlbGigasPlanDos))))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbTituloPlanTres)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnSelecPlanTres)
+                                            .addComponent(jlbPrecioPlanTres)
+                                            .addComponent(jlbMinutosPlanTres)
+                                            .addComponent(jlbGigasPlanTres)))))
+                            .addComponent(jlbSeleccPlan)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnSelecPlanDos)
-                                .addComponent(jlbPrecioPlanDos)
-                                .addComponent(jlbMinutosPlanDos)
-                                .addComponent(jlbGigasPlanDos))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnSelecPlanUno)
-                                .addComponent(jlbPrecioPlanUno)
-                                .addComponent(jlbMinutosPlanUno)
-                                .addComponent(jlbGigasPlanUno))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnSelecPlanTres)
-                                .addComponent(jlbPrecioPlanTres)
-                                .addComponent(jlbMinutosPlanTres)
-                                .addComponent(jlbGigasPlanTres)))))
-                .addContainerGap(128, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlbPrefijoNumero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbNewNumTelefono))
+                            .addComponent(jlbNewNombrePlan)
+                            .addComponent(jlbNewCantGigas)
+                            .addComponent(jlbNewCantMinutos)
+                            .addComponent(jlbNewPrecio))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jlbSeleccPlan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jlbTituloPlanUno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbGigasPlanUno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbMinutosPlanUno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbPrecioPlanUno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSelecPlanUno)
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlbTituloPlanTres)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlbGigasPlanTres)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlbMinutosPlanTres)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlbPrecioPlanTres)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSelecPlanTres))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jlbSeleccPlan)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlbTituloPlanUno)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbGigasPlanUno)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbMinutosPlanUno)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbPrecioPlanUno)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSelecPlanUno))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlbTituloPlanDos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbGigasPlanDos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbMinutosPlanDos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbPrecioPlanDos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSelecPlanDos)))))
+                .addGap(57, 57, 57)
+                .addComponent(jlbNuevoPlanAdquirido)
                 .addGap(18, 18, 18)
-                .addComponent(jlbTituloPlanDos)
+                .addComponent(jlbNewNombrePlan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbGigasPlanDos)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlbPrefijoNumero)
+                    .addComponent(jlbNewNumTelefono))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbMinutosPlanDos)
+                .addComponent(jlbNewCantGigas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbPrecioPlanDos)
+                .addComponent(jlbNewCantMinutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSelecPlanDos)
-                .addGap(18, 18, 18)
-                .addComponent(jlbTituloPlanTres)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbGigasPlanTres)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbMinutosPlanTres)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbPrecioPlanTres)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSelecPlanTres)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addComponent(jlbNewPrecio)
+                .addContainerGap(152, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -199,9 +307,16 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
     private javax.swing.JLabel jlbMinutosPlanDos;
     private javax.swing.JLabel jlbMinutosPlanTres;
     private javax.swing.JLabel jlbMinutosPlanUno;
+    private javax.swing.JLabel jlbNewCantGigas;
+    private javax.swing.JLabel jlbNewCantMinutos;
+    private javax.swing.JLabel jlbNewNombrePlan;
+    private javax.swing.JLabel jlbNewNumTelefono;
+    private javax.swing.JLabel jlbNewPrecio;
+    private javax.swing.JLabel jlbNuevoPlanAdquirido;
     private javax.swing.JLabel jlbPrecioPlanDos;
     private javax.swing.JLabel jlbPrecioPlanTres;
     private javax.swing.JLabel jlbPrecioPlanUno;
+    private javax.swing.JLabel jlbPrefijoNumero;
     private javax.swing.JLabel jlbSeleccPlan;
     private javax.swing.JLabel jlbTituloPlanDos;
     private javax.swing.JLabel jlbTituloPlanTres;

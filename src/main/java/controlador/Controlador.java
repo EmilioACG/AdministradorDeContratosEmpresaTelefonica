@@ -29,11 +29,19 @@ public class Controlador implements ActionListener {
     private MenuPlan menuPlan;
     private ClienteOpPanel1 panelAgregar;
     private Modelo modeloG;
+    private int rutMenuPlan;
     
     public Controlador () {
         inicializarVentanas();
     }
-    
+
+    public int getRutMenuPlan() {
+        return rutMenuPlan;
+    }
+    public void setRutMenuPlan(int rutMenuPlan) {
+        this.rutMenuPlan = rutMenuPlan;
+    }
+
     public void inicializarVentanas() {
         menuCliente = new MenuCliente();
         menuCliente.getButOpcionAgregar().addActionListener(this);
@@ -55,6 +63,11 @@ public class Controlador implements ActionListener {
         menuPlan.getBtnEliminarPlan().addActionListener(this);
         menuPlan.getBtnEliminarPlanes().addActionListener(this);
         menuPlan.getBtnVolver().addActionListener(this);
+        menuPlan.getJlbTituloOpciones().setVisible(false);
+        menuPlan.getBtnAgregarPlan().setVisible(false);
+        menuPlan.getBtnMostrarPlanes().setVisible(false);
+        menuPlan.getBtnEliminarPlan().setVisible(false);
+        menuPlan.getBtnEliminarPlanes().setVisible(false);
     }
   
     public void iniciar() throws CsvValidationException{
@@ -124,10 +137,14 @@ public class Controlador implements ActionListener {
             menuG.setVisible(false);
             return;
         }else if(ae.getSource() == menuPlan.getBtnBuscarRut()){ //Opciones de cambio de menu planes
+            setRutMenuPlan(Integer.parseInt(menuPlan.getTxtRutBuscado()));
+            buscarRut(rutMenuPlan);
             return;
         }else if(ae.getSource() == menuPlan.getBtnAgregarPlan()){
-            PlanOpPanel1 panelAgregar = new PlanOpPanel1();
-            menuPlan.mostrarPanel(panelAgregar);
+            PlanOpPanel1 panelAgregarPlan = new PlanOpPanel1();
+            System.out.println("rut buscado: "+ getRutMenuPlan());
+            menuPlan.mostrarPanel(panelAgregarPlan);
+            agregarPlan(panelAgregarPlan, getRutMenuPlan());
             return;
         }else if(ae.getSource() == menuPlan.getBtnMostrarPlanes()){
             PlanOpPanel2 panelAgregar = new PlanOpPanel2();
@@ -152,6 +169,9 @@ public class Controlador implements ActionListener {
         }
             
     }
+    // -----------------------------------------------------------------------------------------------
+    // Metodos Ventana MenuCliente.java
+    // -----------------------------------------------------------------------------------------------        
     public void agregarCliente(ClienteOpPanel1 panelAgregar){
         panelAgregar.getButEnviarAgregarCliente().addActionListener(new ActionListener() {
         @Override
@@ -191,6 +211,58 @@ public class Controlador implements ActionListener {
             }
         });
     }
+
+    // -----------------------------------------------------------------------------------------------
+    // Metodos Ventana MenuPlan.java
+    // -----------------------------------------------------------------------------------------------    
+    private void buscarRut(int rutBuscado) {
+        HashMap<Integer, Cliente> mapaClientesClonado = modeloG.mostrarCliente();
+        
+        System.out.println("rut buscado: "+ rutBuscado);
+        
+        Cliente clienteAux = mapaClientesClonado.get(rutBuscado);
+        
+        if(clienteAux == null){
+            menuPlan.setJlbExisteRut(rutBuscado +" no existe como cliente");
+            menuPlan.getJlbTituloOpciones().setVisible(false);
+            menuPlan.getBtnAgregarPlan().setVisible(false);
+            menuPlan.getBtnMostrarPlanes().setVisible(false);
+            menuPlan.getBtnEliminarPlan().setVisible(false);
+            menuPlan.getBtnEliminarPlanes().setVisible(false);
+        }
+        else {
+            menuPlan.setJlbExisteRut("Cliente "+rutBuscado+" encontrado");
+            menuPlan.getJlbTituloOpciones().setVisible(true);
+            menuPlan.getBtnAgregarPlan().setVisible(true);
+            menuPlan.getBtnMostrarPlanes().setVisible(true);
+            menuPlan.getBtnEliminarPlan().setVisible(true);
+            menuPlan.getBtnEliminarPlanes().setVisible(true);
+        }
+    }
     
-                
+    private void agregarPlan(PlanOpPanel1 panelAgregarPlan, int rut) {
+        panelAgregarPlan.getBtnSelecPlanUno().addActionListener(new ActionListener() {    
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modeloG.agregarPlan(0, rut);
+            }
+        }
+        );
+        
+        panelAgregarPlan.getBtnSelecPlanDos().addActionListener(new ActionListener() {    
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modeloG.agregarPlan(1,rut);
+            }
+        }
+        );
+        
+        panelAgregarPlan.getBtnSelecPlanTres().addActionListener(new ActionListener() {    
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modeloG.agregarPlan(2,rut);
+            }
+        }
+        );
+    }            
 }

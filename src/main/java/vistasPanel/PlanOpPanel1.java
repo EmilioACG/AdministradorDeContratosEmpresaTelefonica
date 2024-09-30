@@ -4,6 +4,8 @@
  */
 package vistasPanel;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author melis
@@ -16,6 +18,20 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
     public PlanOpPanel1() {
         initComponents();
     }
+
+    public JButton getBtnSelecPlanDos() {
+        return btnSelecPlanDos;
+    }
+
+    public JButton getBtnSelecPlanTres() {
+        return btnSelecPlanTres;
+    }
+
+    public JButton getBtnSelecPlanUno() {
+        return btnSelecPlanUno;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

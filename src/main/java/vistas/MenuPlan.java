@@ -6,7 +6,10 @@ package vistas;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 /**
  *
@@ -39,6 +42,22 @@ public class MenuPlan extends javax.swing.JFrame {
     public JButton getBtnVolver() {
         return btnVolver;
     }
+    public JLabel getJlbExisteRut() {
+        return jlbExisteRut;
+    }
+    public JLabel getJlbTituloOpciones() {
+        return jlbTituloOpciones;
+    }
+    
+    
+    
+    public String getTxtRutBuscado() {
+        return txtRutBuscado.getText();
+    }
+    public void setJlbExisteRut(String mensaje) {
+        this.jlbExisteRut.setText(mensaje);
+    }
+    
     
     public void mostrarPanel(JPanel p){
         p.setSize(470, 600);
@@ -58,9 +77,7 @@ public class MenuPlan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlbTituloRutCleinte = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jlbTituloRutCliente = new javax.swing.JLabel();
         btnBuscarRut = new javax.swing.JButton();
         jlbExisteRut = new javax.swing.JLabel();
         btnAgregarPlan = new javax.swing.JButton();
@@ -70,13 +87,12 @@ public class MenuPlan extends javax.swing.JFrame {
         btnEliminarPlanes = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         pnlPanelOpciones = new java.awt.Panel();
+        txtRutBuscado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jlbTituloRutCleinte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlbTituloRutCleinte.setText("Ingrese el rut del cliente que desea operar");
-
-        jScrollPane1.setViewportView(jTextPane1);
+        jlbTituloRutCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jlbTituloRutCliente.setText("Ingrese el rut del cliente que desea operar");
 
         btnBuscarRut.setText("buscar");
 
@@ -125,13 +141,12 @@ public class MenuPlan extends javax.swing.JFrame {
                         .addComponent(btnEliminarPlanes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                         .addComponent(btnEliminarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMostrarPlanes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnBuscarRut)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jlbExisteRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jlbTituloRutCleinte)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBuscarRut)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlbExisteRut))
+                    .addComponent(jlbTituloRutCliente)
+                    .addComponent(txtRutBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(pnlPanelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -139,14 +154,14 @@ public class MenuPlan extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jlbTituloRutCleinte)
+                .addComponent(jlbTituloRutCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtRutBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscarRut)
                     .addComponent(jlbExisteRut))
-                .addGap(31, 31, 31)
+                .addGap(37, 37, 37)
                 .addComponent(jlbTituloOpciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregarPlan)
@@ -156,7 +171,7 @@ public class MenuPlan extends javax.swing.JFrame {
                 .addComponent(btnEliminarPlan)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarPlanes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addComponent(btnVolver)
                 .addGap(75, 75, 75))
             .addComponent(pnlPanelOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -207,11 +222,10 @@ public class MenuPlan extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarPlanes;
     private javax.swing.JButton btnMostrarPlanes;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel jlbExisteRut;
     private javax.swing.JLabel jlbTituloOpciones;
-    private javax.swing.JLabel jlbTituloRutCleinte;
+    private javax.swing.JLabel jlbTituloRutCliente;
     private java.awt.Panel pnlPanelOpciones;
+    private javax.swing.JTextField txtRutBuscado;
     // End of variables declaration//GEN-END:variables
 }

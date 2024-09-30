@@ -20,7 +20,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Arrays;
-import modelo.Plan;
+import net.datafaker.Faker;
 
 /**
  *
@@ -31,15 +31,18 @@ public class Modelo {
     private static HashMap<Integer,Cliente> mapaClientes = new HashMap<>();
     private static HashMap<String, Cliente> mapaTelefonos = new HashMap<>();
     private static Plan ofertaPlanes[] = new Plan[3];
+
     private static final String path = "src\\main\\resources\\DataBase\\DBTelefonia.csv";
     private static final String pathTelefonos = "src\\main\\resources\\DataBase\\telefonos.csv";
     private static Cliente nuevoCliente; 
     
     
-    public Modelo () throws CsvValidationException{
+    public Modelo() throws CsvValidationException{
         leerCsv();
         leerCsvTelefonos();
-        datosIniciales();
+        ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
+        ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
+        ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
     }
     public static void leerCsv() throws CsvValidationException{
         File file = new File(path);
@@ -144,10 +147,6 @@ public class Modelo {
         
     }
 
-    private static Reader newFileReader(String path) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
     public boolean agregarCliente(String nomb,String apellPat,String apellMat,int rut){
         //Cliente clienteAux;
         /*do{
@@ -185,9 +184,9 @@ public class Modelo {
         }
         if (fileTelefonos.exists()) {
             if (fileTelefonos.delete()) {
-                System.out.println("Archivo existente eliminado: " + path);
+                System.out.println("Archivo existente eliminado: " + pathTelefonos);
             } else {
-                System.out.println("No se pudo eliminar el archivo: " + path);
+                System.out.println("No se pudo eliminar el archivo: " + pathTelefonos);
                 return;
             }
         }
@@ -214,7 +213,7 @@ public class Modelo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+        /*
         //Se ecriben los datos en el CSV  de telefonia
           try (CSVWriter writer = new CSVWriter(new FileWriter(pathTelefonos))) {
         String[] encabezado = {"Rut", "NombrePlan", "numeroFono", "cantGigaBytes", "CantMinutos","precio"};
@@ -239,7 +238,7 @@ public class Modelo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+        */
     } 
     //este metodo no funciona
     /*public boolean guardarDatos(String nomb,String apellPat,String apellMat,int rut) throws CsvValidationException{
@@ -262,13 +261,26 @@ public class Modelo {
         
         
         return true;
-    }
-    /*public void datosIniciales(){
-        //Se crean las 3 ofertas de planes
-        ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
-        ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
-        ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
     }*/
+
+    public void agregarPlan(int planSeleccionado, int rutCliente) {
+        String numeroTelefono;
+        Faker generarNumero = new Faker();
+        
+         do {
+            numeroTelefono = generarNumero.numerify("########");
+         } while ( mapaTelefonos.get(numeroTelefono) != null );
+        
+        for(Cliente auxCliente : listaClientes) {
+            if(auxCliente.getRut() == rutCliente) {
+                auxCliente.agregarPlan(planSeleccionado, ofertaPlanes, numeroTelefono);
+                mapaTelefonos.put(numeroTelefono, auxCliente);
+                
+                System.out.println(numeroTelefono + "    " + auxCliente.getNombre()+auxCliente.getApellidoPaterno());
+                break;
+            }          
+        }
+    }
     
    
 }

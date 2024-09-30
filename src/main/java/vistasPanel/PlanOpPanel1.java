@@ -23,6 +23,8 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
         jlbNewNombrePlan.setVisible(false);
         jlbNewNumTelefono.setVisible(false);
         jlbNewPrecio.setVisible(false);
+        jlbNuevoPlanAdquirido.setVisible(false);
+        jlbPrefijoNumero.setVisible(false);
         
     }
 
@@ -78,6 +80,15 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
     public JLabel getJlbNewPrecio() {
         return jlbNewPrecio;
     }
+
+    public JLabel getJlbNuevoPlanAdquirido() {
+        return jlbNuevoPlanAdquirido;
+    }
+
+    public JLabel getJlbPrefijoNumero() {
+        return jlbPrefijoNumero;
+    }
+    
     
     
 

@@ -44,6 +44,7 @@ public class Modelo {
         ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
         ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
     }
+    
     public static void leerCsv() throws CsvValidationException{
         File file = new File(path);
         try{
@@ -159,10 +160,12 @@ public class Modelo {
         mapaClientes.put(rut,nuevoCliente);
         return true;
     }
+    
     public HashMap<Integer, Cliente> mostrarCliente(){
         HashMap<Integer, Cliente> mapaClonado = (HashMap<Integer, Cliente>) mapaClientes.clone();
         return mapaClonado;
     }
+    
     public static void datosIniciales(){
         //Se crean las 3 ofertas de planes
         ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
@@ -173,7 +176,7 @@ public class Modelo {
     public void guardarDatos(){
         
         File fileDb = new File(path);
-         File fileTelefonos = new File(pathTelefonos);
+        
         if (fileDb.exists()) {
             if (fileDb.delete()) {
                 System.out.println("Archivo existente eliminado: " + path);
@@ -182,14 +185,7 @@ public class Modelo {
                 return;
             }
         }
-        if (fileTelefonos.exists()) {
-            if (fileTelefonos.delete()) {
-                System.out.println("Archivo existente eliminado: " + pathTelefonos);
-            } else {
-                System.out.println("No se pudo eliminar el archivo: " + pathTelefonos);
-                return;
-            }
-        }
+        
         //Se ecriben los datos de CSV clientes
         try (CSVWriter writer = new CSVWriter(new FileWriter(path))) {
         // Agregar el encabezado al nuevo archivo CSV
@@ -213,33 +209,74 @@ public class Modelo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*
+        
+    }
+    
+    public void guardarDatosPlanes() {
+        Plan auxPlan;
+        File fileTelefonos = new File(pathTelefonos);
+        
+        int auxRut;
+        String auxNombrePlan;
+        String auxNumeroTelefono;
+        int auxCantGigas;
+        int auxCantMinutos;
+        double auxPrecio;
+        
+        int cantPlanes;
+        
+        if (fileTelefonos.exists()) {
+            if (fileTelefonos.delete()) {
+                System.out.println("Archivo existente eliminado: " + pathTelefonos);
+            } else {
+                System.out.println("No se pudo eliminar el archivo: " + pathTelefonos);
+                return;
+            }
+        }
+        
         //Se ecriben los datos en el CSV  de telefonia
-          try (CSVWriter writer = new CSVWriter(new FileWriter(pathTelefonos))) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter(pathTelefonos))) {
         String[] encabezado = {"Rut", "NombrePlan", "numeroFono", "cantGigaBytes", "CantMinutos","precio"};
         writer.writeNext(encabezado);
         
         // Escribir los datos de la lista de clientes en el archivo CSV
-        for (Integer rut :mapaClientes.get(this)) {
-            Cliente clienteAux = mapaClientes.get(rut);
+        for (Cliente auxCliente : listaClientes) {
+            cantPlanes = auxCliente.getListaPlanes().size();
             
-            String[] datosFono = {
-                String.valueOf(rut),
-                clienteAux.,
-                clienteAux.getApellidoMaterno(),
-                String.valueOf(cliente.getRut()),
-                String.valueOf(cliente.getTieneContrato())
-            };
-            writer.writeNext(datosFono);
+            if( cantPlanes != 0 ) {
+                auxRut = auxCliente.getRut();
+                
+                for(int i = 0; i < cantPlanes ; i++) {
+                    auxPlan = auxCliente.getListaPlanes().get(i);
+                    
+                    auxNombrePlan = auxPlan.getNombrePlan();
+                    auxNumeroTelefono = auxPlan.getNumeroTelefono();
+                    auxCantGigas = auxPlan.getCantGigaBytes();
+                    auxCantMinutos = auxPlan.getCantMinutos();
+                    auxPrecio = auxPlan.getPrecio();
+                    
+                    String[] datosFono = {
+                        String.valueOf(auxRut),
+                        auxNombrePlan,
+                        auxNumeroTelefono,
+                        String.valueOf(auxCantGigas),
+                        String.valueOf(auxCantMinutos),
+                        String.valueOf(auxPrecio)
+                    };
+                    
+                    writer.writeNext(datosFono);
+                }
+            }
         }
         
-        System.out.println("Nuevo archivo CSV creado: " + path);
+        System.out.println("Nuevo archivo CSV creado: " + pathTelefonos);
         
         } catch (IOException e) {
             e.printStackTrace();
         }
-        */
-    } 
+        
+        
+    }
     //este metodo no funciona
     /*public boolean guardarDatos(String nomb,String apellPat,String apellMat,int rut) throws CsvValidationException{
         nuevoCliente = new Cliente(nomb,apellPat,apellMat,rut);

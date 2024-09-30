@@ -165,6 +165,7 @@ public class Controlador implements ActionListener {
             return;
         }else if(ae.getSource() == menuG.getBtnExitPr()){
             modeloG.guardarDatos();
+            modeloG.guardarDatosPlanes();
             System.exit(0);
             return;
         }
@@ -255,6 +256,8 @@ public class Controlador implements ActionListener {
                 panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
                 panelAgregarPlan.setJlbNewPrecio(planContratado.getPrecio()+"");
                 
+                panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
+                panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
                 panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
                 panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
                 panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
@@ -276,6 +279,8 @@ public class Controlador implements ActionListener {
                 panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
                 panelAgregarPlan.setJlbNewPrecio(planContratado.getPrecio()+"");
                 
+                panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
+                panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
                 panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
                 panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
                 panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
@@ -297,6 +302,8 @@ public class Controlador implements ActionListener {
                 panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
                 panelAgregarPlan.setJlbNewPrecio(planContratado.getPrecio()+"");
                 
+                panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
+                panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
                 panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
                 panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
                 panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);

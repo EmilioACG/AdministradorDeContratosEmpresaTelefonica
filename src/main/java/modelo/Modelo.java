@@ -166,6 +166,19 @@ public class Modelo {
         return mapaClonado;
     }
     
+    public boolean modificarDatosCliente(int rut,String nom,String appPat,String appMat,String opcion){
+        if("1".equals(opcion) || "3".equals(opcion)){
+            mapaClientes.get(rut).modificarDatosClientes(nom);
+            if("1".equals(opcion))
+                return true;
+        }         
+        if("2".equals(opcion) || "3".equals(opcion)){
+            mapaClientes.get(rut).modificarDatosClientes(appPat, appMat);
+            return true;
+        }
+        return false;
+    }
+    
     public static void datosIniciales(){
         //Se crean las 3 ofertas de planes
         ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);

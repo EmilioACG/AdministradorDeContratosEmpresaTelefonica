@@ -4,6 +4,7 @@
  */
 package vistasPanel;
 
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -27,31 +28,38 @@ public class ClienteOpPanel2 extends javax.swing.JPanel {
     }
 
     public JButton getButEnviarBusCliente() {
-        return ButEnviarBusCliente;
+        return butEnviarBusCliente;
     }
 
     public void setLabelViewNombre(String msj) {
-        this.LabelViewNombre.setText(msj);
+        this.labelViewNombre.setText(msj);
     }
 
     public void setLabelViewApllPat(String msj) {
-        this.LabelViewApllPat.setText(msj);
+        this.labelViewApllPat.setText(msj);
     }
 
     public void setLabelViewApllMat(String msj) {
-        this.LabelViewApllMat.setText(msj);
+        this.labelViewApllMat.setText(msj);
     }
 
     public void setLabelViewRut(String msj) {
-        this.LabelViewRut.setText(msj);
+        this.labelViewRut.setText(msj);
     }
 
     public void setLabelViewTieneContr(String msj) {
-        this.LabelViewTieneContr.setText(msj);
+        this.labelViewTieneContr.setText(msj);
     }
 
-    public void setLabelViewSeEncontroClie(String msj) {
-        this.LabelViewSeEncontroClie.setText(msj);
+    public void setLabelViewSeEncontroClie(String msj,int SeEncontro) {
+        this.labelViewSeEncontroClie.setText(msj);
+        if(SeEncontro == 0)
+            this.labelViewSeEncontroClie.setForeground(Color.red);
+        else if(SeEncontro == 1)
+            this.labelViewSeEncontroClie.setForeground(Color.green);
+        else
+            this.labelViewSeEncontroClie.setForeground(Color.black);
+        
     }
     
     
@@ -70,13 +78,13 @@ public class ClienteOpPanel2 extends javax.swing.JPanel {
         jlabel1 = new javax.swing.JLabel();
         TextFieldRutBuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        ButEnviarBusCliente = new javax.swing.JButton();
-        LabelViewSeEncontroClie = new javax.swing.JLabel();
-        LabelViewNombre = new javax.swing.JLabel();
-        LabelViewApllPat = new javax.swing.JLabel();
-        LabelViewApllMat = new javax.swing.JLabel();
-        LabelViewRut = new javax.swing.JLabel();
-        LabelViewTieneContr = new javax.swing.JLabel();
+        butEnviarBusCliente = new javax.swing.JButton();
+        labelViewSeEncontroClie = new javax.swing.JLabel();
+        labelViewNombre = new javax.swing.JLabel();
+        labelViewApllPat = new javax.swing.JLabel();
+        labelViewApllMat = new javax.swing.JLabel();
+        labelViewRut = new javax.swing.JLabel();
+        labelViewTieneContr = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -90,24 +98,24 @@ public class ClienteOpPanel2 extends javax.swing.JPanel {
 
         jLabel1.setText("(SIN PUNTO NI GUION)");
 
-        ButEnviarBusCliente.setText("Buscar");
-        ButEnviarBusCliente.addActionListener(new java.awt.event.ActionListener() {
+        butEnviarBusCliente.setText("Buscar");
+        butEnviarBusCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButEnviarBusClienteActionPerformed(evt);
+                butEnviarBusClienteActionPerformed(evt);
             }
         });
 
-        LabelViewSeEncontroClie.setText("El cliente:");
+        labelViewSeEncontroClie.setText("El cliente:");
 
-        LabelViewNombre.setText("Nombre:");
+        labelViewNombre.setText("Nombre:");
 
-        LabelViewApllPat.setText("Apellido Paterno:");
+        labelViewApllPat.setText("Apellido Paterno:");
 
-        LabelViewApllMat.setText("Apellido Materno:");
+        labelViewApllMat.setText("Apellido Materno:");
 
-        LabelViewRut.setText("Rut:");
+        labelViewRut.setText("Rut:");
 
-        LabelViewTieneContr.setText("Tiene un contrato activo:");
+        labelViewTieneContr.setText("Tiene un contrato activo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -124,17 +132,17 @@ public class ClienteOpPanel2 extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ButEnviarBusCliente)
+                        .addComponent(butEnviarBusCliente)
                         .addGap(153, 153, 153))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LabelViewNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LabelViewApllPat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LabelViewApllMat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LabelViewRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LabelViewTieneContr, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                    .addComponent(LabelViewSeEncontroClie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelViewNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelViewApllPat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelViewApllMat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelViewRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelViewTieneContr, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(labelViewSeEncontroClie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,19 +158,19 @@ public class ClienteOpPanel2 extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(ButEnviarBusCliente)))
+                        .addComponent(butEnviarBusCliente)))
                 .addGap(42, 42, 42)
-                .addComponent(LabelViewNombre)
+                .addComponent(labelViewNombre)
                 .addGap(18, 18, 18)
-                .addComponent(LabelViewApllPat)
+                .addComponent(labelViewApllPat)
                 .addGap(18, 18, 18)
-                .addComponent(LabelViewApllMat)
+                .addComponent(labelViewApllMat)
                 .addGap(18, 18, 18)
-                .addComponent(LabelViewRut)
+                .addComponent(labelViewRut)
                 .addGap(18, 18, 18)
-                .addComponent(LabelViewTieneContr)
+                .addComponent(labelViewTieneContr)
                 .addGap(18, 18, 18)
-                .addComponent(LabelViewSeEncontroClie)
+                .addComponent(labelViewSeEncontroClie)
                 .addContainerGap(255, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -171,21 +179,21 @@ public class ClienteOpPanel2 extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextFieldRutBuscarActionPerformed
 
-    private void ButEnviarBusClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButEnviarBusClienteActionPerformed
+    private void butEnviarBusClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butEnviarBusClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ButEnviarBusClienteActionPerformed
+    }//GEN-LAST:event_butEnviarBusClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButEnviarBusCliente;
-    private javax.swing.JLabel LabelViewApllMat;
-    private javax.swing.JLabel LabelViewApllPat;
-    private javax.swing.JLabel LabelViewNombre;
-    private javax.swing.JLabel LabelViewRut;
-    private javax.swing.JLabel LabelViewSeEncontroClie;
-    private javax.swing.JLabel LabelViewTieneContr;
     private javax.swing.JTextField TextFieldRutBuscar;
+    private javax.swing.JButton butEnviarBusCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jlabel1;
+    private javax.swing.JLabel labelViewApllMat;
+    private javax.swing.JLabel labelViewApllPat;
+    private javax.swing.JLabel labelViewNombre;
+    private javax.swing.JLabel labelViewRut;
+    private javax.swing.JLabel labelViewSeEncontroClie;
+    private javax.swing.JLabel labelViewTieneContr;
     // End of variables declaration//GEN-END:variables
 }

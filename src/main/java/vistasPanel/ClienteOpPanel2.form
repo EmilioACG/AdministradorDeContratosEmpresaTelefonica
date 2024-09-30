@@ -33,7 +33,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="ButEnviarBusCliente" min="-2" max="-2" attributes="0"/>
+                      <Component id="butEnviarBusCliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -41,12 +41,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="LabelViewNombre" alignment="0" max="32767" attributes="0"/>
-                  <Component id="LabelViewApllPat" alignment="0" max="32767" attributes="0"/>
-                  <Component id="LabelViewApllMat" alignment="0" max="32767" attributes="0"/>
-                  <Component id="LabelViewRut" alignment="0" max="32767" attributes="0"/>
-                  <Component id="LabelViewTieneContr" alignment="0" pref="217" max="32767" attributes="0"/>
-                  <Component id="LabelViewSeEncontroClie" max="32767" attributes="0"/>
+                  <Component id="labelViewNombre" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelViewApllPat" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelViewApllMat" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelViewRut" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelViewTieneContr" alignment="0" pref="217" max="32767" attributes="0"/>
+                  <Component id="labelViewSeEncontroClie" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
@@ -67,21 +67,21 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="ButEnviarBusCliente" min="-2" max="-2" attributes="0"/>
+                      <Component id="butEnviarBusCliente" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Component id="LabelViewNombre" min="-2" max="-2" attributes="0"/>
+              <Component id="labelViewNombre" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="LabelViewApllPat" min="-2" max="-2" attributes="0"/>
+              <Component id="labelViewApllPat" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Component id="LabelViewApllMat" min="-2" max="-2" attributes="0"/>
+              <Component id="labelViewApllMat" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="LabelViewRut" min="-2" max="-2" attributes="0"/>
+              <Component id="labelViewRut" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="LabelViewTieneContr" min="-2" max="-2" attributes="0"/>
+              <Component id="labelViewTieneContr" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="LabelViewSeEncontroClie" min="-2" max="-2" attributes="0"/>
+              <Component id="labelViewSeEncontroClie" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="255" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -103,40 +103,40 @@
         <Property name="text" type="java.lang.String" value="(SIN PUNTO NI GUION)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="ButEnviarBusCliente">
+    <Component class="javax.swing.JButton" name="butEnviarBusCliente">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButEnviarBusClienteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butEnviarBusClienteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="LabelViewSeEncontroClie">
+    <Component class="javax.swing.JLabel" name="labelViewSeEncontroClie">
       <Properties>
         <Property name="text" type="java.lang.String" value="El cliente:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="LabelViewNombre">
+    <Component class="javax.swing.JLabel" name="labelViewNombre">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="LabelViewApllPat">
+    <Component class="javax.swing.JLabel" name="labelViewApllPat">
       <Properties>
         <Property name="text" type="java.lang.String" value="Apellido Paterno:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="LabelViewApllMat">
+    <Component class="javax.swing.JLabel" name="labelViewApllMat">
       <Properties>
         <Property name="text" type="java.lang.String" value="Apellido Materno:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="LabelViewRut">
+    <Component class="javax.swing.JLabel" name="labelViewRut">
       <Properties>
         <Property name="text" type="java.lang.String" value="Rut:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="LabelViewTieneContr">
+    <Component class="javax.swing.JLabel" name="labelViewTieneContr">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tiene un contrato activo:"/>
       </Properties>

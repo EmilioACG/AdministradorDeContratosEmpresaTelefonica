@@ -91,27 +91,35 @@ public class Controlador implements ActionListener {
             menuCliente.setVisible(true);
             menuG.setVisible(false);
             return;
-        } else if(ae.getSource() == menuCliente.getButOpcionAgregar()){  //Opciones de cambio de menu clientes
+        } else if(ae.getSource() == menuCliente.getButOpcionAgregar()){  //Opcion agregar clientes
             panelAgregar = new ClienteOpPanel1();
             menuCliente.mostrarPanel(panelAgregar);
             agregarCliente(panelAgregar);
             return;
-        }else if(ae.getSource() == menuCliente.getButOpcionMostarCliente()){
+        }else if(ae.getSource() == menuCliente.getButOpcionMostarCliente()){ //Opcion mostrar clientes
             ClienteOpPanel2 panelBuscar = new ClienteOpPanel2();
             menuCliente.mostrarPanel(panelBuscar);
             buscarCliente(panelBuscar);
             return;
-        }else if(ae.getSource() ==  menuCliente.getButOpcionModificarCliente()){
-            ClienteOpPanel3 panelAgregar = new ClienteOpPanel3();
-            menuCliente.mostrarPanel(panelAgregar);
+        }else if(ae.getSource() ==  menuCliente.getButOpcionModificarCliente()){ //Opcion modificar clientes
+            ClienteOpPanel3 panelModificar = new ClienteOpPanel3();
+            menuCliente.mostrarPanel(panelModificar);
+            panelModificar.setViewLabelNomMod(0);
+            panelModificar.setViewLabelNomApPat(0);
+            panelModificar.setViewLabelApMat(0);
+            panelModificar.setViewTextNombreMod(0);
+            panelModificar.setViewTextApellPatMod(0);
+            panelModificar.setViewTextApellMatMod(0);
+            panelModificar.setViewButCambiar(0);
+            modDatosClientes(panelModificar);              
             return;
         }else if(ae.getSource() ==  menuCliente.getButOpcionEliminarCliente()){
-            ClienteOpPanel4 panelAgregar = new ClienteOpPanel4();
-            menuCliente.mostrarPanel(panelAgregar);
+            ClienteOpPanel4 panelEliminar = new ClienteOpPanel4();
+            menuCliente.mostrarPanel(panelEliminar);
             return;
         }else if(ae.getSource() ==  menuCliente.getButOpcionListarClientes()){
-            ClienteOpPanel5 panelAgregar = new ClienteOpPanel5();
-            menuCliente.mostrarPanel(panelAgregar);
+            ClienteOpPanel5 panelListar = new ClienteOpPanel5();
+            menuCliente.mostrarPanel(panelListar);
             return;
         }else if(ae.getSource() == menuCliente.getButOpcionExit()){ //Opcion salir de la ventana cliente
             menuCliente.dispose();
@@ -185,6 +193,7 @@ public class Controlador implements ActionListener {
                 int rut = Integer.parseInt(panelAgregar.getTxtFiRut());
                 System.out.println(nombre+apellPat+apellMat+rut);
                 modeloG.agregarCliente(nombre, apellPat, apellMat, rut);
+                panelAgregar.setjLabelConf("El cliente: ¡El cliente se a agregado con exito!");
             return;
             }
             
@@ -195,9 +204,17 @@ public class Controlador implements ActionListener {
         panelBuscar.getButEnviarBusCliente().addActionListener(new ActionListener() {
         @Override   
         public void actionPerformed(ActionEvent ae) {
+                //Se reinicia los label
+                panelBuscar.setLabelViewNombre("Nombre: ");
+                panelBuscar.setLabelViewApllPat("Apellido Paterno: ");
+                panelBuscar.setLabelViewApllMat("Apellido Materno: ");
+                panelBuscar.setLabelViewRut("Rut: ");
+                panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: ");
+                panelBuscar.setLabelViewSeEncontroClie("El cliente: ",2);
+                //inicia busqueda de cliente
                 int rutBuscar = Integer.parseInt(panelBuscar.getTextFieldRutBuscar());
                 Cliente clienteAux = mapaClientes.get(rutBuscar);
-                if(clienteAux != null){
+                if(clienteAux != null){ //verifivar si el cliente existe
                     panelBuscar.setLabelViewNombre("Nombre: " + clienteAux.getNombre());
                     panelBuscar.setLabelViewApllPat("Apellido Paterno: " + clienteAux.getApellidoPaterno());
                     panelBuscar.setLabelViewApllMat("Apellido Materno: " + clienteAux.getApellidoMaterno());
@@ -207,10 +224,73 @@ public class Controlador implements ActionListener {
                         panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: SI");
                     else
                         panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: NO");
+                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡SE ENCONTRO!",1);
                 }
                 else{
-                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡NO SE ENCONTRO!");
+                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡NO SE ENCONTRO!",0);
                 }
+            }
+        });
+        
+    }
+    public void modDatosClientes(ClienteOpPanel3 panelModificar){
+        
+        panelModificar.getButBuscarMod().addActionListener(new ActionListener() {
+        @Override   
+        public void actionPerformed(ActionEvent ae) {
+            //Se reinicia los label y txtfield
+            panelModificar.setViewLabelNomMod(0);
+            panelModificar.setViewLabelNomApPat(0);
+            panelModificar.setViewLabelApMat(0);
+            panelModificar.setViewTextNombreMod(0);
+            panelModificar.setViewTextApellPatMod(0);
+            panelModificar.setViewTextApellMatMod(0);
+            panelModificar.setViewButCambiar(0);
+            String nombre = panelModificar.getTextRutMod();
+            String opcion = panelModificar.getTextOpMod(); 
+            System.out.println("hola-1");
+            //Se hace visible la opcion correspondiente
+            if("1".equals(opcion)){
+                panelModificar.setViewLabelNomMod(1);
+                panelModificar.setViewTextNombreMod(1);
+                panelModificar.setViewButCambiar(1);
+            }
+            else if("2".equals(opcion)){
+                panelModificar.setViewLabelNomApPat(1);
+                panelModificar.setViewLabelApMat(1);
+                panelModificar.setViewTextApellPatMod(1);
+                panelModificar.setViewTextApellMatMod(1);
+                panelModificar.setViewButCambiar(1);
+            }
+            else if("3".equals(opcion)){
+                panelModificar.setViewLabelNomMod(1);
+                panelModificar.setViewTextNombreMod(1); 
+                panelModificar.setViewLabelNomApPat(1);
+                panelModificar.setViewLabelApMat(1);
+                panelModificar.setViewTextApellPatMod(1);
+                panelModificar.setViewTextApellMatMod(1);
+                panelModificar.setViewButCambiar(1);
+            }
+            panelModificar.getButCambiar().addActionListener(new ActionListener() {
+                @Override   
+                public void actionPerformed(ActionEvent al) {
+                    System.out.println("hola-2");
+                    int rut = Integer.parseInt(panelModificar.getTextRutMod());
+                    if("1".equals(opcion)){
+                        modeloG.modificarDatosCliente(rut,panelModificar.getTextNombreMod(),"","",opcion);
+                    }
+                    else if("2".equals(opcion)){
+                        String apPat = panelModificar.getTextApellPatMod();
+                        String apMat = panelModificar.getTextApellMatMod();
+                        modeloG.modificarDatosCliente(rut,"",apPat,apMat,opcion);
+                    }else if("3".equals(opcion)){
+                        String apPat = panelModificar.getTextApellPatMod();
+                        String apMat = panelModificar.getTextApellMatMod();
+                        modeloG.modificarDatosCliente(rut,panelModificar.getTextNombreMod(),apPat,apMat,opcion);
+                    }
+                }
+                });
+            
             }
         });
     }

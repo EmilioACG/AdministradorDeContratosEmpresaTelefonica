@@ -10,6 +10,7 @@ import vistas.*;
 import vistasPanel.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -113,13 +114,15 @@ public class Controlador implements ActionListener {
             panelModificar.setViewButCambiar(0);
             modDatosClientes(panelModificar);              
             return;
-        }else if(ae.getSource() ==  menuCliente.getButOpcionEliminarCliente()){
+        }else if(ae.getSource() ==  menuCliente.getButOpcionEliminarCliente()){ //Eliminar cliente
             ClienteOpPanel4 panelEliminar = new ClienteOpPanel4();
             menuCliente.mostrarPanel(panelEliminar);
+            eliminarCliente(panelEliminar);
             return;
-        }else if(ae.getSource() ==  menuCliente.getButOpcionListarClientes()){
+        }else if(ae.getSource() ==  menuCliente.getButOpcionListarClientes()){ //Listar Clientes
             ClienteOpPanel5 panelListar = new ClienteOpPanel5();
             menuCliente.mostrarPanel(panelListar);
+            listarClientes(panelListar);
             return;
         }else if(ae.getSource() == menuCliente.getButOpcionExit()){ //Opcion salir de la ventana cliente
             menuCliente.dispose();
@@ -248,7 +251,6 @@ public class Controlador implements ActionListener {
             panelModificar.setViewButCambiar(0);
             String nombre = panelModificar.getTextRutMod();
             String opcion = panelModificar.getTextOpMod(); 
-            System.out.println("hola-1");
             //Se hace visible la opcion correspondiente
             if("1".equals(opcion)){
                 panelModificar.setViewLabelNomMod(1);
@@ -274,25 +276,49 @@ public class Controlador implements ActionListener {
             panelModificar.getButCambiar().addActionListener(new ActionListener() {
                 @Override   
                 public void actionPerformed(ActionEvent al) {
-                    System.out.println("hola-2");
                     int rut = Integer.parseInt(panelModificar.getTextRutMod());
                     if("1".equals(opcion)){
                         modeloG.modificarDatosCliente(rut,panelModificar.getTextNombreMod(),"","",opcion);
+                        panelModificar.setLabelConfirmacionMod("El cliente: ¡SE CAMBIARON LOS DATOS CON EXITO!",1);
                     }
                     else if("2".equals(opcion)){
                         String apPat = panelModificar.getTextApellPatMod();
                         String apMat = panelModificar.getTextApellMatMod();
                         modeloG.modificarDatosCliente(rut,"",apPat,apMat,opcion);
+                        panelModificar.setLabelConfirmacionMod("El cliente: ¡SE CAMBIARON LOS DATOS CON EXITO!",1);
                     }else if("3".equals(opcion)){
                         String apPat = panelModificar.getTextApellPatMod();
                         String apMat = panelModificar.getTextApellMatMod();
                         modeloG.modificarDatosCliente(rut,panelModificar.getTextNombreMod(),apPat,apMat,opcion);
+                        panelModificar.setLabelConfirmacionMod("El cliente: ¡SE CAMBIARON LOS DATOS CON EXITO!",1);
                     }
+                    else
+                        panelModificar.setLabelConfirmacionMod("El cliente: ¡OCURRIO UN ERROR!",0);
                 }
                 });
             
             }
         });
+    }
+    public void eliminarCliente(ClienteOpPanel4 panelEliminar){  
+        panelEliminar.getButDelete().addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+                panelEliminar.setLabelConfirmacionDelete("El cliente: ",2);
+                int rutDelete = Integer.parseInt(panelEliminar.getTextRutDelete());
+                if(modeloG.deleteCliente(rutDelete))
+                    panelEliminar.setLabelConfirmacionDelete("El cliente: ¡SE ELIMINO CORRECTAMENTE!",1);
+                else
+                    panelEliminar.setLabelConfirmacionDelete("El cliente: ¡OCURRIO UN ERROR!",0);
+            return;
+            }
+            
+        });
+    }
+    
+    public void listarClientes(ClienteOpPanel5 panelListar){
+        String[] arregloClientes = modeloG.listarCliente();
+        panelListar.listTabClientes(arregloClientes);
     }
 
     // -----------------------------------------------------------------------------------------------

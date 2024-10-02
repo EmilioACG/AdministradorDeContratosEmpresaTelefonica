@@ -179,6 +179,45 @@ public class Modelo {
         return false;
     }
     
+    public boolean deleteCliente(int rutEliminar){
+        Cliente clienteAux = mapaClientes.get(rutEliminar);
+        if(clienteAux == null){
+            System.out.println("El usuario no se a encontrado");
+            return false;
+        }     
+                        
+        int largo = mapaClientes.get(rutEliminar).getListaPlanes().size();
+        for(int i = 0; i < largo; i++){
+            System.out.println("la clave  es " + mapaClientes.get(rutEliminar).getListaPlanes().get(i).getNumeroTelefono());
+            mapaTelefonos.remove(mapaClientes.get(rutEliminar).getListaPlanes().get(i).getNumeroTelefono());    
+        }
+        for(String key:mapaTelefonos.keySet())
+            System.out.println("numero " + key);
+                        
+        mapaClientes.remove(rutEliminar);
+        for(int i = 0; i < listaClientes.size(); i++){
+            if(listaClientes.get(i).getRut() == rutEliminar){
+                listaClientes.remove(i);
+                System.out.println("Se a eliminado con exito");
+                return true;
+                }  
+        }
+        return false;                
+    }
+    
+    public String [] listarCliente(){
+        String strClientes = "";
+        
+        for(int i = 0; i < listaClientes.size();i++){
+            strClientes += listaClientes.get(i).getNombre() + "," + listaClientes.get(i).getApellidoPaterno() + "," +
+                    listaClientes.get(i).getApellidoMaterno() + "," + listaClientes.get(i).getRut() +
+                    "," + Boolean.toString(listaClientes.get(i).getTieneContrato()) + "\n";
+        }
+        String[] arregloClientes = strClientes.split("\n");
+        
+        return arregloClientes;
+    }
+    
     public static void datosIniciales(){
         //Se crean las 3 ofertas de planes
         ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);

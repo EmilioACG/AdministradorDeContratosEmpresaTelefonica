@@ -4,6 +4,8 @@
  */
 package vistasPanel;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Emilio
@@ -16,7 +18,14 @@ public class ClienteOpPanel5 extends javax.swing.JPanel {
     public ClienteOpPanel5() {
         initComponents();
     }
-
+    
+    public void listTabClientes(String[] arCli){
+        DefaultTableModel model = (DefaultTableModel) tabClientes.getModel();
+        for(int i = 0; i < arCli.length; i++){
+            String[] arCliAux = arCli[i].split(",");
+            model.addRow(arCliAux);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,10 +44,7 @@ public class ClienteOpPanel5 extends javax.swing.JPanel {
 
         tabClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Apellido Paterno", "Apellido Materno", "Rut", "Tiene contrato"

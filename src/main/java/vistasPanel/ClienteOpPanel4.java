@@ -4,6 +4,11 @@
  */
 package vistasPanel;
 
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Emilio
@@ -17,6 +22,24 @@ public class ClienteOpPanel4 extends javax.swing.JPanel {
         initComponents();
     }
 
+    public String getTextRutDelete() {
+        return textRutDelete.getText();
+    }
+
+    public JButton getButDelete() {
+        return butDelete;
+    }
+
+    public void setLabelConfirmacionDelete(String msj,int SeEncontro) {
+        this.labelConfirmacionDelete.setText(msj);
+        if(SeEncontro == 0)
+            this.labelConfirmacionDelete.setForeground(Color.red);
+        else if(SeEncontro == 1)
+            this.labelConfirmacionDelete.setForeground(Color.green);
+        else
+            this.labelConfirmacionDelete.setForeground(Color.black);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +53,7 @@ public class ClienteOpPanel4 extends javax.swing.JPanel {
         textRutDelete = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         labelConfirmacionDelete = new javax.swing.JLabel();
+        butDelete = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(530, 577));
@@ -46,6 +70,8 @@ public class ClienteOpPanel4 extends javax.swing.JPanel {
 
         labelConfirmacionDelete.setText("El cliente : ");
 
+        butDelete.setText("Eliminar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -53,12 +79,16 @@ public class ClienteOpPanel4 extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelMsjrut, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(textRutDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelConfirmacionDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(butDelete))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(labelMsjrut, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(textRutDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(labelConfirmacionDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -69,10 +99,12 @@ public class ClienteOpPanel4 extends javax.swing.JPanel {
                     .addComponent(labelMsjrut)
                     .addComponent(textRutDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(butDelete))
                 .addGap(18, 18, 18)
                 .addComponent(labelConfirmacionDelete)
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addContainerGap(444, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -82,6 +114,7 @@ public class ClienteOpPanel4 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butDelete;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelConfirmacionDelete;
     private javax.swing.JLabel labelMsjrut;

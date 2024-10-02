@@ -4,6 +4,7 @@
  */
 package vistasPanel;
 
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -48,8 +49,16 @@ public class ClienteOpPanel3 extends javax.swing.JPanel {
     public JButton getButCambiar() {
         return butCambiar;
     }
-    
-    
+
+    public void setLabelConfirmacionMod(String msj, int SeEncontro) {
+        this.labelConfirmacionMod.setText(msj);
+        if(SeEncontro == 0)
+            this.labelConfirmacionMod.setForeground(Color.red);
+        else if(SeEncontro == 1)
+            this.labelConfirmacionMod.setForeground(Color.green);
+        else
+            this.labelConfirmacionMod.setForeground(Color.black);
+    }
     
     public void setViewLabelNomMod(int num) {
         if(num == 0)
@@ -183,9 +192,6 @@ public class ClienteOpPanel3 extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelConfirmacionMod, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jlabelModificar)
@@ -217,7 +223,10 @@ public class ClienteOpPanel3 extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(textApellMatMod, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(butCambiar))
-                        .addContainerGap(171, Short.MAX_VALUE))))
+                        .addContainerGap(89, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelConfirmacionMod, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

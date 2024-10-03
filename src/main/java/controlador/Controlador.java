@@ -63,13 +63,11 @@ public class Controlador implements ActionListener {
         menuPlan.getBtnAgregarPlan().addActionListener(this);
         menuPlan.getBtnMostrarPlanes().addActionListener(this);
         menuPlan.getBtnEliminarPlan().addActionListener(this);
-        menuPlan.getBtnEliminarPlanes().addActionListener(this);
         menuPlan.getBtnVolver().addActionListener(this);
         menuPlan.getJlbTituloOpciones().setVisible(false);
         menuPlan.getBtnAgregarPlan().setVisible(false);
         menuPlan.getBtnMostrarPlanes().setVisible(false);
         menuPlan.getBtnEliminarPlan().setVisible(false);
-        menuPlan.getBtnEliminarPlanes().setVisible(false);
     }
   
     public void iniciar() throws CsvValidationException{
@@ -167,10 +165,6 @@ public class Controlador implements ActionListener {
             PlanOpPanel3 panelEliminar = new PlanOpPanel3();
             menuPlan.mostrarPanel(panelEliminar);
             eliminarPlan(panelEliminar,getRutMenuPlan());
-            return;
-        }else if(ae.getSource() == menuPlan.getBtnEliminarPlanes()){
-            PlanOpPanel4 panelAgregar = new PlanOpPanel4();
-            menuPlan.mostrarPanel(panelAgregar);
             return;
         }else if(ae.getSource() == menuPlan.getBtnVolver()){ //Opcion salir de la ventana planes
             menuPlan.dispose();
@@ -337,7 +331,6 @@ public class Controlador implements ActionListener {
             menuPlan.getBtnAgregarPlan().setVisible(false);
             menuPlan.getBtnMostrarPlanes().setVisible(false);
             menuPlan.getBtnEliminarPlan().setVisible(false);
-            menuPlan.getBtnEliminarPlanes().setVisible(false);
         }
         else {
             menuPlan.setJlbExisteRut("Cliente "+rutBuscado+" encontrado");
@@ -345,7 +338,6 @@ public class Controlador implements ActionListener {
             menuPlan.getBtnAgregarPlan().setVisible(true);
             menuPlan.getBtnMostrarPlanes().setVisible(true);
             menuPlan.getBtnEliminarPlan().setVisible(true);
-            menuPlan.getBtnEliminarPlanes().setVisible(true);
         }
     }
     

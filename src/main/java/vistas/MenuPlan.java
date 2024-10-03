@@ -36,9 +36,6 @@ public class MenuPlan extends javax.swing.JFrame {
     public JButton getBtnEliminarPlan() {
         return btnEliminarPlan;
     }
-    public JButton getBtnEliminarPlanes() {
-        return btnEliminarPlanes;
-    }
     public JButton getBtnVolver() {
         return btnVolver;
     }
@@ -84,7 +81,6 @@ public class MenuPlan extends javax.swing.JFrame {
         jlbTituloOpciones = new javax.swing.JLabel();
         btnMostrarPlanes = new javax.swing.JButton();
         btnEliminarPlan = new javax.swing.JButton();
-        btnEliminarPlanes = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         pnlPanelOpciones = new java.awt.Panel();
         txtRutBuscado = new javax.swing.JTextField();
@@ -111,9 +107,6 @@ public class MenuPlan extends javax.swing.JFrame {
         btnEliminarPlan.setText("3.- Eliminar un plan");
         btnEliminarPlan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        btnEliminarPlanes.setText("4.- Eliminar todos los planes");
-        btnEliminarPlanes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
         btnVolver.setText("Volver");
 
         javax.swing.GroupLayout pnlPanelOpcionesLayout = new javax.swing.GroupLayout(pnlPanelOpciones);
@@ -138,8 +131,7 @@ public class MenuPlan extends javax.swing.JFrame {
                     .addComponent(jlbTituloOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnAgregarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminarPlanes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                        .addComponent(btnEliminarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEliminarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                         .addComponent(btnMostrarPlanes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBuscarRut)
@@ -169,9 +161,7 @@ public class MenuPlan extends javax.swing.JFrame {
                 .addComponent(btnMostrarPlanes)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarPlan)
-                .addGap(18, 18, 18)
-                .addComponent(btnEliminarPlanes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                 .addComponent(btnVolver)
                 .addGap(75, 75, 75))
             .addComponent(pnlPanelOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -219,7 +209,6 @@ public class MenuPlan extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarPlan;
     private javax.swing.JButton btnBuscarRut;
     private javax.swing.JButton btnEliminarPlan;
-    private javax.swing.JButton btnEliminarPlanes;
     private javax.swing.JButton btnMostrarPlanes;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jlbExisteRut;

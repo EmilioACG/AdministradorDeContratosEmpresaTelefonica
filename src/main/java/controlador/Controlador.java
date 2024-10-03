@@ -165,7 +165,7 @@ public class Controlador implements ActionListener {
             return;
         }else if(ae.getSource() == menuPlan.getBtnEliminarPlan()){
             PlanOpPanel3 panelEliminar = new PlanOpPanel3();
-            menuPlan.mostrarPanel(panelAgregar);
+            menuPlan.mostrarPanel(panelEliminar);
             eliminarPlan(panelEliminar,getRutMenuPlan());
             return;
         }else if(ae.getSource() == menuPlan.getBtnEliminarPlanes()){
@@ -429,7 +429,19 @@ public class Controlador implements ActionListener {
     }
 
     private void eliminarPlan(PlanOpPanel3 panel, int rut) {
-        
+        panel.getBtnEliminarPlan().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String numPlanEliminar = panel.getTxtEliminarPlan();
+                if(modeloG.eliminarPlan(rut, numPlanEliminar)) {
+                    panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " fue eliminado correctamente.");
+                }
+                else {
+                    panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " no existe en tus planes.");
+                }
+            }
+            
+        });
     }
     
     

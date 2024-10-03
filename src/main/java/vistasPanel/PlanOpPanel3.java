@@ -4,15 +4,32 @@
  */
 package vistasPanel;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author melis
  */
 public class PlanOpPanel3 extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PlanOpPanel3
-     */
+    
+    
+    
+    public JButton getBtnEliminarPlan() {
+        return btnEliminarPlan;
+    }
+
+    public void setJlbEstadoPlan(String msg) {
+        this.jlbEstadoPlan.setText(msg);
+    }
+
+    public String getTxtEliminarPlan() {
+        return txtEliminarPlan.getText();
+    }
+
+
     public PlanOpPanel3() {
         initComponents();
     }
@@ -26,37 +43,63 @@ public class PlanOpPanel3 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlbTituloOpEliminar = new javax.swing.JLabel();
-        scrollPane1 = new java.awt.ScrollPane();
+        jLabel1 = new javax.swing.JLabel();
+        txtEliminarPlan = new javax.swing.JTextField();
+        btnEliminarPlan = new javax.swing.JButton();
+        jlbEstadoPlan = new javax.swing.JLabel();
 
-        jlbTituloOpEliminar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlbTituloOpEliminar.setText("Seleccione el plan que desea eliminar");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Ingrese el numero de telefono del plan que desea eliminar:");
+
+        txtEliminarPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEliminarPlanActionPerformed(evt);
+            }
+        });
+
+        btnEliminarPlan.setText("Eliminar");
+
+        jlbEstadoPlan.setText("texto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbTituloOpEliminar)
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                    .addComponent(jlbEstadoPlan)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtEliminarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEliminarPlan)))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jlbTituloOpEliminar)
-                .addGap(29, 29, 29)
-                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEliminarPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarPlan))
+                .addGap(27, 27, 27)
+                .addComponent(jlbEstadoPlan)
+                .addContainerGap(454, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtEliminarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEliminarPlanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEliminarPlanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jlbTituloOpEliminar;
-    private java.awt.ScrollPane scrollPane1;
+    private javax.swing.JButton btnEliminarPlan;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jlbEstadoPlan;
+    private javax.swing.JTextField txtEliminarPlan;
     // End of variables declaration//GEN-END:variables
 }

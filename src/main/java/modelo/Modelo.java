@@ -378,6 +378,29 @@ public class Modelo {
         
         return arregloPlanes;
     }
+
+    public boolean eliminarPlan(int rut, String numPlanEliminar) {
+        if(mapaTelefonos.get(numPlanEliminar) == null) {
+            return false;
+        }
+        
+        for(Cliente auxCliente : listaClientes) {
+            if(auxCliente.getRut() == rut) {
+                for (int i = 0 ; i < auxCliente.getListaPlanes().size() ; i++) {
+                    if(numPlanEliminar.equals(auxCliente.getListaPlanes().get(i).getNumeroTelefono())) {
+                        auxCliente.getListaPlanes().remove(i);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        
+        mapaTelefonos.remove(numPlanEliminar);
+        
+        return true;
+    }
+        
     
    
 }

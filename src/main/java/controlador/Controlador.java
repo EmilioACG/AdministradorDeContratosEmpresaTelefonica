@@ -159,12 +159,14 @@ public class Controlador implements ActionListener {
             agregarPlan(panelAgregarPlan, getRutMenuPlan());
             return;
         }else if(ae.getSource() == menuPlan.getBtnMostrarPlanes()){
-            PlanOpPanel2 panelAgregar = new PlanOpPanel2();
-            menuPlan.mostrarPanel(panelAgregar);
+            PlanOpPanel2 panelMostrar = new PlanOpPanel2();
+            menuPlan.mostrarPanel(panelMostrar);
+            mostrarPlanes(panelMostrar, getRutMenuPlan());
             return;
         }else if(ae.getSource() == menuPlan.getBtnEliminarPlan()){
-            PlanOpPanel3 panelAgregar = new PlanOpPanel3();
+            PlanOpPanel3 panelEliminar = new PlanOpPanel3();
             menuPlan.mostrarPanel(panelAgregar);
+            eliminarPlan(panelEliminar,getRutMenuPlan());
             return;
         }else if(ae.getSource() == menuPlan.getBtnEliminarPlanes()){
             PlanOpPanel4 panelAgregar = new PlanOpPanel4();
@@ -327,8 +329,6 @@ public class Controlador implements ActionListener {
     private void buscarRut(int rutBuscado) {
         HashMap<Integer, Cliente> mapaClientesClonado = modeloG.mostrarCliente();
         
-        System.out.println("rut buscado: "+ rutBuscado);
-        
         Cliente clienteAux = mapaClientesClonado.get(rutBuscado);
         
         if(clienteAux == null){
@@ -419,5 +419,18 @@ public class Controlador implements ActionListener {
         }
         );
         
-    }            
+    }       
+    
+    private void mostrarPlanes(PlanOpPanel2 panel, int rut) {
+        HashMap<Integer, Cliente> mapaClientesClonado = modeloG.mostrarCliente();
+        panel.setJlbNombreCliente(mapaClientesClonado.get(rut).getNombre());
+        String[] arregloPlanes = modeloG.listarPlanes(rut);
+        panel.listTabPlanes(arregloPlanes);
+    }
+
+    private void eliminarPlan(PlanOpPanel3 panel, int rut) {
+        
+    }
+    
+    
 }

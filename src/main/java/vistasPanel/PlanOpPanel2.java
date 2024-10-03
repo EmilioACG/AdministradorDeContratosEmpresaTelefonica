@@ -4,17 +4,33 @@
  */
 package vistasPanel;
 
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author melis
  */
 public class PlanOpPanel2 extends javax.swing.JPanel {
 
+    public void setJlbNombreCliente(String nombreCliente) {
+        this.jlbNombreCliente.setText(nombreCliente);
+    }
+    
+
     /**
      * Creates new form PlanOpPanel2
      */
     public PlanOpPanel2() {
         initComponents();
+    }
+    
+    public void listTabPlanes(String[] arregloPlanes){
+        DefaultTableModel model = (DefaultTableModel) tblListarPlanes.getModel();
+        for(int i = 0 ; i < arregloPlanes.length; i++) {
+            String[] arregloPlanesAux = arregloPlanes[i].split(",");
+            model.addRow(arregloPlanesAux);
+        }
     }
 
     /**
@@ -28,7 +44,8 @@ public class PlanOpPanel2 extends javax.swing.JPanel {
 
         jlbTituloMostrar = new javax.swing.JLabel();
         jlbNombreCliente = new javax.swing.JLabel();
-        scrollPane1 = new java.awt.ScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblListarPlanes = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(406, 599));
 
@@ -38,19 +55,38 @@ public class PlanOpPanel2 extends javax.swing.JPanel {
         jlbNombreCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlbNombreCliente.setText("NOMBRE");
 
+        tblListarPlanes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre Plan", "Número fijo", "Gigabytes", "Minutos", "Precio"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblListarPlanes);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlbTituloMostrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbNombreCliente)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                        .addComponent(jlbNombreCliente)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,16 +95,18 @@ public class PlanOpPanel2 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbTituloMostrar)
                     .addComponent(jlbNombreCliente))
-                .addGap(32, 32, 32)
-                .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlbNombreCliente;
     private javax.swing.JLabel jlbTituloMostrar;
-    private java.awt.ScrollPane scrollPane1;
+    private javax.swing.JTable tblListarPlanes;
     // End of variables declaration//GEN-END:variables
+
 }

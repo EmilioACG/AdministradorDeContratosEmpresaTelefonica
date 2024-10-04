@@ -396,20 +396,7 @@ public class Controlador implements ActionListener {
                 
                 Plan planContratado = modeloG.ultimoPlanContratado(rut);
                 
-                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + " Gigabytes");
-                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + " Minutos");
-                panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
-                panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
-                panelAgregarPlan.setJlbNewPrecio("$" + planContratado.getPrecio());
-                
-                panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
-                panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
-                panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
-                panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
-                panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
-                panelAgregarPlan.getJlbNewNumTelefono().setVisible(true);
-                panelAgregarPlan.getJlbNewPrecio().setVisible(true);
-                
+                mostrarUltimoPlanContratado(panelAgregarPlan, planContratado);
             }
         });
         
@@ -420,22 +407,9 @@ public class Controlador implements ActionListener {
                 
                 Plan planContratado = modeloG.ultimoPlanContratado(rut);
                 
-                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + " Gigabytes");
-                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + " Minutos");
-                panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
-                panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
-                panelAgregarPlan.setJlbNewPrecio("$" + planContratado.getPrecio());
-                
-                panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
-                panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
-                panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
-                panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
-                panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
-                panelAgregarPlan.getJlbNewNumTelefono().setVisible(true);
-                panelAgregarPlan.getJlbNewPrecio().setVisible(true);
+                mostrarUltimoPlanContratado(panelAgregarPlan, planContratado);
             }
-        }
-        );
+        });
         
         panelAgregarPlan.getBtnSelecPlanPro().addActionListener(new ActionListener() {    
             @Override
@@ -444,22 +418,9 @@ public class Controlador implements ActionListener {
                 
                 Plan planContratado = modeloG.ultimoPlanContratado(rut);
                 
-                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + "Gigabytes");
-                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + "Minutos");
-                panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
-                panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
-                panelAgregarPlan.setJlbNewPrecio("$" + planContratado.getPrecio());
-                
-                panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
-                panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
-                panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
-                panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
-                panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
-                panelAgregarPlan.getJlbNewNumTelefono().setVisible(true);
-                panelAgregarPlan.getJlbNewPrecio().setVisible(true);
+                mostrarUltimoPlanContratado(panelAgregarPlan, planContratado);
             }
-        }
-        );
+        });
         
         panelAgregarPlan.getBtnSelecPlanUltra().addActionListener(new ActionListener() {    
             @Override
@@ -468,24 +429,27 @@ public class Controlador implements ActionListener {
                 
                 Plan planContratado = modeloG.ultimoPlanContratado(rut);
                 
-                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + "Gigabytes");
-                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + "Minutos");
-                panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
-                panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
-                panelAgregarPlan.setJlbNewPrecio("$" + planContratado.getPrecio());
-                
-                panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
-                panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
-                panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
-                panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
-                panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
-                panelAgregarPlan.getJlbNewNumTelefono().setVisible(true);
-                panelAgregarPlan.getJlbNewPrecio().setVisible(true);
+                mostrarUltimoPlanContratado(panelAgregarPlan, planContratado);
             }
-        }
-        );
+        });
         
     }       
+    
+    private void mostrarUltimoPlanContratado(PlanOpPanel1 panel, Plan ultimoPlan) {
+        panel.setJlbNewCantGigas( ultimoPlan.getCantGigaBytes() + "Gigabytes");
+        panel.setJlbNewCantMinutos(ultimoPlan.getCantMinutos() + "Minutos");
+        panel.setJlbNewNombrePlan(ultimoPlan.getNombrePlan());
+        panel.setJlbNewNumTelefono(ultimoPlan.getNumeroTelefono());
+        panel.setJlbNewPrecio("$" + ultimoPlan.getPrecio());
+                
+        panel.getJlbNuevoPlanAdquirido().setVisible(true);
+        panel.getJlbPrefijoNumero().setVisible(true);
+        panel.getJlbNewCantGigas().setVisible(true);
+        panel.getJlbNewCantMinutos().setVisible(true);
+        panel.getJlbNewNombrePlan().setVisible(true);
+        panel.getJlbNewNumTelefono().setVisible(true);
+        panel.getJlbNewPrecio().setVisible(true);
+    }
     
     private void mostrarPlanes(PlanOpPanel2 panel, int rut) {
         HashMap<Integer, Cliente> mapaClientesClonado = modeloG.mostrarCliente();
@@ -496,20 +460,16 @@ public class Controlador implements ActionListener {
 
     private void eliminarPlan(PlanOpPanel3 panel, int rut) {
         panel.getJlbEstadoPlan().setVisible(false);
-        panel.getBtnEliminarPlan().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                String numPlanEliminar = panel.getTxtEliminarPlan();
-                if(modeloG.eliminarPlan(rut, numPlanEliminar)) {
-                    panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " fue eliminado correctamente.");
-                    panel.getJlbEstadoPlan().setVisible(true);
-                }
-                else {
-                    panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " no existe.");
-                    panel.getJlbEstadoPlan().setVisible(true);
-                }
+        panel.getBtnEliminarPlan().addActionListener((ActionEvent ae) -> {
+            String numPlanEliminar = panel.getTxtEliminarPlan();
+            if(modeloG.eliminarPlan(rut, numPlanEliminar)) {
+                panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " fue eliminado correctamente.");
+                panel.getJlbEstadoPlan().setVisible(true);
             }
-            
+            else {            
+                panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " no existe.");
+                panel.getJlbEstadoPlan().setVisible(true);
+            }
         });
     }
 
@@ -629,6 +589,15 @@ public class Controlador implements ActionListener {
             panel.getBtnModificarPlanInicial().setVisible(true);
             panel.getBtnModificarPlanPro().setVisible(true);
             panel.getBtnModificarPlanUltra().setVisible(false);            
+        }
+        //Tiene un Plan Personalizado -> puede cambiarse a Inicial, Pro o Ultra
+        else if (planActual == 3) {
+            panel.getJlbPlanInicialActual().setVisible(false);
+            panel.getJlbPlanProActual().setVisible(false);
+            panel.getJlbPlanUltraActual().setVisible(false);
+            panel.getBtnModificarPlanInicial().setVisible(true);
+            panel.getBtnModificarPlanPro().setVisible(true);
+            panel.getBtnModificarPlanUltra().setVisible(true);
         }
         //No tiene ningun plan o el numero no fue encontrado, por lo que no se puede cambiar a nada
         else {

@@ -340,15 +340,13 @@ public class Modelo {
             do {
                 posibleNumero = generarNumero.numerify("########");
                 if(mapaTelefonos.get(posibleNumero) != null) {
-                    System.out.println(posibleNumero + " ya existe ");
+                    System.out.println(posibleNumero + " ya existe "); //------------------------------------------------------------------> AGREGAR EXCEPCION
                 }
                 else {
                     numeroTelefono = posibleNumero;
                     System.out.println(posibleNumero + " no existe, nuevo numero guardado");
                 }
             } while (numeroTelefono == null);
-            
-            
         }
         
         for(Cliente auxCliente : listaClientes) {
@@ -445,6 +443,8 @@ public class Modelo {
                             return 1;
                         } else if ("Plan Ultra".equals(auxPlan.getNombrePlan())) {
                             return 2;
+                        }else if ("Plan Personalizado".equals(auxPlan.getNombrePlan())) {
+                            return 3;
                         }
                         break;
                     }

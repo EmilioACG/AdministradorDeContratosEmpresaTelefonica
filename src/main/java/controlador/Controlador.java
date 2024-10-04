@@ -68,6 +68,7 @@ public class Controlador implements ActionListener {
         menuPlan.getBtnAgregarPlan().setVisible(false);
         menuPlan.getBtnMostrarPlanes().setVisible(false);
         menuPlan.getBtnEliminarPlan().setVisible(false);
+        menuPlan.getBtnModificarPlan().setVisible(false);
     }
   
     public void iniciar() throws CsvValidationException{
@@ -165,6 +166,11 @@ public class Controlador implements ActionListener {
             PlanOpPanel3 panelEliminar = new PlanOpPanel3();
             menuPlan.mostrarPanel(panelEliminar);
             eliminarPlan(panelEliminar,getRutMenuPlan());
+            return;
+        }else if(ae.getSource() == menuPlan.getBtnModificarPlan()) {
+            //PlanOpPanel4 panelModificar = new PlanOpPanel4();
+            //menuPlan.mostrarPanel(panelModificar);
+            //modificarPlan(panelModificar, getRutMenuPlan());
             return;
         }else if(ae.getSource() == menuPlan.getBtnVolver()){ //Opcion salir de la ventana planes
             menuPlan.dispose();
@@ -331,6 +337,7 @@ public class Controlador implements ActionListener {
             menuPlan.getBtnAgregarPlan().setVisible(false);
             menuPlan.getBtnMostrarPlanes().setVisible(false);
             menuPlan.getBtnEliminarPlan().setVisible(false);
+            menuPlan.getBtnModificarPlan().setVisible(false);
         }
         else {
             menuPlan.setJlbExisteRut("Cliente "+rutBuscado+" encontrado");
@@ -338,6 +345,7 @@ public class Controlador implements ActionListener {
             menuPlan.getBtnAgregarPlan().setVisible(true);
             menuPlan.getBtnMostrarPlanes().setVisible(true);
             menuPlan.getBtnEliminarPlan().setVisible(true);
+            menuPlan.getBtnModificarPlan().setVisible(true);
         }
     }
     
@@ -421,15 +429,18 @@ public class Controlador implements ActionListener {
     }
 
     private void eliminarPlan(PlanOpPanel3 panel, int rut) {
+        panel.getJlbEstadoPlan().setVisible(false);
         panel.getBtnEliminarPlan().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String numPlanEliminar = panel.getTxtEliminarPlan();
                 if(modeloG.eliminarPlan(rut, numPlanEliminar)) {
                     panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " fue eliminado correctamente.");
+                    panel.getJlbEstadoPlan().setVisible(true);
                 }
                 else {
                     panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " no existe en tus planes.");
+                    panel.getJlbEstadoPlan().setVisible(true);
                 }
             }
             

@@ -24,6 +24,9 @@ public class PlanOpPanel3 extends javax.swing.JPanel {
     public void setJlbEstadoPlan(String msg) {
         this.jlbEstadoPlan.setText(msg);
     }
+    public JLabel getJlbEstadoPlan() {
+        return jlbEstadoPlan;
+    }
 
     public String getTxtEliminarPlan() {
         return txtEliminarPlan.getText();

@@ -39,15 +39,15 @@ public class MenuPlan extends javax.swing.JFrame {
     public JButton getBtnVolver() {
         return btnVolver;
     }
+    public JButton getBtnModificarPlan() {
+        return btnModificarPlan;
+    }
     public JLabel getJlbExisteRut() {
         return jlbExisteRut;
     }
     public JLabel getJlbTituloOpciones() {
         return jlbTituloOpciones;
     }
-    
-    
-    
     public String getTxtRutBuscado() {
         return txtRutBuscado.getText();
     }
@@ -84,6 +84,7 @@ public class MenuPlan extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         pnlPanelOpciones = new java.awt.Panel();
         txtRutBuscado = new javax.swing.JTextField();
+        btnModificarPlan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,6 +121,14 @@ public class MenuPlan extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        btnModificarPlan.setText("4.- Modificar un plan");
+        btnModificarPlan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnModificarPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPlanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,16 +138,17 @@ public class MenuPlan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVolver)
                     .addComponent(jlbTituloOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnAgregarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                        .addComponent(btnMostrarPlanes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBuscarRut)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlbExisteRut))
                     .addComponent(jlbTituloRutCliente)
-                    .addComponent(txtRutBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRutBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnModificarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                        .addComponent(btnEliminarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnMostrarPlanes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAgregarPlan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(pnlPanelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -159,9 +169,11 @@ public class MenuPlan extends javax.swing.JFrame {
                 .addComponent(btnAgregarPlan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnMostrarPlanes)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminarPlan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnModificarPlan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                 .addComponent(btnVolver)
                 .addGap(75, 75, 75))
             .addComponent(pnlPanelOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -169,6 +181,10 @@ public class MenuPlan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnModificarPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPlanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarPlanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +225,7 @@ public class MenuPlan extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarPlan;
     private javax.swing.JButton btnBuscarRut;
     private javax.swing.JButton btnEliminarPlan;
+    private javax.swing.JButton btnModificarPlan;
     private javax.swing.JButton btnMostrarPlanes;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jlbExisteRut;

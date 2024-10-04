@@ -23,120 +23,173 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jlbNuevoPlanAdquirido" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jlbNumeroPlanPerso" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtNumeroPlanPerso" min="-2" pref="85" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="btnSelecPlanPerso" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jlbNumeroPersoVacio" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jlbGigasPlanPerso" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtGigasPlanPerso" min="-2" pref="88" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jlbMinutosPlanPerso" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtMinutosPlanPerso" min="-2" pref="87" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jlbTituloPlanUno" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlbTituloPlanInicial" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnSelecPlanUno" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jlbPrecioPlanUno" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jlbMinutosPlanUno" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jlbGigasPlanUno" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnSelecPlanInicial" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbPrecioPlanInicial" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbMinutosPlanInicial" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbGigasPlanInicial" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jlbTituloPlanDos" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlbTituloPlanPro" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnSelecPlanDos" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jlbPrecioPlanDos" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jlbMinutosPlanDos" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jlbGigasPlanDos" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnSelecPlanPro" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbPrecioPlanPro" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbMinutosPlanPro" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbGigasPlanPro" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jlbTituloPlanTres" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlbTituloPlanUltra" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnSelecPlanTres" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jlbPrecioPlanTres" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jlbMinutosPlanTres" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jlbGigasPlanTres" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnSelecPlanUltra" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbPrecioPlanUltra" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbMinutosPlanUltra" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jlbGigasPlanUltra" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
                           <Component id="jlbSeleccPlan" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbTituloPlanPerso" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jlbNuevoPlanAdquirido" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jlbPrefijoNumero" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jlbNewNumTelefono" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jlbPrefijoNumero" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jlbNewNumTelefono" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jlbNewNombrePlan" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlbNewCantGigas" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlbNewCantMinutos" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlbNewPrecio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="jlbNewNombrePlan" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlbNewCantGigas" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlbNewCantMinutos" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlbNewPrecio" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jlbTituloPlanTres" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbTituloPlanUltra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jlbGigasPlanTres" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbGigasPlanUltra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jlbMinutosPlanTres" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbMinutosPlanUltra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jlbPrecioPlanTres" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlbPrecioPlanUltra" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnSelecPlanTres" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSelecPlanUltra" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jlbSeleccPlan" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jlbTituloPlanUno" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbTituloPlanInicial" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jlbGigasPlanUno" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbGigasPlanInicial" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jlbMinutosPlanUno" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbMinutosPlanInicial" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jlbPrecioPlanUno" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbPrecioPlanInicial" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnSelecPlanUno" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSelecPlanInicial" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jlbTituloPlanDos" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbTituloPlanPro" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jlbGigasPlanDos" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbGigasPlanPro" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jlbMinutosPlanDos" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbMinutosPlanPro" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jlbPrecioPlanDos" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlbPrecioPlanPro" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnSelecPlanDos" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSelecPlanPro" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-              <Component id="jlbNuevoPlanAdquirido" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jlbTituloPlanPerso" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtGigasPlanPerso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbGigasPlanPerso" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlbMinutosPlanPerso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMinutosPlanPerso" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlbNumeroPlanPerso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNumeroPlanPerso" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnSelecPlanPerso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbNumeroPersoVacio" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <Component id="jlbNuevoPlanAdquirido" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jlbNewNombrePlan" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -149,7 +202,7 @@
               <Component id="jlbNewCantMinutos" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jlbNewPrecio" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="152" max="32767" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -163,7 +216,7 @@
         <Property name="text" type="java.lang.String" value="Seleccione un plan:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlbTituloPlanUno">
+    <Component class="javax.swing.JLabel" name="jlbTituloPlanInicial">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
@@ -171,58 +224,30 @@
         <Property name="text" type="java.lang.String" value="Plan Inicial"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlbGigasPlanUno">
+    <Component class="javax.swing.JLabel" name="jlbGigasPlanInicial">
       <Properties>
         <Property name="text" type="java.lang.String" value="100 Gigas"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlbMinutosPlanUno">
+    <Component class="javax.swing.JLabel" name="jlbMinutosPlanInicial">
       <Properties>
         <Property name="text" type="java.lang.String" value="1000 Minutos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlbPrecioPlanUno">
+    <Component class="javax.swing.JLabel" name="jlbPrecioPlanInicial">
       <Properties>
         <Property name="text" type="java.lang.String" value="$8.792"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSelecPlanUno">
+    <Component class="javax.swing.JButton" name="btnSelecPlanInicial">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inicial"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecPlanUnoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecPlanInicialActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlbTituloPlanDos">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Plan Full"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlbGigasPlanDos">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="200 Gigas"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlbMinutosPlanDos">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1000 Minutos"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlbPrecioPlanDos">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="$11.192"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnSelecPlanDos">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Full"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlbTituloPlanTres">
+    <Component class="javax.swing.JLabel" name="jlbTituloPlanPro">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
@@ -230,27 +255,55 @@
         <Property name="text" type="java.lang.String" value="Plan Pro"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlbGigasPlanTres">
+    <Component class="javax.swing.JLabel" name="jlbGigasPlanPro">
       <Properties>
-        <Property name="text" type="java.lang.String" value="300 Gigas"/>
+        <Property name="text" type="java.lang.String" value="200 Gigas"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlbMinutosPlanTres">
+    <Component class="javax.swing.JLabel" name="jlbMinutosPlanPro">
       <Properties>
         <Property name="text" type="java.lang.String" value="1000 Minutos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlbPrecioPlanTres">
+    <Component class="javax.swing.JLabel" name="jlbPrecioPlanPro">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="$11.192"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSelecPlanPro">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pro"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbTituloPlanUltra">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Plan Ultra"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbGigasPlanUltra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="300 Gigas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbMinutosPlanUltra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1000 Minutos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbPrecioPlanUltra">
       <Properties>
         <Property name="text" type="java.lang.String" value="$13.592"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSelecPlanTres">
+    <Component class="javax.swing.JButton" name="btnSelecPlanUltra">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pro"/>
+        <Property name="text" type="java.lang.String" value="Ultra"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecPlanTresActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecPlanUltraActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlbNuevoPlanAdquirido">
@@ -290,6 +343,51 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="precio"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbTituloPlanPerso">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Plan personalizado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtGigasPlanPerso">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbGigasPlanPerso">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cantidad de GB :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbMinutosPlanPerso">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cantidad de minutos:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbNumeroPlanPerso">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Numero de telefono: +56 9"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbNumeroPersoVacio">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="66" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="si no introduce un numero le generaremos uno"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtMinutosPlanPerso">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNumeroPlanPerso">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSelecPlanPerso">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Personalizado"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelecPlanPersoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

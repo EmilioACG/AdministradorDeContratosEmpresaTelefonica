@@ -23,10 +23,18 @@ public class Plan {
     }
 
     public Plan(int cantGigaBytes, int cantMinutos, double cuotaMensual) {
-        this.nombrePlan = "Plan personalizado";
+        this.nombrePlan = "Plan Personalizado";
         this.cantGigaBytes = cantGigaBytes;
         this.cantMinutos = cantMinutos;
         this.precio = cuotaMensual;
+    }
+    
+    public Plan(int cantGigaBytes, int cantMinutos, String numeroTelefono) {
+        this.nombrePlan = "Plan Personalizado";
+        this.numeroTelefono = numeroTelefono;
+        this.cantGigaBytes = cantGigaBytes;
+        this.cantMinutos = cantMinutos;
+        this.precio = cantGigaBytes * 500.4 + cantMinutos * 24.78;
     }
     
     public Plan(String nombrePlan, String numeroTelefono, int cantGigaBytes, int cantMinutos, double cuotaMensual) {
@@ -69,7 +77,7 @@ public class Plan {
     public double getPrecio() {
         return precio;
     }
-
+    
     // -----------------------------------------------------------------------------------------------
     // Setters
     // -----------------------------------------------------------------------------------------------
@@ -93,7 +101,7 @@ public class Plan {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
+    
     // -----------------------------------------------------------------------------------------------
     // Metodos
     // -----------------------------------------------------------------------------------------------

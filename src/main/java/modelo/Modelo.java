@@ -86,8 +86,6 @@ public class Modelo {
     }
     
     public static void leerCsvTelefonos() throws CsvValidationException {
-        System.out.println("1 telefonos");
-
         File fileTelefonos = new File(pathTelefonos);
         try {   
                 FileReader inputFile = new FileReader(fileTelefonos);
@@ -95,31 +93,23 @@ public class Modelo {
                                                                             .withSeparator(',')
                                                                             .build();
             
-                System.out.println("2 telefonos");
                 CSVReader csvReader = new CSVReaderBuilder(inputFile)
                                                                                         .withCSVParser(parser)
                                                                                         .build();
             
                 String[] datosTelefonos;
                 int i=0; //Primer linea es un header, por lo que se salta
-                System.out.println("3 telefonos");
                 while( (datosTelefonos = csvReader.readNext()) != null) {
-                        System.out.println("3.25 telefonos");
                         System.out.println(Arrays.toString(datosTelefonos));
                         if(i>0) {
-                            System.out.println("3.5 telefonos");
                             System.out.println(datosTelefonos.length);
                             if(datosTelefonos.length >= 6){
-                                System.out.println("entre");
                                 int rut = Integer.parseInt(datosTelefonos[0]);
-                                System.out.println("entre"+ rut);
                                 String nombrePlan = datosTelefonos[1];
-                                System.out.println("entre"+ nombrePlan);
                                 String numeroTelefono = datosTelefonos[2];
                                 int cantGigaBytes =  Integer.parseInt(datosTelefonos[3]);
                                 int cantMinutos =  Integer.parseInt(datosTelefonos[4]);
                                 double precio = Double.parseDouble(datosTelefonos[5]);
-                                System.out.println("4 telefonos");
                                 Plan plan = new Plan(nombrePlan, numeroTelefono, cantGigaBytes, cantMinutos, precio);
                         
                                 for (Cliente auxCliente : listaClientes) {
@@ -144,7 +134,6 @@ public class Modelo {
         }finally{
             System.out.println("Programa corriendo...");
         }
-        System.out.println("5 telefonos");
         
     }
 
@@ -341,6 +330,37 @@ public class Modelo {
                 break;
             }          
         }
+    }
+    
+    public void agregarPlanPersonalizado(int rutCliente, int cantGigaBytes, int cantMinutos, String numeroTelefono) {
+        if("".equals(numeroTelefono)) {
+            Faker generarNumero = new Faker();
+            String posibleNumero;
+            
+            do {
+                posibleNumero = generarNumero.numerify("########");
+                if(mapaTelefonos.get(posibleNumero) != null) {
+                    System.out.println(posibleNumero + " ya existe ");
+                }
+                else {
+                    numeroTelefono = posibleNumero;
+                    System.out.println(posibleNumero + " no existe, nuevo numero guardado");
+                }
+            } while (numeroTelefono == null);
+            
+            
+        }
+        
+        for(Cliente auxCliente : listaClientes) {
+            if(auxCliente.getRut() == rutCliente) {
+                auxCliente.agregarPlanPersonalizadado(cantGigaBytes, cantMinutos, numeroTelefono);
+                mapaTelefonos.put(numeroTelefono, auxCliente);
+                
+                System.out.println(numeroTelefono + "    " + auxCliente.getNombre()+auxCliente.getApellidoPaterno());
+                break;
+            }
+        }
+        
     }
 
     public Plan ultimoPlanContratado(int rutCliente) {

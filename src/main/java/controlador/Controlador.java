@@ -385,17 +385,46 @@ public class Controlador implements ActionListener {
     }
     
     private void agregarPlan(PlanOpPanel1 panelAgregarPlan, int rut) {
-        panelAgregarPlan.getBtnSelecPlanUno().addActionListener(new ActionListener() {    
+        panelAgregarPlan.getBtnSelecPlanPerso().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int cantGigaBytes = Integer.parseInt(panelAgregarPlan.getTxtGigasPlanPerso());
+                int cantMinutos = Integer.parseInt(panelAgregarPlan.getTxtMinutosPlanPerso());
+                String numeroTelefono = panelAgregarPlan.getTxtNumeroPlanPerso();
+                
+                modeloG.agregarPlanPersonalizado(rut,cantGigaBytes, cantMinutos,numeroTelefono);
+                
+                Plan planContratado = modeloG.ultimoPlanContratado(rut);
+                
+                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + " Gigabytes");
+                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + " Minutos");
+                panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
+                panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
+                panelAgregarPlan.setJlbNewPrecio("$" + planContratado.getPrecio());
+                
+                panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
+                panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
+                panelAgregarPlan.getJlbNewCantGigas().setVisible(true);
+                panelAgregarPlan.getJlbNewCantMinutos().setVisible(true);
+                panelAgregarPlan.getJlbNewNombrePlan().setVisible(true);
+                panelAgregarPlan.getJlbNewNumTelefono().setVisible(true);
+                panelAgregarPlan.getJlbNewPrecio().setVisible(true);
+                
+            }
+        });
+        
+        panelAgregarPlan.getBtnSelecPlanInicial().addActionListener(new ActionListener() {    
             @Override
             public void actionPerformed(ActionEvent e) {
                 modeloG.agregarPlan(0, rut);
+                
                 Plan planContratado = modeloG.ultimoPlanContratado(rut);
                 
-                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + "Gigabytes");
-                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + "Minutos");
+                panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + " Gigabytes");
+                panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + " Minutos");
                 panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
                 panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
-                panelAgregarPlan.setJlbNewPrecio(planContratado.getPrecio()+"");
+                panelAgregarPlan.setJlbNewPrecio("$" + planContratado.getPrecio());
                 
                 panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
                 panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
@@ -408,17 +437,18 @@ public class Controlador implements ActionListener {
         }
         );
         
-        panelAgregarPlan.getBtnSelecPlanDos().addActionListener(new ActionListener() {    
+        panelAgregarPlan.getBtnSelecPlanPro().addActionListener(new ActionListener() {    
             @Override
             public void actionPerformed(ActionEvent e) {
                 modeloG.agregarPlan(1,rut);
+                
                 Plan planContratado = modeloG.ultimoPlanContratado(rut);
                 
                 panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + "Gigabytes");
                 panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + "Minutos");
                 panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
                 panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
-                panelAgregarPlan.setJlbNewPrecio(planContratado.getPrecio()+"");
+                panelAgregarPlan.setJlbNewPrecio("$" + planContratado.getPrecio());
                 
                 panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
                 panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);
@@ -431,17 +461,18 @@ public class Controlador implements ActionListener {
         }
         );
         
-        panelAgregarPlan.getBtnSelecPlanTres().addActionListener(new ActionListener() {    
+        panelAgregarPlan.getBtnSelecPlanUltra().addActionListener(new ActionListener() {    
             @Override
             public void actionPerformed(ActionEvent e) {
                 modeloG.agregarPlan(2,rut);
+                
                 Plan planContratado = modeloG.ultimoPlanContratado(rut);
                 
                 panelAgregarPlan.setJlbNewCantGigas( planContratado.getCantGigaBytes() + "Gigabytes");
                 panelAgregarPlan.setJlbNewCantMinutos(planContratado.getCantMinutos() + "Minutos");
                 panelAgregarPlan.setJlbNewNombrePlan(planContratado.getNombrePlan());
                 panelAgregarPlan.setJlbNewNumTelefono(planContratado.getNumeroTelefono());
-                panelAgregarPlan.setJlbNewPrecio(planContratado.getPrecio()+"");
+                panelAgregarPlan.setJlbNewPrecio("$" + planContratado.getPrecio());
                 
                 panelAgregarPlan.getJlbNuevoPlanAdquirido().setVisible(true);
                 panelAgregarPlan.getJlbPrefijoNumero().setVisible(true);

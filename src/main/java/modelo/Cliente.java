@@ -144,6 +144,12 @@ public class Cliente {
        listaPlanes.add(copiaPlan);
    }
    
+   public void agregarPlanPersonalizadado(int cantGigaBytes, int cantMinutos, String numeroTelefono){
+       this.tieneContrato = true;
+       Plan copiaPlan = new Plan(cantGigaBytes,cantMinutos,numeroTelefono);
+       listaPlanes.add(copiaPlan);
+   }
+   
    public void mostrarPlanes(){
        if(!getTieneContrato()){
            System.out.println("Este usuario no posee planes.");

@@ -31,7 +31,9 @@ public class Controlador implements ActionListener {
     private MenuPlan menuPlan;
     private ClienteOpPanel1 panelAgregar;
     private Modelo modeloG;
+    
     private int rutMenuPlan;
+    private String numMenuPlan;
     
     public Controlador () {
         inicializarVentanas();
@@ -43,7 +45,13 @@ public class Controlador implements ActionListener {
     public void setRutMenuPlan(int rutMenuPlan) {
         this.rutMenuPlan = rutMenuPlan;
     }
-
+    public String getNumMenuPlan() {
+        return numMenuPlan;
+    }
+    public void setNumMenuPlan(String numMenuPlan) {
+        this.numMenuPlan = numMenuPlan;
+    }
+    
     public void inicializarVentanas() {
         menuCliente = new MenuCliente();
         menuCliente.getButOpcionAgregar().addActionListener(this);
@@ -59,11 +67,14 @@ public class Controlador implements ActionListener {
         menuContrato.getBtnVolver().addActionListener(this);
         
         menuPlan = new MenuPlan();
+        //Action Listener
         menuPlan.getBtnBuscarRut().addActionListener(this);
         menuPlan.getBtnAgregarPlan().addActionListener(this);
         menuPlan.getBtnMostrarPlanes().addActionListener(this);
         menuPlan.getBtnEliminarPlan().addActionListener(this);
+        menuPlan.getBtnModificarPlan().addActionListener(this);
         menuPlan.getBtnVolver().addActionListener(this);
+        //Funcionalidades que no deben mostrarse hasta validad el rut
         menuPlan.getJlbTituloOpciones().setVisible(false);
         menuPlan.getBtnAgregarPlan().setVisible(false);
         menuPlan.getBtnMostrarPlanes().setVisible(false);
@@ -87,21 +98,24 @@ public class Controlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         
-        if(ae.getSource() == menuG.getBtnCliente()){ //Ventana menu clientes
+        if (ae.getSource() == menuG.getBtnCliente()){ //Ventana menu clientes
             menuCliente.setVisible(true);
             menuG.setVisible(false);
             return;
-        } else if(ae.getSource() == menuCliente.getButOpcionAgregar()){  //Opcion agregar clientes
+        } 
+        else if (ae.getSource() == menuCliente.getButOpcionAgregar()) {  //Opcion agregar clientes
             panelAgregar = new ClienteOpPanel1();
             menuCliente.mostrarPanel(panelAgregar);
             agregarCliente(panelAgregar);
             return;
-        }else if(ae.getSource() == menuCliente.getButOpcionMostarCliente()){ //Opcion mostrar clientes
+        }
+        else if (ae.getSource() == menuCliente.getButOpcionMostarCliente()) { //Opcion mostrar clientes
             ClienteOpPanel2 panelBuscar = new ClienteOpPanel2();
             menuCliente.mostrarPanel(panelBuscar);
             buscarCliente(panelBuscar);
             return;
-        }else if(ae.getSource() ==  menuCliente.getButOpcionModificarCliente()){ //Opcion modificar clientes
+        }
+        else if (ae.getSource() ==  menuCliente.getButOpcionModificarCliente()) { //Opcion modificar clientes
             ClienteOpPanel3 panelModificar = new ClienteOpPanel3();
             menuCliente.mostrarPanel(panelModificar);
             panelModificar.setViewLabelNomMod(0);
@@ -113,70 +127,88 @@ public class Controlador implements ActionListener {
             panelModificar.setViewButCambiar(0);
             modDatosClientes(panelModificar);              
             return;
-        }else if(ae.getSource() ==  menuCliente.getButOpcionEliminarCliente()){ //Eliminar cliente
+        }
+        else if (ae.getSource() ==  menuCliente.getButOpcionEliminarCliente()) { //Eliminar cliente
             ClienteOpPanel4 panelEliminar = new ClienteOpPanel4();
             menuCliente.mostrarPanel(panelEliminar);
             eliminarCliente(panelEliminar);
             return;
-        }else if(ae.getSource() ==  menuCliente.getButOpcionListarClientes()){ //Listar Clientes
+        }
+        else if (ae.getSource() ==  menuCliente.getButOpcionListarClientes()) { //Listar Clientes
             ClienteOpPanel5 panelListar = new ClienteOpPanel5();
             menuCliente.mostrarPanel(panelListar);
             listarClientes(panelListar);
             return;
-        }else if(ae.getSource() == menuCliente.getButOpcionExit()){ //Opcion salir de la ventana cliente
+        }
+        else if (ae.getSource() == menuCliente.getButOpcionExit()) { //Opcion salir de la ventana cliente
             menuCliente.dispose();
             menuG.setVisible(true);
             return;
-        }else if(ae.getSource() == menuG.getBtnMenuContratos()){ //Ventana menu contratos
+        }
+        else if (ae.getSource() == menuG.getBtnMenuContratos()) { //Ventana menu contratos
             menuContrato.setVisible(true);
             menuG.setVisible(false);
             return;
-        }else if(ae.getSource() == menuContrato.getBtnMostrarContratoCliente()){ //Opciones de cambio de menu contratos
+        }
+        else if (ae.getSource() == menuContrato.getBtnMostrarContratoCliente()) { //Opciones de cambio de menu contratos
             ContratoOpPanel1 panelAgregar = new ContratoOpPanel1();
             menuContrato.mostrarPanel(panelAgregar);
             return;
-        }else if(ae.getSource() == menuContrato.getBtnMostrarContratos()){
+        }
+        else if (ae.getSource() == menuContrato.getBtnMostrarContratos()) {
             ContratoOpPanel2 panelAgregar = new ContratoOpPanel2();
             menuContrato.mostrarPanel(panelAgregar);
             return;
-        }else if(ae.getSource() == menuContrato.getBtnVolver()){ //Opcion salir de la ventana contrato
+        }
+        else if (ae.getSource() == menuContrato.getBtnVolver()) { //Opcion salir de la ventana contrato
             menuContrato.dispose();
             menuG.setVisible(true);
             return;
-        }else if(ae.getSource() == menuG.getBtnMenuPlanes()){ //Ventana menu planes
+        }
+        else if (ae.getSource() == menuG.getBtnMenuPlanes()) { //Ventana menu planes
             menuPlan.setVisible(true);
             menuG.setVisible(false);
             return;
-        }else if(ae.getSource() == menuPlan.getBtnBuscarRut()){ //Opciones de cambio de menu planes
+        }
+        else if (ae.getSource() == menuPlan.getBtnBuscarRut()) { //Opciones de cambio de menu planes
             setRutMenuPlan(Integer.parseInt(menuPlan.getTxtRutBuscado()));
             buscarRut(rutMenuPlan);
             return;
-        }else if(ae.getSource() == menuPlan.getBtnAgregarPlan()){
+        }
+        else if (ae.getSource() == menuPlan.getBtnAgregarPlan()) {
             PlanOpPanel1 panelAgregarPlan = new PlanOpPanel1();
             System.out.println("rut buscado: "+ getRutMenuPlan());
             menuPlan.mostrarPanel(panelAgregarPlan);
             agregarPlan(panelAgregarPlan, getRutMenuPlan());
             return;
-        }else if(ae.getSource() == menuPlan.getBtnMostrarPlanes()){
+        }
+        else if (ae.getSource() == menuPlan.getBtnMostrarPlanes()) {
             PlanOpPanel2 panelMostrar = new PlanOpPanel2();
             menuPlan.mostrarPanel(panelMostrar);
             mostrarPlanes(panelMostrar, getRutMenuPlan());
             return;
-        }else if(ae.getSource() == menuPlan.getBtnEliminarPlan()){
+        }
+        else if (ae.getSource() == menuPlan.getBtnEliminarPlan()) {
             PlanOpPanel3 panelEliminar = new PlanOpPanel3();
             menuPlan.mostrarPanel(panelEliminar);
             eliminarPlan(panelEliminar,getRutMenuPlan());
             return;
-        }else if(ae.getSource() == menuPlan.getBtnModificarPlan()) {
-            //PlanOpPanel4 panelModificar = new PlanOpPanel4();
-            //menuPlan.mostrarPanel(panelModificar);
-            //modificarPlan(panelModificar, getRutMenuPlan());
+        }
+        else if (ae.getSource() == menuPlan.getBtnModificarPlan()) {
+            PlanOpPanel4 panelModificar = new PlanOpPanel4();
+            System.out.println("Panel creado" );
+            menuPlan.mostrarPanel(panelModificar);
+            System.out.println("Mostrandose panel de modificar" );
+            modificarPlan(panelModificar, getRutMenuPlan());
+            System.out.println("Llamando funcionalidad del metodo modificar" );
             return;
-        }else if(ae.getSource() == menuPlan.getBtnVolver()){ //Opcion salir de la ventana planes
+        }
+        else if (ae.getSource() == menuPlan.getBtnVolver()) { //Opcion salir de la ventana planes
             menuPlan.dispose();
             menuG.setVisible(true);
             return;
-        }else if(ae.getSource() == menuG.getBtnExitPr()){
+        }
+        else if (ae.getSource() == menuG.getBtnExitPr()) {
             modeloG.guardarDatos();
             modeloG.guardarDatosPlanes();
             System.exit(0);
@@ -204,6 +236,7 @@ public class Controlador implements ActionListener {
             
         });
     }
+    
     public void buscarCliente(ClienteOpPanel2 panelBuscar){
         HashMap<Integer, Cliente> mapaClientes = modeloG.mostrarCliente();
         panelBuscar.getButEnviarBusCliente().addActionListener(new ActionListener() {
@@ -238,6 +271,7 @@ public class Controlador implements ActionListener {
         });
         
     }
+    
     public void modDatosClientes(ClienteOpPanel3 panelModificar){
         
         panelModificar.getButBuscarMod().addActionListener(new ActionListener() {
@@ -302,6 +336,7 @@ public class Controlador implements ActionListener {
             }
         });
     }
+    
     public void eliminarCliente(ClienteOpPanel4 panelEliminar){  
         panelEliminar.getButDelete().addActionListener(new ActionListener() {
         @Override
@@ -439,13 +474,145 @@ public class Controlador implements ActionListener {
                     panel.getJlbEstadoPlan().setVisible(true);
                 }
                 else {
-                    panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " no existe en tus planes.");
+                    panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " no existe.");
                     panel.getJlbEstadoPlan().setVisible(true);
                 }
             }
             
         });
     }
+
+    private void modificarPlan(PlanOpPanel4 panel, int rut) {
+        actualizarPanelModificar(panel,false,-1);
+        panel.getJlbNumeroNoEncontrado().setVisible(false);
+        
+        panel.getBtnModificarPlan().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                int planActual;
+                setNumMenuPlan(panel.getTxtModificarPlan());
+                if (modeloG.existeNumero(getNumMenuPlan(),rut)) {
+                    panel.getJlbNumeroNoEncontrado().setVisible(false);
+                    planActual = modeloG.planActual(rut, getNumMenuPlan());
+                    actualizarPanelModificar(panel,true,planActual);
+                }
+                else {
+                    panel.getJlbNumeroNoEncontrado().setVisible(true);
+                    actualizarPanelModificar(panel,false,-1);
+                }
+            }
+        });
+        
+        panel.getBtnModificarPlanInicial().addActionListener (new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                modeloG.modificarPlan(rut, getNumMenuPlan(), 0);
+                panel.getJlbCambiadoInicial().setVisible(true);
+                panel.getJlbCambiadoPro().setVisible(false);
+                panel.getJlbCambiadoUltra().setVisible(false);
+                
+                panel.getJlbPlanUltraActual().setVisible(false);
+                panel.getJlbPlanProActual().setVisible(false);
+                
+                panel.getBtnModificarPlanInicial().setVisible(false);
+                panel.getBtnModificarPlanPro().setVisible(false);
+                panel.getBtnModificarPlanUltra().setVisible(false);
+            }
+            
+        });
+        
+        panel.getBtnModificarPlanPro().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                modeloG.modificarPlan(rut,getNumMenuPlan(),1);
+                panel.getJlbCambiadoInicial().setVisible(false);
+                panel.getJlbCambiadoPro().setVisible(true);
+                panel.getJlbCambiadoUltra().setVisible(false);
+                
+                panel.getJlbPlanInicialActual().setVisible(false);
+                panel.getJlbPlanUltraActual().setVisible(false);
+                
+                panel.getBtnModificarPlanInicial().setVisible(false);
+                panel.getBtnModificarPlanPro().setVisible(false);
+                panel.getBtnModificarPlanUltra().setVisible(false);
+            }
+        });
+        
+        panel.getBtnModificarPlanUltra().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                modeloG.modificarPlan(rut,getNumMenuPlan(),2);
+                panel.getJlbCambiadoInicial().setVisible(false);
+                panel.getJlbCambiadoPro().setVisible(false);
+                panel.getJlbCambiadoUltra().setVisible(true);
+                
+                panel.getJlbPlanInicialActual().setVisible(false);
+                panel.getJlbPlanProActual().setVisible(false);
+                
+                panel.getBtnModificarPlanInicial().setVisible(false);
+                panel.getBtnModificarPlanPro().setVisible(false);
+                panel.getBtnModificarPlanUltra().setVisible(false);
+            }
+         });
+        
+        
+    }
     
-    
+    private void actualizarPanelModificar(PlanOpPanel4 panel, boolean visibilidad, int planActual) {
+        panel.getJlbNombreInicial().setVisible(visibilidad);
+        panel.getJlbNombrePro().setVisible(visibilidad);
+        panel.getJlbNombreUltra().setVisible(visibilidad);
+        panel.getJlbGigasInicial().setVisible(visibilidad);
+        panel.getJlbGigasPro().setVisible(visibilidad);
+        panel.getJlbGigasUltra().setVisible(visibilidad);
+        panel.getJlbMinutosInicial().setVisible(visibilidad);
+        panel.getJlbMinutosPro().setVisible(visibilidad);
+        panel.getJlbMinutosUltra().setVisible(visibilidad);
+        panel.getJlbPrecioInicial().setVisible(visibilidad);
+        panel.getJlbPrecioPro().setVisible(visibilidad);
+        panel.getJlbPrecioUltra().setVisible(visibilidad);
+        
+        //Tiene Plan Inicial -> puede cambiarse entre Plan Pro y Plan Ultra
+        if (planActual == 0) {
+            panel.getJlbPlanInicialActual().setVisible(true);
+            panel.getJlbPlanProActual().setVisible(false);
+            panel.getJlbPlanUltraActual().setVisible(false);
+            panel.getBtnModificarPlanInicial().setVisible(false);
+            panel.getBtnModificarPlanPro().setVisible(true);
+            panel.getBtnModificarPlanUltra().setVisible(true);
+        } 
+        //Tiene Plan Pro -> puede cambiarse entre Plan Inicial y Plan Ultra
+        else if (planActual == 1) {
+            panel.getJlbPlanInicialActual().setVisible(false);
+            panel.getJlbPlanProActual().setVisible(true);
+            panel.getJlbPlanUltraActual().setVisible(false);
+            panel.getBtnModificarPlanInicial().setVisible(true);
+            panel.getBtnModificarPlanPro().setVisible(false);
+            panel.getBtnModificarPlanUltra().setVisible(true);
+        } 
+        //Tiene Plan Ultra -> puede cambiarse entre Plan Inicial y Plan Pro
+        else if (planActual == 2) {
+            panel.getJlbPlanInicialActual().setVisible(false);
+            panel.getJlbPlanProActual().setVisible(false);
+            panel.getJlbPlanUltraActual().setVisible(true);
+            panel.getBtnModificarPlanInicial().setVisible(true);
+            panel.getBtnModificarPlanPro().setVisible(true);
+            panel.getBtnModificarPlanUltra().setVisible(false);            
+        }
+        //No tiene ningun plan o el numero no fue encontrado, por lo que no se puede cambiar a nada
+        else {
+            panel.getJlbPlanInicialActual().setVisible(false);
+            panel.getJlbPlanProActual().setVisible(false);
+            panel.getJlbPlanUltraActual().setVisible(false);
+            panel.getBtnModificarPlanInicial().setVisible(false);
+            panel.getBtnModificarPlanPro().setVisible(false);
+            panel.getBtnModificarPlanUltra().setVisible(false);          
+            
+        }
+        panel.getJlbCambiadoInicial().setVisible(false);
+        panel.getJlbCambiadoPro().setVisible(false);
+        panel.getJlbCambiadoUltra().setVisible(false);
+        
+        
+    }
 }

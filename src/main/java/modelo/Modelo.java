@@ -41,8 +41,8 @@ public class Modelo {
         leerCsv();
         leerCsvTelefonos();
         ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
-        ofertaPlanes[1] = new Plan("Plan Full", 200, 1000, 11192);
-        ofertaPlanes[2] = new Plan("Plan Pro", 300, 1000, 13592);
+        ofertaPlanes[1] = new Plan("Plan Pro", 200, 1000, 11192);
+        ofertaPlanes[2] = new Plan("Plan Ultra", 300, 1000, 13592);
     }
     
     public static void leerCsv() throws CsvValidationException{
@@ -399,6 +399,75 @@ public class Modelo {
         mapaTelefonos.remove(numPlanEliminar);
         
         return true;
+    }
+
+    public boolean existeNumero(String numBuscar, int rut) {
+        Cliente auxCliente = mapaTelefonos.get(numBuscar);
+        
+        if (auxCliente == null) {
+            //El numero no existe
+            return false;
+        }
+        
+        //el numero buscado existe, pero pertenece al cliente que se esta operando?
+        return auxCliente.getRut() == rut; 
+        
+    }
+
+    public int planActual(int rut, String numModificar) {
+        for (Cliente auxCliente : listaClientes) {
+            if (auxCliente.getRut() == rut) {
+                for (Plan auxPlan : auxCliente.getListaPlanes()) {
+                    if (numModificar.equals(auxPlan.getNumeroTelefono())) {
+                        if ("Plan Inicial".equals(auxPlan.getNombrePlan())) {
+                            return 0;
+                        } else if ("Plan Pro".equals(auxPlan.getNombrePlan())) {
+                            return 1;
+                        } else if ("Plan Ultra".equals(auxPlan.getNombrePlan())) {
+                            return 2;
+                        }
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        
+        return -1;
+    }
+
+    public void modificarPlan(int rut, String numeroTelefono, int posPlan) {
+        for (Cliente auxCliente : listaClientes) {
+            if (auxCliente.getRut() == rut) {
+                System.out.println("Cliente " + rut + " encontrado" );
+                for (Plan auxPlan : auxCliente.getListaPlanes()) {
+                    if (numeroTelefono.equals(auxPlan.getNumeroTelefono())) {
+                        System.out.println("Plan " + auxPlan.getNumeroTelefono() + " es el plan buscado :  " + numeroTelefono );
+                        
+                        System.out.println("Nombre Plan pre modificación : " + auxPlan.getNombrePlan());
+                        auxPlan.setNombrePlan(ofertaPlanes[posPlan].getNombrePlan());
+                        System.out.println("Nombre Plan pos modificación : " + auxPlan.getNombrePlan());
+                        
+                        System.out.println("Gigas Plan pre modificación : " + auxPlan.getCantGigaBytes());
+                        auxPlan.setCantGigaBytes(ofertaPlanes[posPlan].getCantGigaBytes());
+                        System.out.println("Gigas Plan pos modificación : " + auxPlan.getCantGigaBytes());
+                        
+                        System.out.println("Minutos Plan pre modificación : " + auxPlan.getCantMinutos());
+                        auxPlan.setCantMinutos(ofertaPlanes[posPlan].getCantMinutos());
+                        System.out.println("Minutos Plan pos modificación : " + auxPlan.getCantMinutos());
+                        
+                        System.out.println("Precio Plan pre modificación : " + auxPlan.getPrecio());
+                        auxPlan.setPrecio(ofertaPlanes[posPlan].getPrecio());
+                        System.out.println("Preco Plan pos modificación : " + auxPlan.getPrecio());
+                        
+                        System.out.println("Plan cambiado correctamente");
+                        break;
+                    }
+                    System.out.println("Plan " + auxPlan.getNumeroTelefono() + " es distinto a " + numeroTelefono );
+                }
+                break;
+            }
+        }
     }
         
     

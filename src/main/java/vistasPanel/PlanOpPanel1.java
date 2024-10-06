@@ -4,6 +4,7 @@
  */
 package vistasPanel;
 
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -106,6 +107,10 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
         return jlbPrefijoNumero;
     }
     
+    public void setJlbNumeroPersoVacio(String msg,Color color){
+        this.jlbNumeroPersoVacio.setText(msg);
+        this.jlbNumeroPersoVacio.setForeground(color);
+    }
     
     
 
@@ -224,6 +229,7 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
         jlbNumeroPlanPerso.setText("Numero de telefono: +56 9");
 
         jlbNumeroPersoVacio.setForeground(new java.awt.Color(102, 102, 102));
+        jlbNumeroPersoVacio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlbNumeroPersoVacio.setText("si no introduce un numero le generaremos uno");
 
         btnSelecPlanPerso.setText("Personalizado");
@@ -250,17 +256,17 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtNumeroPlanPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnSelecPlanPerso)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jlbNumeroPersoVacio))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jlbGigasPlanPerso)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtGigasPlanPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jlbMinutosPlanPerso)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMinutosPlanPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtMinutosPlanPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnSelecPlanPerso)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jlbNumeroPersoVacio))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlbTituloPlanInicial)
@@ -308,7 +314,7 @@ public class PlanOpPanel1 extends javax.swing.JPanel {
                                     .addComponent(jlbNewCantGigas)
                                     .addComponent(jlbNewCantMinutos)
                                     .addComponent(jlbNewPrecio))))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

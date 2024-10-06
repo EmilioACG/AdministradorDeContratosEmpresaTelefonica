@@ -196,6 +196,22 @@ public class Cliente {
        if (listaPlanes.isEmpty())
            setTieneContrato(false);
    }
+   
+   public void eliminarPlan(String numeroTelefonoEliminar) {
+       String auxNumeroTelefono;
+       
+       for (int posPlan = 0 ; posPlan < listaPlanes.size() ; posPlan++) {
+           auxNumeroTelefono = listaPlanes.get(posPlan).getNumeroTelefono();
+           if(auxNumeroTelefono.equals(numeroTelefonoEliminar)) {
+               listaPlanes.remove(posPlan);
+               break;
+           }
+       }
+       
+       if(listaPlanes.isEmpty())
+           setTieneContrato(false);
+       
+   }
 }
 
 

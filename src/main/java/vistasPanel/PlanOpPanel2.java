@@ -13,10 +13,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PlanOpPanel2 extends javax.swing.JPanel {
 
-    public void setJlbNombreCliente(String nombreCliente) {
-        this.jlbNombreCliente.setText(nombreCliente);
-    }
-    
 
     /**
      * Creates new form PlanOpPanel2
@@ -27,8 +23,8 @@ public class PlanOpPanel2 extends javax.swing.JPanel {
     
     public void listTabPlanes(String[] arregloPlanes){
         DefaultTableModel model = (DefaultTableModel) tblListarPlanes.getModel();
-        for(int i = 0 ; i < arregloPlanes.length; i++) {
-            String[] arregloPlanesAux = arregloPlanes[i].split(",");
+        for (String arregloPlane : arregloPlanes) {
+            String[] arregloPlanesAux = arregloPlane.split(",");
             model.addRow(arregloPlanesAux);
         }
     }
@@ -42,18 +38,10 @@ public class PlanOpPanel2 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlbTituloMostrar = new javax.swing.JLabel();
-        jlbNombreCliente = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListarPlanes = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(406, 599));
-
-        jlbTituloMostrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlbTituloMostrar.setText("Planes asociados a");
-
-        jlbNombreCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jlbNombreCliente.setText("NOMBRE");
 
         tblListarPlanes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,33 +67,21 @@ public class PlanOpPanel2 extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlbTituloMostrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbNombreCliente)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbTituloMostrar)
-                    .addComponent(jlbNombreCliente))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel jlbNombreCliente;
-    private javax.swing.JLabel jlbTituloMostrar;
     private javax.swing.JTable tblListarPlanes;
     // End of variables declaration//GEN-END:variables
 

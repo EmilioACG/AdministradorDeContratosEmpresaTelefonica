@@ -11,15 +11,11 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
+import excepciones.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Reader;
-import java.util.Arrays;
 import net.datafaker.Faker;
 
 /**
@@ -40,11 +36,14 @@ public class Modelo {
     public Modelo() throws CsvValidationException{
         leerCsv();
         leerCsvTelefonos();
-        ofertaPlanes[0] =  new Plan("Plan Inicial", 100, 1000, 8792);
+        ofertaPlanes[0] = new Plan("Plan Inicial", 100, 1000, 8792);
         ofertaPlanes[1] = new Plan("Plan Pro", 200, 1000, 11192);
         ofertaPlanes[2] = new Plan("Plan Ultra", 300, 1000, 13592);
     }
     
+    //----------------------------------------------------------------------------------------------------------------------------------------
+    // Lectura y Escritura de los csv
+    //----------------------------------------------------------------------------------------------------------------------------------------
     public static void leerCsv() throws CsvValidationException{
         File file = new File(path);
         try{
@@ -76,13 +75,11 @@ public class Modelo {
             csvReader.close();
             inputFile.close();
         }catch(IOException e){
-            System.out.print("error");
             e.printStackTrace();
         }catch(ArrayIndexOutOfBoundsException e){
             e.printStackTrace();
-        }finally{
-            System.out.println("Programa corriendo...");
         }
+        
     }
     
     public static void leerCsvTelefonos() throws CsvValidationException {
@@ -100,9 +97,7 @@ public class Modelo {
                 String[] datosTelefonos;
                 int i=0; //Primer linea es un header, por lo que se salta
                 while( (datosTelefonos = csvReader.readNext()) != null) {
-                        System.out.println(Arrays.toString(datosTelefonos));
                         if(i>0) {
-                            System.out.println(datosTelefonos.length);
                             if(datosTelefonos.length >= 6){
                                 int rut = Integer.parseInt(datosTelefonos[0]);
                                 String nombrePlan = datosTelefonos[1];
@@ -116,7 +111,6 @@ public class Modelo {
                                     if(auxCliente.getRut() == rut){
                                         auxCliente.getListaPlanes().add(plan);
                                         mapaTelefonos.put(numeroTelefono,auxCliente);
-                                        System.out.print(rut+" "+plan);
                                     }
                                 }
                             }
@@ -127,96 +121,18 @@ public class Modelo {
                 csvReader.close();
                 inputFile.close();
         }catch(IOException e){
-            System.out.print("error");
             e.printStackTrace();
         }catch(ArrayIndexOutOfBoundsException e){
             e.printStackTrace();
-        }finally{
-            System.out.println("Programa corriendo...");
         }
         
     }
-
-    public boolean agregarCliente(String nomb,String apellPat,String apellMat,int rut){
-        //Cliente clienteAux;
-        /*do{
-            clienteAux = mapaClientes.get(rut);
-            if(clienteAux != null)
-                System.out.println("El rut ya existe ingrese otro:");
-        }while(clienteAux != null);*/           
-        nuevoCliente = new Cliente(nomb,apellPat,apellMat, rut);
-        listaClientes.add(nuevoCliente);
-        mapaClientes.put(rut,nuevoCliente);
-        return true;
-    }
-    
-    public HashMap<Integer, Cliente> mostrarCliente(){
-        HashMap<Integer, Cliente> mapaClonado = (HashMap<Integer, Cliente>) mapaClientes.clone();
-        return mapaClonado;
-    }
-    
-    public boolean modificarDatosCliente(int rut,String nom,String appPat,String appMat,String opcion){
-        if("1".equals(opcion) || "3".equals(opcion)){
-            mapaClientes.get(rut).modificarDatosClientes(nom);
-            if("1".equals(opcion))
-                return true;
-        }         
-        if("2".equals(opcion) || "3".equals(opcion)){
-            mapaClientes.get(rut).modificarDatosClientes(appPat, appMat);
-            return true;
-        }
-        return false;
-    }
-    
-    public boolean deleteCliente(int rutEliminar){
-        Cliente clienteAux = mapaClientes.get(rutEliminar);
-        if(clienteAux == null){
-            System.out.println("El usuario no se a encontrado");
-            return false;
-        }     
-                        
-        int largo = mapaClientes.get(rutEliminar).getListaPlanes().size();
-        for(int i = 0; i < largo; i++){
-            System.out.println("la clave  es " + mapaClientes.get(rutEliminar).getListaPlanes().get(i).getNumeroTelefono());
-            mapaTelefonos.remove(mapaClientes.get(rutEliminar).getListaPlanes().get(i).getNumeroTelefono());    
-        }
-        for(String key:mapaTelefonos.keySet())
-            System.out.println("numero " + key);
-                        
-        mapaClientes.remove(rutEliminar);
-        for(int i = 0; i < listaClientes.size(); i++){
-            if(listaClientes.get(i).getRut() == rutEliminar){
-                listaClientes.remove(i);
-                System.out.println("Se a eliminado con exito");
-                return true;
-                }  
-        }
-        return false;                
-    }
-    
-    public String [] listarCliente(){
-        String strClientes = "";
-        
-        for(int i = 0; i < listaClientes.size();i++){
-            strClientes += listaClientes.get(i).getNombre() + "," + listaClientes.get(i).getApellidoPaterno() + "," +
-                    listaClientes.get(i).getApellidoMaterno() + "," + listaClientes.get(i).getRut() +
-                    "," + Boolean.toString(listaClientes.get(i).getTieneContrato()) + "\n";
-        }
-        String[] arregloClientes = strClientes.split("\n");
-        
-        return arregloClientes;
-    }
-    
     
     public void guardarDatos(){
-        
         File fileDb = new File(path);
         
         if (fileDb.exists()) {
-            if (fileDb.delete()) {
-                System.out.println("Archivo existente eliminado: " + path);
-            } else {
-                System.out.println("No se pudo eliminar el archivo: " + path);
+            if (!fileDb.delete()) {
                 return;
             }
         }
@@ -239,8 +155,6 @@ public class Modelo {
             writer.writeNext(datosCliente);
         }
         
-        System.out.println("Nuevo archivo CSV creado: " + path);
-        
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -261,10 +175,7 @@ public class Modelo {
         int cantPlanes;
         
         if (fileTelefonos.exists()) {
-            if (fileTelefonos.delete()) {
-                System.out.println("Archivo existente eliminado: " + pathTelefonos);
-            } else {
-                System.out.println("No se pudo eliminar el archivo: " + pathTelefonos);
+            if (!fileTelefonos.delete()) {
                 return;
             }
         }
@@ -304,8 +215,6 @@ public class Modelo {
             }
         }
         
-        System.out.println("Nuevo archivo CSV creado: " + pathTelefonos);
-        
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -313,6 +222,140 @@ public class Modelo {
         
     }
 
+    // ---------------------------------------------------------------------------------------------------
+    //   Verificaciones con excepciones
+    // ---------------------------------------------------------------------------------------------------
+    public void nombreApellidosValido(String nombre, String apellidoPaterno, String apellidoMaterno) throws ClienteInvalidoException {
+        for(char c : nombre.toCharArray() )
+            if(Character.isDigit(c))
+                throw new ClienteInvalidoException("El nombre contiene caracteres numericos");
+        
+        for(char c : apellidoPaterno.toCharArray() )
+            if(Character.isDigit(c))
+                throw new ClienteInvalidoException("El apellido paterno contiene caracteres numericos");
+        
+        for(char c : apellidoMaterno.toCharArray() )
+            if(Character.isDigit(c))
+                throw new ClienteInvalidoException("El apellido materno contiene caracteres numericos");
+    }
+    
+    public void noExisteCliente(String rut) throws RutYaRegistradoException, RutInvalidoException {
+        for(char c : rut.toCharArray() )
+            if(!Character.isDigit(c))
+                throw new RutInvalidoException("El RUT ingresado contiene caracteres no numericos");
+        
+        int rutBuscado = Integer.parseInt(rut);
+        
+        if(mapaClientes.get(rutBuscado) != null) {
+            throw new RutYaRegistradoException("El RUT " + rutBuscado + " ya está registrado.");
+        }
+    }
+    
+    public void existeCliente(String rut) throws RutNoRegistradoException, RutInvalidoException {
+        for(char c : rut.toCharArray() )
+            if(!Character.isDigit(c))
+                throw new RutInvalidoException("El RUT ingresado contiene caracteres no numericos");
+        
+        int rutBuscado = Integer.parseInt(rut);
+        
+        if(mapaClientes.get(rutBuscado) == null) {
+            throw new RutNoRegistradoException("El RUT " + rutBuscado + " no está registrado.");
+        }
+    }
+    
+    public void numeroValido(String numeroTelefono) throws NumeroInvalidoException {
+        for(char c : numeroTelefono.toCharArray()) 
+            if(!Character.isDigit(c)) 
+                throw new NumeroInvalidoException("El numero de telefono contiene caracteres no numericos.");
+
+        if(numeroTelefono.length() < 8) 
+            throw new NumeroInvalidoException("El numero de telefono ingresado tiene menos de 8 digitos");
+        
+        if (numeroTelefono.length() > 8)
+            throw new NumeroInvalidoException("El numero de telefono ingresado tiene mas de 8 digitos");
+    }
+    
+    public void existeNumero(String numeroTelefono) throws NumeroNoRegistradoException, NumeroInvalidoException {
+        numeroValido(numeroTelefono);
+        
+        if(mapaTelefonos.get(numeroTelefono) == null)
+            throw new NumeroNoRegistradoException("+56 9 " + numeroTelefono + " no esta registrado en el sistema");
+    }
+    
+    public void noExisteNumero(String numeroTelefono) throws NumeroYaRegistradoException, NumeroInvalidoException {
+        numeroValido(numeroTelefono);
+        
+        if(mapaTelefonos.get(numeroTelefono) != null)
+            throw new NumeroYaRegistradoException("+56 9 " + numeroTelefono + " ya esta registrado en el sistema");
+    }
+    
+    public void existeNumeroEnCliente(String numeroTelefono, int rut) throws NumeroInvalidoException, NumeroNoRegistradoException, Exception {
+        existeNumero(numeroTelefono);
+        
+        if(mapaTelefonos.get(numeroTelefono).getRut() != rut)
+            throw new Exception("+56 9 " + numeroTelefono + " no esta registrado en el cliente con RUT " + rut);
+    }
+    
+    // ---------------------------------------------------------------------------------------------------
+    //   Metodos para el negocio de clientes
+    // ---------------------------------------------------------------------------------------------------
+    public boolean agregarCliente(String nomb,String apellPat,String apellMat,int rut) throws RutYaRegistradoException, RutInvalidoException{      
+        nuevoCliente = new Cliente(nomb,apellPat,apellMat, rut);
+        listaClientes.add(nuevoCliente);
+        mapaClientes.put(rut,nuevoCliente);
+        return true;
+    }
+    
+    public HashMap<Integer, Cliente> mostrarCliente(){
+        HashMap<Integer, Cliente> mapaClonado = (HashMap<Integer, Cliente>) mapaClientes.clone();
+        return mapaClonado;
+    }
+    
+    public boolean modificarDatosCliente(int rut,String nom,String appPat,String appMat,String opcion){
+        if("1".equals(opcion) || "3".equals(opcion)){
+            mapaClientes.get(rut).modificarDatosClientes(nom);
+            if("1".equals(opcion))
+                return true;
+        }         
+        if("2".equals(opcion) || "3".equals(opcion)){
+            mapaClientes.get(rut).modificarDatosClientes(appPat, appMat);
+            return true;
+        }
+        return false;
+    }
+    
+    public void deleteCliente(int rutEliminar) throws RutNoRegistradoException, RutInvalidoException{
+        existeCliente(rutEliminar+"");
+
+        //Eliminar sus planes del mapa de telefonos
+        for(Plan auxPlan : mapaClientes.get(rutEliminar).getListaPlanes())
+            mapaTelefonos.remove(auxPlan.getNumeroTelefono());
+
+        //Eliminar al cliente del mapa de clientes
+        mapaClientes.remove(rutEliminar);
+        
+        //Eliminar al cliente de la lista de clientes
+        for(int posCliente = 0; posCliente < listaClientes.size(); posCliente++)
+            if(listaClientes.get(posCliente).getRut() == rutEliminar)
+                listaClientes.remove(posCliente);
+    }
+    
+    public String [] listarCliente(){
+        String strClientes = "";
+        
+        for(int i = 0; i < listaClientes.size();i++){
+            strClientes += listaClientes.get(i).getNombre() + "," + listaClientes.get(i).getApellidoPaterno() + "," +
+                    listaClientes.get(i).getApellidoMaterno() + "," + listaClientes.get(i).getRut() +
+                    "," + Boolean.toString(listaClientes.get(i).getTieneContrato()) + "\n";
+        }
+        String[] arregloClientes = strClientes.split("\n");
+        
+        return arregloClientes;
+    }
+    
+    // ---------------------------------------------------------------------------------------------------
+    //   Metodos para el negocio de planes
+    // ---------------------------------------------------------------------------------------------------   
     public void agregarPlan(int planSeleccionado, int rutCliente) {
         String numeroTelefono;
         Faker generarNumero = new Faker();
@@ -325,36 +368,30 @@ public class Modelo {
             if(auxCliente.getRut() == rutCliente) {
                 auxCliente.agregarPlan(planSeleccionado, ofertaPlanes, numeroTelefono);
                 mapaTelefonos.put(numeroTelefono, auxCliente);
-                
-                System.out.println(numeroTelefono + "    " + auxCliente.getNombre()+auxCliente.getApellidoPaterno());
                 break;
             }          
         }
     }
-    
-    public void agregarPlanPersonalizado(int rutCliente, int cantGigaBytes, int cantMinutos, String numeroTelefono) {
+
+    public void agregarPlan(int rutCliente, int cantGigaBytes, int cantMinutos, String numeroTelefono) throws NumeroInvalidoException, NumeroYaRegistradoException {
+        //Generar numero de telefono si no fue ingresado
         if("".equals(numeroTelefono)) {
             Faker generarNumero = new Faker();
             String posibleNumero;
             
             do {
                 posibleNumero = generarNumero.numerify("########");
-                if(mapaTelefonos.get(posibleNumero) != null) {
-                    System.out.println(posibleNumero + " ya existe "); //------------------------------------------------------------------> AGREGAR EXCEPCION
-                }
-                else {
+                if(mapaTelefonos.get(posibleNumero) == null) 
                     numeroTelefono = posibleNumero;
-                    System.out.println(posibleNumero + " no existe, nuevo numero guardado");
-                }
             } while (numeroTelefono == null);
         }
+        
+        noExisteNumero(numeroTelefono);
         
         for(Cliente auxCliente : listaClientes) {
             if(auxCliente.getRut() == rutCliente) {
                 auxCliente.agregarPlanPersonalizadado(cantGigaBytes, cantMinutos, numeroTelefono);
                 mapaTelefonos.put(numeroTelefono, auxCliente);
-                
-                System.out.println(numeroTelefono + "    " + auxCliente.getNombre()+auxCliente.getApellidoPaterno());
                 break;
             }
         }
@@ -397,38 +434,13 @@ public class Modelo {
         return arregloPlanes;
     }
 
-    public boolean eliminarPlan(int rut, String numPlanEliminar) {
-        if(mapaTelefonos.get(numPlanEliminar) == null) {
-            return false;
-        }
+    public void eliminarPlan(int rut, String numPlanEliminar) throws NumeroNoRegistradoException, NumeroInvalidoException {
         
-        for(Cliente auxCliente : listaClientes) {
-            if(auxCliente.getRut() == rut) {
-                for (int i = 0 ; i < auxCliente.getListaPlanes().size() ; i++) {
-                    if(numPlanEliminar.equals(auxCliente.getListaPlanes().get(i).getNumeroTelefono())) {
-                        auxCliente.getListaPlanes().remove(i);
-                        break;
-                    }
-                }
-                break;
-            }
-        }
+        existeNumero(numPlanEliminar);
+  
+        mapaClientes.get(rut).eliminarPlan(numPlanEliminar);
         
         mapaTelefonos.remove(numPlanEliminar);
-        
-        return true;
-    }
-
-    public boolean existeNumero(String numBuscar, int rut) {
-        Cliente auxCliente = mapaTelefonos.get(numBuscar);
-        
-        if (auxCliente == null) {
-            //El numero no existe
-            return false;
-        }
-        
-        //el numero buscado existe, pero pertenece al cliente que se esta operando?
-        return auxCliente.getRut() == rut; 
         
     }
 
@@ -459,37 +471,18 @@ public class Modelo {
     public void modificarPlan(int rut, String numeroTelefono, int posPlan) {
         for (Cliente auxCliente : listaClientes) {
             if (auxCliente.getRut() == rut) {
-                System.out.println("Cliente " + rut + " encontrado" );
                 for (Plan auxPlan : auxCliente.getListaPlanes()) {
                     if (numeroTelefono.equals(auxPlan.getNumeroTelefono())) {
-                        System.out.println("Plan " + auxPlan.getNumeroTelefono() + " es el plan buscado :  " + numeroTelefono );
-                        
-                        System.out.println("Nombre Plan pre modificación : " + auxPlan.getNombrePlan());
                         auxPlan.setNombrePlan(ofertaPlanes[posPlan].getNombrePlan());
-                        System.out.println("Nombre Plan pos modificación : " + auxPlan.getNombrePlan());
-                        
-                        System.out.println("Gigas Plan pre modificación : " + auxPlan.getCantGigaBytes());
                         auxPlan.setCantGigaBytes(ofertaPlanes[posPlan].getCantGigaBytes());
-                        System.out.println("Gigas Plan pos modificación : " + auxPlan.getCantGigaBytes());
-                        
-                        System.out.println("Minutos Plan pre modificación : " + auxPlan.getCantMinutos());
                         auxPlan.setCantMinutos(ofertaPlanes[posPlan].getCantMinutos());
-                        System.out.println("Minutos Plan pos modificación : " + auxPlan.getCantMinutos());
-                        
-                        System.out.println("Precio Plan pre modificación : " + auxPlan.getPrecio());
                         auxPlan.setPrecio(ofertaPlanes[posPlan].getPrecio());
-                        System.out.println("Preco Plan pos modificación : " + auxPlan.getPrecio());
-                        
-                        System.out.println("Plan cambiado correctamente");
                         break;
                     }
-                    System.out.println("Plan " + auxPlan.getNumeroTelefono() + " es distinto a " + numeroTelefono );
                 }
                 break;
             }
         }
     }
-        
-    
-   
+
 }

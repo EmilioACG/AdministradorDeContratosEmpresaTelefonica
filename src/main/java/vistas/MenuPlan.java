@@ -5,6 +5,7 @@
 package vistas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -51,10 +52,11 @@ public class MenuPlan extends javax.swing.JFrame {
     public String getTxtRutBuscado() {
         return txtRutBuscado.getText();
     }
-    public void setJlbExisteRut(String mensaje) {
-        this.jlbExisteRut.setText(mensaje);
+
+    public void setJlbExisteRut(String msg, Color color) {
+        this.jlbExisteRut.setText(msg);
+        this.jlbExisteRut.setForeground(color);
     }
-    
     
     public void mostrarPanel(JPanel p){
         p.setSize(470, 600);

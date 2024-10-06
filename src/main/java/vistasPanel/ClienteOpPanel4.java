@@ -30,14 +30,9 @@ public class ClienteOpPanel4 extends javax.swing.JPanel {
         return butDelete;
     }
 
-    public void setLabelConfirmacionDelete(String msj,int SeEncontro) {
+    public void setLabelConfirmacionDelete(String msj, Color seEncontro) {
         this.labelConfirmacionDelete.setText(msj);
-        if(SeEncontro == 0)
-            this.labelConfirmacionDelete.setForeground(Color.red);
-        else if(SeEncontro == 1)
-            this.labelConfirmacionDelete.setForeground(Color.green);
-        else
-            this.labelConfirmacionDelete.setForeground(Color.black);
+        this.labelConfirmacionDelete.setForeground(seEncontro);
     }
     
     /**

@@ -4,6 +4,7 @@
  */
 package vistasPanel;
 
+import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -21,9 +22,11 @@ public class PlanOpPanel3 extends javax.swing.JPanel {
         return btnEliminarPlan;
     }
 
-    public void setJlbEstadoPlan(String msg) {
+    public void setJlbEstadoPlan(String msg,Color color) {
         this.jlbEstadoPlan.setText(msg);
+        this.jlbEstadoPlan.setForeground(color);
     }
+    
     public JLabel getJlbEstadoPlan() {
         return jlbEstadoPlan;
     }
@@ -90,7 +93,7 @@ public class PlanOpPanel3 extends javax.swing.JPanel {
                     .addComponent(btnEliminarPlan))
                 .addGap(27, 27, 27)
                 .addComponent(jlbEstadoPlan)
-                .addContainerGap(454, Short.MAX_VALUE))
+                .addContainerGap(453, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

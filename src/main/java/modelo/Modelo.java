@@ -226,6 +226,11 @@ public class Modelo {
     // ---------------------------------------------------------------------------------------------------
     //   Verificaciones con excepciones
     // ---------------------------------------------------------------------------------------------------
+    public void cantidadValida(int cantidad) throws CantidadValidaException {
+        if(cantidad < 0)
+            throw new CantidadValidaException("Una variable cuantitativa es negativa");
+    }
+    
     public void nombreValido(String nombre) throws ClienteInvalidoException {
         for(char c : nombre.toCharArray() )
             if(Character.isDigit(c))

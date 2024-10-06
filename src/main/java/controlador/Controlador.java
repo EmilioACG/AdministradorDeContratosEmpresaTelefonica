@@ -521,15 +521,19 @@ public class Controlador implements ActionListener {
                     int cantMinutos = Integer.parseInt(panelAgregarPlan.getTxtMinutosPlanPerso());
                     String numeroTelefono = panelAgregarPlan.getTxtNumeroPlanPerso();
 
+                    modeloG.cantidadValida(cantGigaBytes);
+                    modeloG.cantidadValida(cantMinutos);
                     modeloG.agregarPlan(rut,cantGigaBytes, cantMinutos,numeroTelefono);
 
                     Plan planContratado = modeloG.ultimoPlanContratado(rut);
                     mostrarUltimoPlanContratado(panelAgregarPlan, planContratado);
                     panelAgregarPlan.setJlbNumeroPersoVacio("Si no introduce un numero le generaremos uno", new Color(102,102,102));
                 } catch (NumberFormatException ex) {
-                    panelAgregarPlan.setJlbNumeroPersoVacio("Error: "+"cantidad de GB's o minutos invalida.", red);
+                    panelAgregarPlan.setJlbNumeroPersoVacio("Error: "+"cantidad de GB's y/o minutos invalida.", red);
                 } catch (NumeroInvalidoException | NumeroYaRegistradoException ex) {
                     panelAgregarPlan.setJlbNumeroPersoVacio("Error: "+ ex.getMessage(), red);
+                } catch (CantidadValidaException ex) {
+                    panelAgregarPlan.setJlbNumeroPersoVacio("Error: cantidad de GB's y/o minutos menores a 0.", red);
                 }
             }
         });
@@ -798,11 +802,16 @@ public class Controlador implements ActionListener {
             public void actionPerformed(ActionEvent ae) {
                 try {
                     int filtro = Integer.parseInt(panelListarContr.getTextFiltro());
+                    modeloG.cantidadValida(filtro);
+                        
                     String[] arregloContratos = modeloG.listarContratos(filtro);
                     panelListarContr.listTabContratos(arregloContratos);
                     panelListarContr.getJlbError().setVisible(false);
                 } catch (NumberFormatException ex) {
                     panelListarContr.setJlbError("Error: el precio ingresado no es valido", red);
+                    panelListarContr.getJlbError().setVisible(true);
+                } catch (CantidadValidaException ex) {
+                    panelListarContr.setJlbError("Error: el precio ingresado es menor a 0", red);
                     panelListarContr.getJlbError().setVisible(true);
                 }
             }

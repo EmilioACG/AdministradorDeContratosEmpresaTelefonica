@@ -6,7 +6,6 @@ package com.mycompany.administradordecontratosempresatelefonica;
 import com.opencsv.exceptions.CsvValidationException;
 import modelo.Cliente;
 import modelo.Menu;
-import modelo.Plan;
 import controlador.*;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -30,16 +29,12 @@ public class AdministradorDeContratosEmpresaTelefonica {
         Controlador controladorV = new Controlador();
         controladorV.iniciar();
        
-        
         do{
             Menu.menuGeneral();
             opcion = lector.nextLine();
             switch (opcion){
                 case "0":
                     Menu.menuExit();
-                    break;
-                case "1":
-                    menuCliente(lector);
                     break;
                 case "2":
                     menuContratos(lector);
@@ -54,52 +49,6 @@ public class AdministradorDeContratosEmpresaTelefonica {
         lector.close();
     }
     
-    public static void menuCliente(Scanner lector){
-        String opcionCliente;
-        String nombre;
-        String apePat;
-        String apeMat;
-        int rut;
-        
-        do{
-            Menu.menuClientePrint();
-            
-            opcionCliente = lector.nextLine();
-            
-            switch(opcionCliente){       
-                case "3":
-                    System.out.println("Ingrese el rut del usuario que desea modificar: ");
-                    rut = lector.nextInt();
-                    lector.nextLine();
-                    Menu.menuModificarCliente();
-                    opcionCliente = lector.nextLine();
-                    System.out.println("-----------------------------------------");
-                    if("1".equals(opcionCliente) || "3".equals(opcionCliente)){
-
-                        System.out.println("Ingrese su nombre actualizado...");
-                        nombre = lector.next();
-                        mapaClientes.get(rut).modificarDatosClientes(nombre);
-                    }
-                    
-                    if("2".equals(opcionCliente) || "3".equals(opcionCliente)){
-                        System.out.println("Ingrese su apellido paterno actualizado...");
-                        apePat = lector.next();
-                        System.out.println("Ingrese su apellido materno actualizado...");
-                        apeMat = lector.next();
-                        mapaClientes.get(rut).modificarDatosClientes(apePat, apeMat);
-                    }
-                    System.out.println("-----------------------------------------");
-                    break;
-                             
-                default:
-                    if(!"6".equals(opcionCliente))
-                        Menu.menuError();
-                    break;
-            }
-            
-        }while( !"6".equals(opcionCliente) );
-    }
-
     public static void menuContratos(Scanner lector){
         String opcionCliente;
         do{

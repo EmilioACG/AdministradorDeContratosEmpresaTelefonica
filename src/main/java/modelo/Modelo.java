@@ -581,7 +581,6 @@ public class Modelo {
     public String[] listarContratos(int filtro){
         llenarListContactos();
         String strContratos = "";
-        System.out.println(filtro);
         for(int i = 0 ; i < listaContratos.size() ; i++){
             if(filtro == 0)
             {
@@ -592,7 +591,6 @@ public class Modelo {
                 strContratos += listaContratos.get(i).datosAgrupados() + listaContratos.get(i).cantPlanes();
             }
         }
-        System.out.println(strContratos);
         String[] arrContratos = strContratos.split("\n");
         return arrContratos;
     }

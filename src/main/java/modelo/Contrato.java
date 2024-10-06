@@ -14,6 +14,10 @@ public class Contrato {
     private int cantidadPlanes;
     private double precioPlanes;
     
+    // -----------------------------------------------------------------------------------------------
+    //Constructor
+    // -----------------------------------------------------------------------------------------------
+    
     public Contrato (String nom,int rut,int cantPlanes,double precio){
         this.nombreCompleto = nom;
         this.rut = rut;
@@ -22,7 +26,9 @@ public class Contrato {
         
     }
     
-    //Geters
+    // -----------------------------------------------------------------------------------------------
+    // Getters
+    // -----------------------------------------------------------------------------------------------
 
     public String getNombreCompleto() {
         return nombreCompleto;
@@ -40,8 +46,9 @@ public class Contrato {
         return precioPlanes;
     }
     
-    
-    //Setters
+    // -----------------------------------------------------------------------------------------------
+    // Setters
+    // -----------------------------------------------------------------------------------------------
 
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
@@ -59,7 +66,9 @@ public class Contrato {
         this.cantidadPlanes = cantidadPlanes;
     }
     
-    //metodos
+    // -----------------------------------------------------------------------------------------------
+    // Metodos
+    // -----------------------------------------------------------------------------------------------
     
     public String datosAgrupados(){
         String datos = this.nombreCompleto + "," + this.rut + "," +

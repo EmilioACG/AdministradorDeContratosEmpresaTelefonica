@@ -28,6 +28,7 @@ import net.datafaker.Faker;
  */
 public class Modelo {
     private static ArrayList<Cliente> listaClientes = new ArrayList<>();
+    private static ArrayList<Contrato> listaContratos = new ArrayList<>();
     private static HashMap<Integer,Cliente> mapaClientes = new HashMap<>();
     private static HashMap<String, Cliente> mapaTelefonos = new HashMap<>();
     private static Plan ofertaPlanes[] = new Plan[3];
@@ -489,7 +490,87 @@ public class Modelo {
             }
         }
     }
-        
     
-   
+    //Contratos
+    
+    public Contrato buscarContrato(int rutClie){
+        llenarListContactos();
+        for(int i = 0 ; i < listaContratos.size() ; i ++){
+            if(listaContratos.get(i).getRut() == rutClie){
+                return listaContratos.get(i);
+            }
+        }
+        return null;
+    }
+    
+    public String[] listarContratos(int filtro){
+        llenarListContactos();
+        String strContratos = "";
+        System.out.println(filtro);
+        for(int i = 0 ; i < listaContratos.size() ; i++){
+            if(filtro == 0)
+            {
+                strContratos += listaContratos.get(i).datosAgrupados() + listaContratos.get(i).cantPlanes();
+            }
+            else if(filtro >= listaContratos.get(i).getPrecioPlanes())
+            {
+                strContratos += listaContratos.get(i).datosAgrupados() + listaContratos.get(i).cantPlanes();
+            }
+        }
+        System.out.println(strContratos);
+        String[] arrContratos = strContratos.split("\n");
+        return arrContratos;
+    }
+    
+    public void llenarListContactos(){
+        listaContratos.clear();
+        for(int i = 0; i < listaClientes.size() ; i ++){
+            Cliente clienteAux = listaClientes.get(i);
+            if(clienteAux.getTieneContrato()){
+               boolean tieneContrPerso = hayContPerso(clienteAux);
+               String nom = clienteAux.getNombre() + " " + clienteAux.getApellidoPaterno();
+               int rut = clienteAux.getRut();
+               int cantPlanes = clienteAux.getListaPlanes().size();
+               double precioPlanes = cantPrecio(clienteAux);
+               if(tieneContrPerso){
+                   int cantPlanesPerso = cantPlanPerso(clienteAux);
+                   ContratoPersonalizado contPerso = new ContratoPersonalizado(nom,rut,
+                           cantPlanes,cantPlanesPerso,precioPlanes,true);
+                    listaContratos.add(contPerso);
+               }
+               else{
+                   Contrato contrato = new Contrato(nom,rut,cantPlanes,precioPlanes);
+                   listaContratos.add(contrato);
+               }
+            }
+        }
+           
+    }
+    public boolean hayContPerso(Cliente cli){
+        boolean tieneContrPerso = false;
+        for(int i = 0 ; i < cli.getListaPlanes().size() ; i++){
+            if("Plan Personalizado".equals(cli.getListaPlanes().get(i).getNombrePlan())){
+                tieneContrPerso = true;
+                break;
+            }
+        }
+        return tieneContrPerso;
+    }
+    
+    public double cantPrecio(Cliente cli){
+        double precioTotal = 0;
+        for(int i = 0 ; i < cli.getListaPlanes().size() ; i++){
+            precioTotal += cli.getListaPlanes().get(i).getPrecio();
+        }
+        return precioTotal;
+    }
+    
+    public int cantPlanPerso(Cliente cli){
+        int contPlanes = 0;
+        for(int i = 0 ; i < cli.getListaPlanes().size() ; i++){
+            if("Plan Personalizado".equals(cli.getListaPlanes().get(i).getNombrePlan()))
+                contPlanes ++;
+        }
+        return contPlanes;
+    }
 }

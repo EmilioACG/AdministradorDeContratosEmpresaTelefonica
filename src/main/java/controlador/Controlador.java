@@ -13,8 +13,6 @@ import vistas.*;
 import vistasPanel.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.*;
 
 /**
@@ -27,7 +25,6 @@ public class Controlador implements ActionListener {
     private MenuCliente menuCliente;
     private MenuContrato menuContrato;
     private MenuPlan menuPlan;
-    //private Errores vistaError;
     private ClienteOpPanel1 panelAgregar;
     private Modelo modeloG;
     

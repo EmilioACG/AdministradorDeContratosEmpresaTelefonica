@@ -1,8 +1,5 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class Plan {
     private String nombrePlan;
     private String numeroTelefono;

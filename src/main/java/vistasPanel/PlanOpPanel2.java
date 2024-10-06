@@ -4,7 +4,6 @@
  */
 package vistasPanel;
 
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 /**

@@ -5,7 +5,6 @@
 
 package modelo;
 import modelo.Plan;
-import net.datafaker.Faker;
 import java.util.Scanner;
 import java.util.ArrayList;
 

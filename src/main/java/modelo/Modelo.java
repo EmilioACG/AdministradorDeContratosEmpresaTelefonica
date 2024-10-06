@@ -490,7 +490,32 @@ public class Modelo {
     
     // ---------------------------------------------------------------------------------------------------
     //   Metodos para el negocio de contratos
-    // ---------------------------------------------------------------------------------------------------  
+    // ---------------------------------------------------------------------------------------------------
+    public void llenarListContactos(){
+        listaContratos.clear();
+        for(int i = 0; i < listaClientes.size() ; i ++){
+            Cliente clienteAux = listaClientes.get(i);
+            if(clienteAux.getTieneContrato()){
+               boolean tieneContrPerso = hayContPerso(clienteAux);
+               String nom = clienteAux.getNombre() + " " + clienteAux.getApellidoPaterno();
+               int rut = clienteAux.getRut();
+               int cantPlanes = clienteAux.getListaPlanes().size();
+               double precioPlanes = cantPrecio(clienteAux);
+               if(tieneContrPerso){
+                   int cantPlanesPerso = cantPlanPerso(clienteAux);
+                   ContratoPersonalizado contPerso = new ContratoPersonalizado(nom,rut,
+                           cantPlanes,cantPlanesPerso,precioPlanes,true);
+                    listaContratos.add(contPerso);
+               }
+               else{
+                   Contrato contrato = new Contrato(nom,rut,cantPlanes,precioPlanes);
+                   listaContratos.add(contrato);
+               }
+            }
+        }
+           
+    }
+    
     public Contrato buscarContrato(int rutClie){
         llenarListContactos();
         for(int i = 0 ; i < listaContratos.size() ; i ++){
@@ -519,32 +544,7 @@ public class Modelo {
         String[] arrContratos = strContratos.split("\n");
         return arrContratos;
     }
-    
-    public void llenarListContactos(){
-        listaContratos.clear();
-        for(int i = 0; i < listaClientes.size() ; i ++){
-            Cliente clienteAux = listaClientes.get(i);
-            if(clienteAux.getTieneContrato()){
-               boolean tieneContrPerso = hayContPerso(clienteAux);
-               String nom = clienteAux.getNombre() + " " + clienteAux.getApellidoPaterno();
-               int rut = clienteAux.getRut();
-               int cantPlanes = clienteAux.getListaPlanes().size();
-               double precioPlanes = cantPrecio(clienteAux);
-               if(tieneContrPerso){
-                   int cantPlanesPerso = cantPlanPerso(clienteAux);
-                   ContratoPersonalizado contPerso = new ContratoPersonalizado(nom,rut,
-                           cantPlanes,cantPlanesPerso,precioPlanes,true);
-                    listaContratos.add(contPerso);
-               }
-               else{
-                   Contrato contrato = new Contrato(nom,rut,cantPlanes,precioPlanes);
-                   listaContratos.add(contrato);
-               }
-            }
-        }
-           
-    }
-    
+
     public boolean hayContPerso(Cliente cli){
         boolean tieneContrPerso = false;
         for(int i = 0 ; i < cli.getListaPlanes().size() ; i++){

@@ -236,70 +236,42 @@ public class Controlador implements ActionListener {
     }
     
     public void buscarCliente(ClienteOpPanel2 panelBuscar){
-        HashMap<Integer, Cliente> mapaClientes = modeloG.mostrarCliente();
         panelBuscar.getButEnviarBusCliente().addActionListener(new ActionListener() {
-        @Override   
-        public void actionPerformed(ActionEvent ae) {
-            panelBuscar.setLabelViewNombre("Nombre: ");
-            panelBuscar.setLabelViewApllPat("Apellido Paterno: ");
-            panelBuscar.setLabelViewApllMat("Apellido Materno: ");
-            panelBuscar.setLabelViewRut("Rut: ");
-            panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: ");
-            panelBuscar.setLabelViewSeEncontroClie("El cliente: ",black);
-            
-            try {
-                int rutClienteBuscado = Integer.parseInt(panelBuscar.getTextFieldRutBuscar());
-                Cliente clienteBuscado = modeloG.existeCliente(panelBuscar.getTextFieldRutBuscar());
-                
-                panelBuscar.setLabelViewNombre("Nombre: " + clienteBuscado.getNombre());
-                panelBuscar.setLabelViewApllPat("Apellido Paterno: " + clienteBuscado.getApellidoPaterno());
-                panelBuscar.setLabelViewApllMat("Apellido Materno: " + clienteBuscado.getApellidoMaterno());
-                panelBuscar.setLabelViewRut("Rut: " +  clienteBuscado.getRut());
-                boolean tieneContrato = clienteBuscado.getTieneContrato();
-                if(tieneContrato)
-                    panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: SI");
-                else
-                    panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: NO");
-                
-                panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡SE ENCONTRO!",green);
-            } catch (NumberFormatException ex) {
-                  panelBuscar.setLabelViewSeEncontroClie("Error: El RUT ingresado contiene caracteres no numericos",red);
-            } catch (RutNoRegistradoException | RutInvalidoException ex) {
-                panelBuscar.setLabelViewSeEncontroClie("Error: " + ex.getMessage(),red);
-            }
-            /*
-                //Se reinicia los label
+            @Override   
+            public void actionPerformed(ActionEvent ae) {
                 panelBuscar.setLabelViewNombre("Nombre: ");
                 panelBuscar.setLabelViewApllPat("Apellido Paterno: ");
                 panelBuscar.setLabelViewApllMat("Apellido Materno: ");
                 panelBuscar.setLabelViewRut("Rut: ");
                 panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: ");
                 panelBuscar.setLabelViewSeEncontroClie("El cliente: ",black);
-                //inicia busqueda de cliente
-                int rutBuscar = Integer.parseInt(panelBuscar.getTextFieldRutBuscar());
-                Cliente clienteAux = mapaClientes.get(rutBuscar);
-                if(clienteAux != null){ //verifivar si el cliente existe
-                    panelBuscar.setLabelViewNombre("Nombre: " + clienteAux.getNombre());
-                    panelBuscar.setLabelViewApllPat("Apellido Paterno: " + clienteAux.getApellidoPaterno());
-                    panelBuscar.setLabelViewApllMat("Apellido Materno: " + clienteAux.getApellidoMaterno());
-                    panelBuscar.setLabelViewRut("Rut: " +  clienteAux.getRut());
-                    boolean tieneContrato = clienteAux.getTieneContrato();
+            
+                try {
+                    Cliente clienteBuscado = modeloG.existeCliente(panelBuscar.getTextFieldRutBuscar());
+                
+                    panelBuscar.setLabelViewNombre("Nombre: " + clienteBuscado.getNombre());
+                    panelBuscar.setLabelViewApllPat("Apellido Paterno: " + clienteBuscado.getApellidoPaterno());
+                    panelBuscar.setLabelViewApllMat("Apellido Materno: " + clienteBuscado.getApellidoMaterno());
+                    panelBuscar.setLabelViewRut("Rut: " +  clienteBuscado.getRut());
+                    boolean tieneContrato = clienteBuscado.getTieneContrato();
                     if(tieneContrato)
                         panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: SI");
                     else
                         panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: NO");
+                
                     panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡SE ENCONTRO!",green);
+                } catch (NumberFormatException ex) {
+                    panelBuscar.setLabelViewSeEncontroClie("Error: El RUT ingresado contiene caracteres no numericos",red);
+                } catch (RutNoRegistradoException | RutInvalidoException ex) {
+                    panelBuscar.setLabelViewSeEncontroClie("Error: " + ex.getMessage(),red);
                 }
-                else{
-                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡NO SE ENCONTRO!",red);
-                }*/
+            
             }
         });
         
     }
     
-    public void modDatosClientes(ClienteOpPanel3 panelModificar){
-        
+    public void modDatosClientes(ClienteOpPanel3 panelModificar) {
         panelModificar.getButBuscarMod().addActionListener(new ActionListener() {
         @Override   
         public void actionPerformed(ActionEvent ae) {
@@ -361,6 +333,10 @@ public class Controlador implements ActionListener {
             
             }
         });
+    }
+    
+    public void mostrar(ClienteOpPanel3 panel, int opcion) {
+        
     }
     
     public void eliminarCliente(ClienteOpPanel4 panelEliminar){  

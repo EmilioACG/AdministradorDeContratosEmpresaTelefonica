@@ -14,9 +14,7 @@ import vistasPanel.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import modelo.Cliente;
-import modelo.Modelo;
-import modelo.Plan;
+import modelo.*;
 
 /**
  *
@@ -150,6 +148,8 @@ public class Controlador implements ActionListener {
             return;
         }
         else if (ae.getSource() == menuContrato.getBtnMostrarContratoCliente()) { //Opciones de cambio de menu contratos
+            /*
+<<<<<<< HEAD
             ContratoOpPanel1 panelMostrarContrato = new ContratoOpPanel1();
             menuContrato.mostrarPanel(panelMostrarContrato);
             return;
@@ -157,6 +157,17 @@ public class Controlador implements ActionListener {
         else if (ae.getSource() == menuContrato.getBtnMostrarContratos()) {
             ContratoOpPanel2 panelMostrarContratos = new ContratoOpPanel2();
             menuContrato.mostrarPanel(panelMostrarContratos);
+=======*/
+            ContratoOpPanel1 panelBuscarContr = new ContratoOpPanel1();
+            menuContrato.mostrarPanel(panelBuscarContr);
+            buscarContrato(panelBuscarContr);
+            return;
+        }
+        else if (ae.getSource() == menuContrato.getBtnMostrarContratos()) {
+            ContratoOpPanel2 panelListarContr = new ContratoOpPanel2();
+            menuContrato.mostrarPanel(panelListarContr);
+            listarContrato(panelListarContr);
+//>>>>>>> 44634604e96e026698ad8558091443cd5a4ccd33
             return;
         }
         else if (ae.getSource() == menuContrato.getBtnVolver()) { //Opcion salir de la ventana contrato
@@ -622,4 +633,43 @@ public class Controlador implements ActionListener {
         
         
     }
+    
+    // -----------------------------------------------------------------------------------------------
+    // Metodos Ventana Contratos
+    // -----------------------------------------------------------------------------------------------
+
+    public void buscarContrato(ContratoOpPanel1 panelBuscarContr){
+        // se reinician los mensajes
+        panelBuscarContr.setLabelNombre("Nombre : ");
+        panelBuscarContr.setLabelRut("Rut : ");
+        panelBuscarContr.setLabelCantPlanes("Cantidad de planes : ");
+        panelBuscarContr.setLabelPrecio("Precio del contrato : ");
+        
+        panelBuscarContr.getButBuscarContr().addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            int rutBuscar = Integer.parseInt(panelBuscarContr.getTxtpRutCliente());
+            if(modeloG.buscarContrato(rutBuscar) != null){
+                Contrato contrCliente = modeloG.buscarContrato(rutBuscar);
+                panelBuscarContr.setLabelNombre("Nombre : " + contrCliente.getNombreCompleto());
+                panelBuscarContr.setLabelRut("Rut : " + Integer.toString(contrCliente.getRut()));
+                panelBuscarContr.setLabelCantPlanes("Cantidad de planes : " + Integer.toString(contrCliente.getCantidadPlanes()));
+                panelBuscarContr.setLabelPrecio("Precio del contrato : " + Double.toString(contrCliente.getPrecioPlanes()));
+            }
+            }
+            
+        });
+    }
+
+    public void listarContrato(ContratoOpPanel2 panelListarContr){
+        
+        panelListarContr.getButListarContr().addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+                int filtro = Integer.parseInt(panelListarContr.getTextFiltro());
+                String[] arregloContratos = modeloG.listarContratos(filtro);
+                panelListarContr.listTabContratos(arregloContratos);
+            }
+        });
+        }
 }

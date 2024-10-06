@@ -4,6 +4,10 @@
  */
 package vistasPanel;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextPane;
+
 /**
  *
  * @author melis
@@ -12,11 +16,35 @@ public class ContratoOpPanel1 extends javax.swing.JPanel {
 
     /**
      * Creates new form ContratoOpPanel1
-     */
+    */
     public ContratoOpPanel1() {
         initComponents();
     }
 
+    public String getTxtpRutCliente() {
+        return txtpRutCliente.getText();
+    }
+    
+    public void setLabelNombre(String labelNombre) {
+        this.labelNombre.setText(labelNombre);
+    }
+
+    public void setLabelRut(String labelRut) {
+        this.labelRut.setText(labelRut);
+    }
+
+    public void setLabelCantPlanes(String labelRut) {
+        this.labelCantPlanes.setText(labelRut);
+    }
+
+    public void setLabelPrecio(String labelRut) {
+        this.labelPrecio.setText(labelRut);
+    }
+
+    public JButton getButBuscarContr() {
+        return butBuscarContr;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,10 +54,27 @@ public class ContratoOpPanel1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jlbRutCliente = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtpRutCliente = new javax.swing.JTextPane();
         jlbValidarRut = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
+        labelRut = new javax.swing.JLabel();
+        labelCantPlanes = new javax.swing.JLabel();
+        labelPrecio = new javax.swing.JLabel();
+        butBuscarContr = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         jlbRutCliente.setText("Ingrese el rut del usuario al cual desea ver el contrato");
 
@@ -38,17 +83,33 @@ public class ContratoOpPanel1 extends javax.swing.JPanel {
         jlbValidarRut.setForeground(new java.awt.Color(102, 102, 102));
         jlbValidarRut.setText("validando...");
 
+        labelNombre.setText("Nombre :");
+
+        labelRut.setText("Rut :");
+
+        labelCantPlanes.setText("Cantidad de planes :");
+
+        labelPrecio.setText("Precio del contrato :");
+
+        butBuscarContr.setText("Buscar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jlbValidarRut)
-                    .addComponent(jlbRutCliente)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(159, Short.MAX_VALUE))
+                    .addComponent(jlbRutCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCantPlanes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelRut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
+                .addComponent(butBuscarContr)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -56,18 +117,34 @@ public class ContratoOpPanel1 extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addComponent(jlbRutCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(butBuscarContr))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbValidarRut)
-                .addContainerGap(485, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(labelNombre)
+                .addGap(18, 18, 18)
+                .addComponent(labelRut)
+                .addGap(18, 18, 18)
+                .addComponent(labelCantPlanes)
+                .addGap(18, 18, 18)
+                .addComponent(labelPrecio)
+                .addContainerGap(322, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butBuscarContr;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlbRutCliente;
     private javax.swing.JLabel jlbValidarRut;
+    private javax.swing.JLabel labelCantPlanes;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelPrecio;
+    private javax.swing.JLabel labelRut;
     private javax.swing.JTextPane txtpRutCliente;
     // End of variables declaration//GEN-END:variables
 }

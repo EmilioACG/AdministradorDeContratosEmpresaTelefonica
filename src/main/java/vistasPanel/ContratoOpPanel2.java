@@ -4,6 +4,10 @@
  */
 package vistasPanel;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author melis
@@ -17,6 +21,23 @@ public class ContratoOpPanel2 extends javax.swing.JPanel {
         initComponents();
     }
 
+    public String getTextFiltro() {
+        return textFiltro.getText();
+    }
+
+    public JButton getButListarContr() {
+        return butListarContr;
+    }
+    
+    public void listTabContratos(String[] arContra){
+        DefaultTableModel model = (DefaultTableModel) tableContrato.getModel();
+        System.out.println(arContra.length);
+        for(int i = 0; i < arContra.length; i++){
+            String[] arCliAux = arContra[i].split(",");
+            model.addRow(arCliAux);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,19 +47,88 @@ public class ContratoOpPanel2 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelNombreListar = new javax.swing.JLabel();
+        butListarContr = new javax.swing.JButton();
+        labelTxtDescrip = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        textFiltro = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableContrato = new javax.swing.JTable();
+
+        labelNombreListar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        labelNombreListar.setText("Lista de contratos");
+        labelNombreListar.setToolTipText("");
+
+        butListarContr.setText("Listar");
+
+        labelTxtDescrip.setText("Si desea filtrar contratos por un precio igual o menor a cierta cantidad");
+
+        jLabel1.setText("Ingrese su precio aquí :");
+
+        textFiltro.setText("0");
+
+        tableContrato.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Rut", "Precio", "Planes personalizado", "Cant planes", "Cant personalizados"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableContrato);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 465, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNombreListar, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTxtDescrip)
+                    .addComponent(butListarContr)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(78, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(labelNombreListar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelTxtDescrip)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(textFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(butListarContr)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butListarContr;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelNombreListar;
+    private javax.swing.JLabel labelTxtDescrip;
+    private javax.swing.JTable tableContrato;
+    private javax.swing.JTextField textFiltro;
     // End of variables declaration//GEN-END:variables
 }

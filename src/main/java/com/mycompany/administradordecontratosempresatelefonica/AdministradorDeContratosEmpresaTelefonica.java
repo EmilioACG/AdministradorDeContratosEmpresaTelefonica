@@ -21,8 +21,6 @@ public class AdministradorDeContratosEmpresaTelefonica {
 
     private static ArrayList<Cliente> listaClientes = new ArrayList<>();
     private static HashMap<Integer,Cliente> mapaClientes = new HashMap<>();
-    private static HashMap<String, Cliente> mapaTelefonos = new HashMap<>();
-    private static Plan ofertaPlanes[] = new Plan[3];
     
     public static void main(String[] args) throws CsvValidationException{
 
@@ -61,8 +59,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
         String nombre;
         String apePat;
         String apeMat;
-        Cliente clienteAux = null;
-        int rut,largo;
+        int rut;
         
         do{
             Menu.menuClientePrint();

@@ -5,7 +5,6 @@
 package vistasPanel;
 
 import javax.swing.JButton;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**

@@ -5,8 +5,6 @@
 package vistasPanel;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextPane;
 
 /**
  *

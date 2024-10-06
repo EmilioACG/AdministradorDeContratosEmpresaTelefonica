@@ -51,15 +51,9 @@ public class ClienteOpPanel2 extends javax.swing.JPanel {
         this.labelViewTieneContr.setText(msj);
     }
 
-    public void setLabelViewSeEncontroClie(String msj,int SeEncontro) {
+    public void setLabelViewSeEncontroClie(String msj,Color color) {
         this.labelViewSeEncontroClie.setText(msj);
-        if(SeEncontro == 0)
-            this.labelViewSeEncontroClie.setForeground(Color.red);
-        else if(SeEncontro == 1)
-            this.labelViewSeEncontroClie.setForeground(Color.green);
-        else
-            this.labelViewSeEncontroClie.setForeground(Color.black);
-        
+        this.labelViewSeEncontroClie.setForeground(color);
     }
     
     

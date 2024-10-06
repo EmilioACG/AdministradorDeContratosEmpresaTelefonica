@@ -148,16 +148,6 @@ public class Controlador implements ActionListener {
             return;
         }
         else if (ae.getSource() == menuContrato.getBtnMostrarContratoCliente()) { //Opciones de cambio de menu contratos
-            /*
-<<<<<<< HEAD
-            ContratoOpPanel1 panelMostrarContrato = new ContratoOpPanel1();
-            menuContrato.mostrarPanel(panelMostrarContrato);
-            return;
-        }
-        else if (ae.getSource() == menuContrato.getBtnMostrarContratos()) {
-            ContratoOpPanel2 panelMostrarContratos = new ContratoOpPanel2();
-            menuContrato.mostrarPanel(panelMostrarContratos);
-=======*/
             ContratoOpPanel1 panelBuscarContr = new ContratoOpPanel1();
             menuContrato.mostrarPanel(panelBuscarContr);
             buscarContrato(panelBuscarContr);
@@ -167,7 +157,6 @@ public class Controlador implements ActionListener {
             ContratoOpPanel2 panelListarContr = new ContratoOpPanel2();
             menuContrato.mostrarPanel(panelListarContr);
             listarContrato(panelListarContr);
-//>>>>>>> 44634604e96e026698ad8558091443cd5a4ccd33
             return;
         }
         else if (ae.getSource() == menuContrato.getBtnVolver()) { //Opcion salir de la ventana contrato
@@ -183,25 +172,25 @@ public class Controlador implements ActionListener {
         else if (ae.getSource() == menuPlan.getBtnBuscarRut()) { //Opciones de cambio de menu planes
             buscarRut(menuPlan.getTxtRutBuscado());
         }
-        else if (ae.getSource() == menuPlan.getBtnAgregarPlan()) {
+        else if (ae.getSource() == menuPlan.getBtnAgregarPlan()) { //Agregar plan a un cliente
             PlanOpPanel1 panelAgregarPlan = new PlanOpPanel1();
             menuPlan.mostrarPanel(panelAgregarPlan);
             agregarPlan(panelAgregarPlan, getRutMenuPlan());
             return;
         }
-        else if (ae.getSource() == menuPlan.getBtnMostrarPlanes()) {
+        else if (ae.getSource() == menuPlan.getBtnMostrarPlanes()) { // Mostrar planes de un cliente
             PlanOpPanel2 panelMostrarPlan = new PlanOpPanel2();
             menuPlan.mostrarPanel(panelMostrarPlan);
             mostrarPlanes(panelMostrarPlan, getRutMenuPlan());
             return;
         }
-        else if (ae.getSource() == menuPlan.getBtnEliminarPlan()) {
+        else if (ae.getSource() == menuPlan.getBtnEliminarPlan()) { //Eliminar un plan de un cliente
             PlanOpPanel3 panelEliminarPlan = new PlanOpPanel3();
             menuPlan.mostrarPanel(panelEliminarPlan);
             eliminarPlan(panelEliminarPlan,getRutMenuPlan());
             return;
         }
-        else if (ae.getSource() == menuPlan.getBtnModificarPlan()) {
+        else if (ae.getSource() == menuPlan.getBtnModificarPlan()) { //Modificar un plan de un cliente
             PlanOpPanel4 panelModificarPlan = new PlanOpPanel4();
             menuPlan.mostrarPanel(panelModificarPlan);
             modificarPlan(panelModificarPlan, getRutMenuPlan());
@@ -212,7 +201,7 @@ public class Controlador implements ActionListener {
             menuG.setVisible(true);
             return;
         }
-        else if (ae.getSource() == menuG.getBtnExitPr()) {
+        else if (ae.getSource() == menuG.getBtnExitPr()) { //Opcion para finalizar correctamente el programa
             modeloG.guardarDatos();
             modeloG.guardarDatosPlanes();
             System.exit(0);
@@ -251,13 +240,41 @@ public class Controlador implements ActionListener {
         panelBuscar.getButEnviarBusCliente().addActionListener(new ActionListener() {
         @Override   
         public void actionPerformed(ActionEvent ae) {
+            panelBuscar.setLabelViewNombre("Nombre: ");
+            panelBuscar.setLabelViewApllPat("Apellido Paterno: ");
+            panelBuscar.setLabelViewApllMat("Apellido Materno: ");
+            panelBuscar.setLabelViewRut("Rut: ");
+            panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: ");
+            panelBuscar.setLabelViewSeEncontroClie("El cliente: ",black);
+            
+            try {
+                int rutClienteBuscado = Integer.parseInt(panelBuscar.getTextFieldRutBuscar());
+                Cliente clienteBuscado = modeloG.existeCliente(panelBuscar.getTextFieldRutBuscar());
+                
+                panelBuscar.setLabelViewNombre("Nombre: " + clienteBuscado.getNombre());
+                panelBuscar.setLabelViewApllPat("Apellido Paterno: " + clienteBuscado.getApellidoPaterno());
+                panelBuscar.setLabelViewApllMat("Apellido Materno: " + clienteBuscado.getApellidoMaterno());
+                panelBuscar.setLabelViewRut("Rut: " +  clienteBuscado.getRut());
+                boolean tieneContrato = clienteBuscado.getTieneContrato();
+                if(tieneContrato)
+                    panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: SI");
+                else
+                    panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: NO");
+                
+                panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡SE ENCONTRO!",green);
+            } catch (NumberFormatException ex) {
+                  panelBuscar.setLabelViewSeEncontroClie("Error: El RUT ingresado contiene caracteres no numericos",red);
+            } catch (RutNoRegistradoException | RutInvalidoException ex) {
+                panelBuscar.setLabelViewSeEncontroClie("Error: " + ex.getMessage(),red);
+            }
+            /*
                 //Se reinicia los label
                 panelBuscar.setLabelViewNombre("Nombre: ");
                 panelBuscar.setLabelViewApllPat("Apellido Paterno: ");
                 panelBuscar.setLabelViewApllMat("Apellido Materno: ");
                 panelBuscar.setLabelViewRut("Rut: ");
                 panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: ");
-                panelBuscar.setLabelViewSeEncontroClie("El cliente: ",2);
+                panelBuscar.setLabelViewSeEncontroClie("El cliente: ",black);
                 //inicia busqueda de cliente
                 int rutBuscar = Integer.parseInt(panelBuscar.getTextFieldRutBuscar());
                 Cliente clienteAux = mapaClientes.get(rutBuscar);
@@ -271,11 +288,11 @@ public class Controlador implements ActionListener {
                         panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: SI");
                     else
                         panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: NO");
-                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡SE ENCONTRO!",1);
+                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡SE ENCONTRO!",green);
                 }
                 else{
-                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡NO SE ENCONTRO!",0);
-                }
+                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡NO SE ENCONTRO!",red);
+                }*/
             }
         });
         

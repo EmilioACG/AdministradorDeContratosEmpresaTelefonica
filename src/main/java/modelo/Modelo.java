@@ -252,7 +252,7 @@ public class Modelo {
         }
     }
     
-    public void existeCliente(String rut) throws RutNoRegistradoException, RutInvalidoException {
+    public Cliente existeCliente(String rut) throws RutNoRegistradoException, RutInvalidoException {
         for(char c : rut.toCharArray() )
             if(!Character.isDigit(c))
                 throw new RutInvalidoException("El RUT ingresado contiene caracteres no numericos");
@@ -262,6 +262,8 @@ public class Modelo {
         if(mapaClientes.get(rutBuscado) == null) {
             throw new RutNoRegistradoException("El RUT " + rutBuscado + " no está registrado.");
         }
+        
+        return mapaClientes.get(rutBuscado);
     }
     
     public void numeroValido(String numeroTelefono) throws NumeroInvalidoException {

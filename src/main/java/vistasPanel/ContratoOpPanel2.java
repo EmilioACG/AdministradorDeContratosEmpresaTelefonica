@@ -4,7 +4,9 @@
  */
 package vistasPanel;
 
+import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +22,15 @@ public class ContratoOpPanel2 extends javax.swing.JPanel {
         initComponents();
     }
 
+    public JLabel getJlbError() {
+        return jlbError;
+    }
+
+    public void setJlbError(String msg, Color color) {
+        this.jlbError.setText(msg);
+        this.jlbError.setForeground(color);
+    }
+    
     public String getTextFiltro() {
         return textFiltro.getText();
     }
@@ -53,6 +64,7 @@ public class ContratoOpPanel2 extends javax.swing.JPanel {
         textFiltro = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableContrato = new javax.swing.JTable();
+        jlbError = new javax.swing.JLabel();
 
         labelNombreListar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelNombreListar.setText("Lista de contratos");
@@ -84,6 +96,8 @@ public class ContratoOpPanel2 extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableContrato);
 
+        jlbError.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,12 +107,15 @@ public class ContratoOpPanel2 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelNombreListar, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTxtDescrip)
-                    .addComponent(butListarContr)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(butListarContr)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlbError))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
@@ -113,7 +130,9 @@ public class ContratoOpPanel2 extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(textFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(butListarContr)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(butListarContr)
+                    .addComponent(jlbError))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -125,6 +144,7 @@ public class ContratoOpPanel2 extends javax.swing.JPanel {
     private javax.swing.JButton butListarContr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlbError;
     private javax.swing.JLabel labelNombreListar;
     private javax.swing.JLabel labelTxtDescrip;
     private javax.swing.JTable tableContrato;

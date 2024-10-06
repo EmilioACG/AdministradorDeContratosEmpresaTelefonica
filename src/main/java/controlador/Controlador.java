@@ -791,13 +791,20 @@ public class Controlador implements ActionListener {
     }
 
     public void listarContrato(ContratoOpPanel2 panelListarContr){
+        panelListarContr.getJlbError().setVisible(false);
         
         panelListarContr.getButListarContr().addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-                int filtro = Integer.parseInt(panelListarContr.getTextFiltro());
-                String[] arregloContratos = modeloG.listarContratos(filtro);
-                panelListarContr.listTabContratos(arregloContratos);
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    int filtro = Integer.parseInt(panelListarContr.getTextFiltro());
+                    String[] arregloContratos = modeloG.listarContratos(filtro);
+                    panelListarContr.listTabContratos(arregloContratos);
+                    panelListarContr.getJlbError().setVisible(false);
+                } catch (NumberFormatException ex) {
+                    panelListarContr.setJlbError("Error: el precio ingresado no es valido", red);
+                    panelListarContr.getJlbError().setVisible(true);
+                }
             }
         });
         }

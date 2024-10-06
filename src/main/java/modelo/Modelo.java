@@ -226,18 +226,62 @@ public class Modelo {
     // ---------------------------------------------------------------------------------------------------
     //   Verificaciones con excepciones
     // ---------------------------------------------------------------------------------------------------
+    public void nombreValido(String nombre) throws ClienteInvalidoException {
+        for(char c : nombre.toCharArray() )
+            if(Character.isDigit(c))
+                throw new ClienteInvalidoException("El nombre contiene caracteres numericos");
+        if("".equals(nombre))
+            throw new ClienteInvalidoException("No ha ingresado un nombre");
+        if (nombre.length() == 1) 
+            throw new ClienteInvalidoException("El nombre es muy corto");
+    }
+    
+    public void apellidoMaternoValido(String apellidoMaterno) throws ClienteInvalidoException {
+        for(char c : apellidoMaterno.toCharArray() )
+            if(Character.isDigit(c))
+                throw new ClienteInvalidoException("El apellido materno contiene caracteres numericos");
+        if("".equals(apellidoMaterno))
+            throw new ClienteInvalidoException("No ha ingresado un apellido materno");
+        if (apellidoMaterno.length() == 1 || apellidoMaterno.length() == 0) 
+            throw new ClienteInvalidoException("El apellido materno es muy corto");
+    }
+    
+    public void apellidoPaternoValido(String apellidoPaterno) throws ClienteInvalidoException {
+        for(char c : apellidoPaterno.toCharArray() )
+            if(Character.isDigit(c))
+                throw new ClienteInvalidoException("El apellido paterno contiene caracteres numericos");
+        if("".equals(apellidoPaterno))
+            throw new ClienteInvalidoException("No ha ingresado un apellido paterno");
+        if (apellidoPaterno.length() == 1 || apellidoPaterno.length() == 0) 
+            throw new ClienteInvalidoException("El apellido paterno es muy corto");
+    }
+    
     public void nombreApellidosValido(String nombre, String apellidoPaterno, String apellidoMaterno) throws ClienteInvalidoException {
         for(char c : nombre.toCharArray() )
             if(Character.isDigit(c))
                 throw new ClienteInvalidoException("El nombre contiene caracteres numericos");
+        if("".equals(nombre))
+            throw new ClienteInvalidoException("No ha ingresado un nombre");
+        if (nombre.length() == 1) 
+            throw new ClienteInvalidoException("El nombre es muy corto");
         
         for(char c : apellidoPaterno.toCharArray() )
             if(Character.isDigit(c))
                 throw new ClienteInvalidoException("El apellido paterno contiene caracteres numericos");
+        if("".equals(apellidoPaterno))
+            throw new ClienteInvalidoException("No ha ingresado un apellido paterno");
+        if (apellidoPaterno.length() == 1) 
+            throw new ClienteInvalidoException("El apellido paterno es muy corto");
+        
         
         for(char c : apellidoMaterno.toCharArray() )
             if(Character.isDigit(c))
                 throw new ClienteInvalidoException("El apellido materno contiene caracteres numericos");
+        if("".equals(apellidoMaterno))
+            throw new ClienteInvalidoException("No ha ingresado un apellido materno");
+        if (apellidoMaterno.length() == 1) 
+            throw new ClienteInvalidoException("El apellido materno es muy corto");
+        
     }
     
     public void noExisteCliente(String rut) throws RutYaRegistradoException, RutInvalidoException {
@@ -253,6 +297,9 @@ public class Modelo {
     }
     
     public Cliente existeCliente(String rut) throws RutNoRegistradoException, RutInvalidoException {
+        if("".equals(rut))
+            throw new RutInvalidoException("No ha ingresado un rut");
+        
         for(char c : rut.toCharArray() )
             if(!Character.isDigit(c))
                 throw new RutInvalidoException("El RUT ingresado contiene caracteres no numericos");

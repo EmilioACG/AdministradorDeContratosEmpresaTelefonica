@@ -31,58 +31,71 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jlabelModificar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jLabelPregunta" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                  <Component id="jlbQueDeseaModificar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbClientePostModificacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jlbPostNombre" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="textOpMod" max="32767" attributes="0"/>
-                          <Component id="textRutMod" pref="160" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jlbPostApellidoPaterno" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jlbPostApellidoMaterno" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
-                              <Component id="butBuscarMod" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelNomMod" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelNomApPat" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="textNombreMod" min="-2" pref="220" max="-2" attributes="0"/>
-                                  <Component id="textApellPatMod" min="-2" pref="220" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelApMat" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="textApellMatMod" min="-2" pref="220" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="butCambiar" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="89" max="32767" attributes="0"/>
+                  <Component id="jlbClientePretModificacion" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnModificarNombre" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnModificarApellidos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnModificarNombreApellidos" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelConfirmacionMod" min="-2" pref="320" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jlbIngresarRut" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtRutClienteModificado" min="-2" pref="160" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnRutClienteModificar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jlbClienteNoEncontrado" alignment="0" min="-2" pref="481" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="jlbPreNombre" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jlbPreApellidoPaterno" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jlbPreApellidoMaterno" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jlbErrorModificacion" alignment="0" min="-2" pref="494" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="btnConfirmModN" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnConfirmModApAm" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnConfirmModNApAm" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jlbIngresarApellidoMaterno" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtNuevoApellidoMaterno" min="-2" pref="220" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jlbIngresarApellidoPaterno" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtNuevoApellidoPaterno" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jlbIngresarNombre" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="txtNuevoNombre" min="-2" pref="222" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,120 +104,191 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlabelModificar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="textRutMod" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbIngresarRut" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="txtRutClienteModificado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRutClienteModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jlbClienteNoEncontrado" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Component id="jlbClientePretModificacion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlbPreNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbPreApellidoPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbPreApellidoMaterno" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <Component id="jlbQueDeseaModificar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnModificarNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnModificarApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnModificarNombreApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlbIngresarNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNuevoNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlbIngresarApellidoPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNuevoApellidoPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlbIngresarApellidoMaterno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNuevoApellidoMaterno" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelPregunta" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textOpMod" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnConfirmModN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnConfirmModApAm" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnConfirmModNApAm" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jlbErrorModificacion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Component id="jlbClientePostModificacion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="butBuscarMod" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbPostNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbPostApellidoPaterno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlbPostApellidoMaterno" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="textNombreMod" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelNomMod" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelNomApPat" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textApellPatMod" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelApMat" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="textApellMatMod" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="butCambiar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="labelConfirmacionMod" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+              <EmptySpace pref="68" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabelPregunta">
+    <Component class="javax.swing.JLabel" name="jlbIngresarRut">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Que desea modificar?           ingrese su opcion aqui :"/>
+        <Property name="text" type="java.lang.String" value="Ingrese el RUT del cliente que desea modificar :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jlabelModificar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese el nombre del usuario que desea modificar :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="textRutMod">
+    <Component class="javax.swing.JTextField" name="txtRutClienteModificado">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textRutModActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRutClienteModificadoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="textOpMod">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textOpModActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JTextField" name="txtNuevoNombre">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1.- Nombre del cliente"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="txtNuevoApellidoPaterno">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="2.- Apellidos"/>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="txtNuevoApellidoMaterno">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="3.- Nombre y apellidos"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelConfirmacionMod">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="El cliente :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="textNombreMod">
-    </Component>
-    <Component class="javax.swing.JTextField" name="textApellPatMod">
-    </Component>
-    <Component class="javax.swing.JTextField" name="textApellMatMod">
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelNomMod">
+    <Component class="javax.swing.JLabel" name="jlbIngresarNombre">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingrese nuevo nombre :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelNomApPat">
+    <Component class="javax.swing.JLabel" name="jlbIngresarApellidoPaterno">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingrese nuevo apellido paterno :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelApMat">
+    <Component class="javax.swing.JLabel" name="jlbIngresarApellidoMaterno">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingrese nuevo apellido materno :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="butBuscarMod">
+    <Component class="javax.swing.JButton" name="btnRutClienteModificar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butBuscarModActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRutClienteModificarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="butCambiar">
+    <Component class="javax.swing.JButton" name="btnConfirmModN">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cambiar"/>
+        <Property name="text" type="java.lang.String" value="Modificar Nombre"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnModificarNombre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarNombreActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnModificarApellidos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Apellidos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnModificarNombreApellidos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre y Apellido"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbClientePretModificacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cliente pre modificacion:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbPreNombre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbPreApellidoPaterno">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Apellido Paterno"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbPreApellidoMaterno">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Apellido Materno"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbQueDeseaModificar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xbf;Que desea modificar?"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbClientePostModificacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cliente post Modificacion"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbPostNombre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nuevo nombre"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbPostApellidoPaterno">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nuevo Apellido p"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbPostApellidoMaterno">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nuevo Apellido m"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbClienteNoEncontrado">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbErrorModificacion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnConfirmModApAm">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar Apellidos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnConfirmModNApAm">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar Nombre y Apellidos"/>
       </Properties>
     </Component>
   </SubComponents>

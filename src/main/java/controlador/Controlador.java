@@ -13,7 +13,8 @@ import vistas.*;
 import vistasPanel.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.*;
 
 /**
@@ -32,6 +33,7 @@ public class Controlador implements ActionListener {
     
     private int rutMenuPlan;
     private String numMenuPlan;
+    private int rutModificar;
     
     public Controlador () {
         inicializarVentanas();
@@ -48,6 +50,12 @@ public class Controlador implements ActionListener {
     }
     public void setNumMenuPlan(String numMenuPlan) {
         this.numMenuPlan = numMenuPlan;
+    }
+    public int getRutModificar() {
+        return rutModificar;
+    }
+    public void setRutModificar(int rutModificar) {
+        this.rutModificar = rutModificar;
     }
     
     public void inicializarVentanas() {
@@ -115,13 +123,6 @@ public class Controlador implements ActionListener {
         else if (ae.getSource() ==  menuCliente.getButOpcionModificarCliente()) { //Opcion modificar clientes
             ClienteOpPanel3 panelModificar = new ClienteOpPanel3();
             menuCliente.mostrarPanel(panelModificar);
-            panelModificar.setViewLabelNomMod(0);
-            panelModificar.setViewLabelNomApPat(0);
-            panelModificar.setViewLabelApMat(0);
-            panelModificar.setViewTextNombreMod(0);
-            panelModificar.setViewTextApellPatMod(0);
-            panelModificar.setViewTextApellMatMod(0);
-            panelModificar.setViewButCambiar(0);
             modDatosClientes(panelModificar);              
             return;
         }
@@ -271,18 +272,213 @@ public class Controlador implements ActionListener {
         
     }
     
+    public void seEncontroCliente(ClienteOpPanel3 panel, boolean visibilidad) {
+        panel.getJlbClientePretModificacion().setVisible(visibilidad);
+        panel.getJlbPreApellidoMaterno().setVisible(visibilidad);
+        panel.getJlbPreApellidoPaterno().setVisible(visibilidad);
+        panel.getJlbPreNombre().setVisible(visibilidad);
+        panel.getJlbQueDeseaModificar().setVisible(visibilidad);
+        panel.getBtnModificarApellidos().setVisible(visibilidad);
+        panel.getBtnModificarNombre().setVisible(visibilidad);
+        panel.getBtnModificarNombreApellidos().setVisible(visibilidad);
+        panel.getBtnConfirmModN().setVisible(false);
+        panel.getBtnConfirmModApAm().setVisible(false);
+        panel.getBtnConfirmModNApAm().setVisible(false);
+        panel.getJlbIngresarNombre().setVisible(false);
+        panel.getJlbIngresarApellidoPaterno().setVisible(false);
+        panel.getJlbIngresarApellidoMaterno().setVisible(false);
+        panel.getTxtNuevoNombre().setVisible(false);
+        panel.getTxtNuevoApellidoPaterno().setVisible(false);
+        panel.getTxtNuevoApellidoMaterno().setVisible(false);
+        panel.getJlbErrorModificacion().setVisible(false);
+        panel.getJlbClientePostModificacion().setVisible(false);
+        panel.getJlbPostApellidoMaterno().setVisible(false);
+        panel.getJlbPostApellidoPaterno().setVisible(false);
+        panel.getJlbPostNombre().setVisible(false);
+    }
+    
+    public void modificarNombre(ClienteOpPanel3 panel) {
+        panel.getBtnConfirmModN().setVisible(true);
+        panel.getBtnConfirmModApAm().setVisible(false);
+        panel.getBtnConfirmModNApAm().setVisible(false);
+        panel.getJlbIngresarNombre().setVisible(true);
+        panel.getJlbIngresarApellidoPaterno().setVisible(false);
+        panel.getJlbIngresarApellidoMaterno().setVisible(false);
+        panel.getTxtNuevoNombre().setVisible(true);
+        panel.getTxtNuevoApellidoPaterno().setVisible(false);
+        panel.getTxtNuevoApellidoMaterno().setVisible(false);
+    }
+    
+    public void modificarApellidos(ClienteOpPanel3 panel) {
+        panel.getBtnConfirmModN().setVisible(false);
+        panel.getBtnConfirmModApAm().setVisible(true);
+        panel.getBtnConfirmModNApAm().setVisible(false);
+        panel.getJlbIngresarNombre().setVisible(false);
+        panel.getJlbIngresarApellidoPaterno().setVisible(true);
+        panel.getJlbIngresarApellidoMaterno().setVisible(true);
+        panel.getTxtNuevoNombre().setVisible(false);
+        panel.getTxtNuevoApellidoPaterno().setVisible(true);
+        panel.getTxtNuevoApellidoMaterno().setVisible(true);
+    }    
+
+    public void modificarNombreApellidos(ClienteOpPanel3 panel) {
+        panel.getBtnConfirmModN().setVisible(false);
+        panel.getBtnConfirmModApAm().setVisible(false);
+        panel.getBtnConfirmModNApAm().setVisible(true);
+        panel.getJlbIngresarNombre().setVisible(true);
+        panel.getJlbIngresarApellidoPaterno().setVisible(true);
+        panel.getJlbIngresarApellidoMaterno().setVisible(true);
+        panel.getTxtNuevoNombre().setVisible(true);
+        panel.getTxtNuevoApellidoPaterno().setVisible(true);
+        panel.getTxtNuevoApellidoMaterno().setVisible(true);
+    }
+    
     public void modDatosClientes(ClienteOpPanel3 panelModificar) {
+        seEncontroCliente(panelModificar,false);
+        panelModificar.getJlbClienteNoEncontrado().setVisible(false);
+        
+        panelModificar.getBtnRutClienteModificar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    String rutModificar = panelModificar.getRutClienteModificado();
+                    Cliente clientePreModificado = modeloG.existeCliente(rutModificar);
+                    
+                    panelModificar.setJlbPreNombre(clientePreModificado.getNombre()+" ");
+                    panelModificar.setJlbPreApellidoPaterno(clientePreModificado.getApellidoPaterno()+" ");
+                    panelModificar.setJlbPreApellidoMaterno(clientePreModificado.getApellidoMaterno());
+                    setRutModificar(Integer.parseInt(rutModificar));
+                    panelModificar.getJlbClienteNoEncontrado().setVisible(false);
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                    seEncontroCliente(panelModificar,true);
+                } catch (RutNoRegistradoException | RutInvalidoException ex) {
+                    panelModificar.setJlbClienteNoEncontrado("Error: " + ex.getMessage(), red);
+                    panelModificar.getJlbClienteNoEncontrado().setVisible(true);
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                    seEncontroCliente(panelModificar,false);
+                }
+            }
+        });
+        
+        panelModificar.getBtnModificarNombre().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                modificarNombre(panelModificar);
+            }
+        });
+        
+        panelModificar.getBtnModificarApellidos().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                modificarApellidos(panelModificar);
+            }
+        });
+        
+        panelModificar.getBtnModificarNombreApellidos().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                modificarNombreApellidos(panelModificar);
+            }
+        });
+        
+        panelModificar.getBtnConfirmModN().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nuevoNombre = panelModificar.getNuevoNombre();
+                try {
+                    modeloG.nombreValido(nuevoNombre);
+                    
+                    modeloG.modificarDatosCliente(getRutModificar(), nuevoNombre, "", "", "1");
+                    
+                    Cliente clientePostModificado = modeloG.existeCliente(getRutModificar()+"");
+                    
+                    panelModificar.setJlbPostNombre(clientePostModificado.getNombre()+" ");
+                    panelModificar.getJlbPostNombre().setVisible(true);
+                    panelModificar.setJlbPostApellidoPaterno(clientePostModificado.getApellidoPaterno()+" ");
+                    panelModificar.getJlbPostApellidoPaterno().setVisible(true);
+                    panelModificar.setJlbPostApellidoMaterno(clientePostModificado.getApellidoMaterno());
+                    panelModificar.getJlbPostApellidoMaterno().setVisible(true);
+                    
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                } catch (ClienteInvalidoException | RutNoRegistradoException | RutInvalidoException ex){
+                    panelModificar.setJlbErrorModificacion("Error: " + ex.getMessage(), red);
+                    panelModificar.getJlbErrorModificacion().setVisible(true);
+                }
+            }
+        });
+        
+        panelModificar.getBtnConfirmModApAm().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nuevoApPaterno = panelModificar.getNuevoApellidoPaterno();
+                String nuevoApMaterno =panelModificar.getNuevoApellidoMaterno();
+                try {
+                    modeloG.apellidoPaternoValido(nuevoApPaterno);
+                    modeloG.apellidoMaternoValido(nuevoApMaterno);
+                    
+                    modeloG.modificarDatosCliente(getRutModificar(), "", nuevoApPaterno, nuevoApMaterno, "2");
+                    
+                    Cliente clientePostModificado = modeloG.existeCliente(getRutModificar()+"");
+                    
+                    panelModificar.setJlbPostNombre(clientePostModificado.getNombre()+" ");
+                    panelModificar.getJlbPostNombre().setVisible(true);
+                    panelModificar.setJlbPostApellidoPaterno(clientePostModificado.getApellidoPaterno()+" ");
+                    panelModificar.getJlbPostApellidoPaterno().setVisible(true);
+                    panelModificar.setJlbPostApellidoMaterno(clientePostModificado.getApellidoMaterno());
+                    panelModificar.getJlbPostApellidoMaterno().setVisible(true);
+                    
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                } catch (ClienteInvalidoException | RutNoRegistradoException | RutInvalidoException ex){
+                    panelModificar.setJlbErrorModificacion("Error: " + ex.getMessage(), red);
+                    panelModificar.getJlbErrorModificacion().setVisible(true);
+                }
+                
+            }
+        });
+        
+        panelModificar.getBtnConfirmModNApAm().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nuevoNombre = panelModificar.getNuevoNombre();
+                String nuevoApPaterno = panelModificar.getNuevoApellidoPaterno();
+                String nuevoApMaterno =panelModificar.getNuevoApellidoMaterno();
+                try {
+                    modeloG.nombreApellidosValido(nuevoNombre, nuevoApPaterno, nuevoApMaterno);
+                    
+                    modeloG.modificarDatosCliente(getRutModificar(), nuevoNombre, nuevoApPaterno, nuevoApMaterno, "3");
+                    Cliente clientePostModificado = modeloG.existeCliente(getRutModificar()+"");
+                    
+                    panelModificar.setJlbPostNombre(clientePostModificado.getNombre()+" ");
+                    panelModificar.getJlbPostNombre().setVisible(true);
+                    panelModificar.setJlbPostApellidoPaterno(clientePostModificado.getApellidoPaterno()+" ");
+                    panelModificar.getJlbPostApellidoPaterno().setVisible(true);
+                    panelModificar.setJlbPostApellidoMaterno(clientePostModificado.getApellidoMaterno());
+                    panelModificar.getJlbPostApellidoMaterno().setVisible(true);
+                    
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                } catch (ClienteInvalidoException | RutNoRegistradoException | RutInvalidoException ex){
+                    panelModificar.setJlbErrorModificacion("Error: " + ex.getMessage(), red);
+                    panelModificar.getJlbErrorModificacion().setVisible(true);
+                }
+                
+            }
+        });
+        
+        
+        /*
+        panelModificar.setViewLabelNomMod(0);
+        panelModificar.setViewLabelNomApPat(0);
+        panelModificar.setViewLabelApMat(0);
+        panelModificar.setViewTextNombreMod(0);
+        panelModificar.setViewTextApellPatMod(0);
+        panelModificar.setViewTextApellMatMod(0);
+        panelModificar.setViewButCambiar(0);
+        
         panelModificar.getButBuscarMod().addActionListener(new ActionListener() {
         @Override   
         public void actionPerformed(ActionEvent ae) {
             //Se reinicia los label y txtfield
-            panelModificar.setViewLabelNomMod(0);
-            panelModificar.setViewLabelNomApPat(0);
-            panelModificar.setViewLabelApMat(0);
-            panelModificar.setViewTextNombreMod(0);
-            panelModificar.setViewTextApellPatMod(0);
-            panelModificar.setViewTextApellMatMod(0);
-            panelModificar.setViewButCambiar(0);
+            
             String nombre = panelModificar.getTextRutMod();
             String opcion = panelModificar.getTextOpMod(); 
             //Se hace visible la opcion correspondiente
@@ -332,13 +528,9 @@ public class Controlador implements ActionListener {
                 });
             
             }
-        });
+        });*/
     }
-    
-    public void mostrar(ClienteOpPanel3 panel, int opcion) {
-        
-    }
-    
+
     public void eliminarCliente(ClienteOpPanel4 panelEliminar){  
         panelEliminar.getButDelete().addActionListener(new ActionListener() {
         @Override

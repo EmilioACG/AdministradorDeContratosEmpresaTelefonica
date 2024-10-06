@@ -7,14 +7,11 @@ import com.opencsv.exceptions.CsvValidationException;
 import modelo.Cliente;
 import modelo.Menu;
 import modelo.Plan;
-import vistas.MenuGeneral;
-import net.datafaker.Faker;
 import controlador.*;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JFrame;
 
 
 /**
@@ -51,9 +48,6 @@ public class AdministradorDeContratosEmpresaTelefonica {
                     break;
                 case "2":
                     menuContratos(lector);
-                    break;
-                case "3":
-                    menuPlanes(lector, ofertaPlanes);
                     break;
                 default:
                     if(!"0".equals(opcion))
@@ -194,74 +188,6 @@ public class AdministradorDeContratosEmpresaTelefonica {
         }while( !"6".equals(opcionCliente) );
     }
 
-
-
-    public static void menuPlanes(Scanner lector, Plan[] ofertaPlanes){
-
-        String opcionPlan;
-        String numeroTelefono;
-        Faker generarNumero = new Faker();
-        int rut;
-
-        do{
-
-            do{
-                System.out.println("Ingrese el rut del cliente que desea operar sobre sus planes:");
-                rut = lector.nextInt();
-                lector.nextLine();
-                if( mapaClientes.get(rut) == null )
-                    Menu.menuError("Usuario "+rut+" no ha sido encontrado.");
-            }while( mapaClientes.get(rut) == null );
-
-
-            Menu.menuPlanes();
-
-            opcionPlan = lector.nextLine();
-
-            switch(opcionPlan){
-                case "1": //1.- Agregar un plan
-                    Menu.ofertaPlanes();
-
-                    int seleccionPlan;
-                    seleccionPlan = lector.nextInt();
-                    lector.nextLine();
-
-                    do{
-                        numeroTelefono = generarNumero.numerify("########");
-                    }while( mapaTelefonos.get(numeroTelefono) != null );
-
-
-                    for (Cliente cliente : listaClientes) {
-                        if (cliente.getRut() == rut) {
-                            cliente.agregarPlan(seleccionPlan - 1, ofertaPlanes.clone(), numeroTelefono);
-                            mapaTelefonos.put(numeroTelefono, cliente);
-                            break;
-                        }
-                    }
-                    break;
-
-                case "2": //2.- Mostrar planes
-                    mapaClientes.get(rut).mostrarPlanes();
-                    break;
-
-                case "3": //3.- Eliminar un plan
-                    mapaClientes.get(rut).eliminarPlan(lector);
-                    break;
-
-                case "4": //4.- Eliminar todos los planes
-                    mapaClientes.get(rut).eliminarPlan();
-                    break;
-
-                default:
-                    if( !"5".equals(opcionPlan) )
-                        Menu.menuError();
-                    break;
-            }
-
-        }while( !"5".equals(opcionPlan) );
-    }
-
-    
     public static void menuContratos(Scanner lector){
         String opcionCliente;
         do{

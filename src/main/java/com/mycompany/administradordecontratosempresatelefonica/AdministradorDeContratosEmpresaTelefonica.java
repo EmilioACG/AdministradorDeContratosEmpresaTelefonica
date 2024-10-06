@@ -69,45 +69,7 @@ public class AdministradorDeContratosEmpresaTelefonica {
             
             opcionCliente = lector.nextLine();
             
-            switch(opcionCliente){
-                case "1":
-                    Cliente nuevoCliente;
-                    System.out.println("-----------------------------------------");
-                    System.out.println("Ingrese su nombre...");
-                    nombre = lector.next();
-                    System.out.println("Ingrese su apellido paterno...");
-                    apePat = lector.next();
-                    System.out.println("Ingrese su apellido materno...");
-                    apeMat = lector.next();
-                    System.out.println("Ingrese su rut...");
-                    do{
-                        rut = lector.nextInt();
-                        lector.nextLine();
-                        clienteAux = mapaClientes.get(rut);
-                            if(clienteAux != null)
-                                System.out.println("El rut ya existe ingrese otro:");
-                    }while(clienteAux != null);                  
-                    System.out.println("-----------------------------------------");
-                    nuevoCliente = new Cliente(nombre,apePat, apeMat, rut);
-                    listaClientes.add(nuevoCliente);
-                    mapaClientes.put(rut,nuevoCliente);
-                    System.out.println("tamaño planes lista " + mapaClientes.get(rut).getListaPlanes().size());
-                    break;
-                   
-                case "2": 
-                    System.out.print("Ingrese el rut del cliente que desea buscar:");
-                    rut = lector.nextInt();
-                    lector.nextLine();
-                    clienteAux = mapaClientes.get(rut);
-                    if(clienteAux != null){
-                        System.out.println("Los datos del cliente son:");
-                        System.out.println(clienteAux.mostrarDatos()); 
-                    }
-                    else
-                        System.out.println("El usuario no se a encontrado");   
-                    break;
-                    
-                    
+            switch(opcionCliente){       
                 case "3":
                     System.out.println("Ingrese el rut del usuario que desea modificar: ");
                     rut = lector.nextInt();
@@ -130,48 +92,6 @@ public class AdministradorDeContratosEmpresaTelefonica {
                         mapaClientes.get(rut).modificarDatosClientes(apePat, apeMat);
                     }
                     System.out.println("-----------------------------------------");
-                    break;
-                    
-                    
-                case "4":
-                    System.out.println("¡ADVERTENCIA!, NO SE RECOMIENDA ELIMINAR CLIENTES");
-                    System.out.println("¿QUIERES SEGUIR?");
-                    System.out.println("SI-Culaquier otro numero");
-                    System.out.println("NO-presione el 0");
-                    opcionCliente = lector.nextLine();
-                    if(!"0".equals(opcionCliente)){
-                        
-                        System.out.println("Ingrese el rut del usuario que desea eliminar: ");
-                        rut = lector.nextInt();
-                        lector.nextLine();
-                        clienteAux = mapaClientes.get(rut);
-                        if(clienteAux == null){
-                            System.out.println("El usuario no se a encontrado");
-                            break;
-                        }     
-                        
-                        largo = mapaClientes.get(rut).getListaPlanes().size();
-                        for(int i = 0; i < largo; i++){
-                            System.out.println("la clave  es " + mapaClientes.get(rut).getListaPlanes().get(i).getNumeroTelefono());
-                            mapaTelefonos.remove(mapaClientes.get(rut).getListaPlanes().get(i).getNumeroTelefono());    
-                        }
-                        for(String key:mapaTelefonos.keySet())
-                            System.out.println("numero " + key);
-                        
-                        mapaClientes.remove(rut);
-                        for(int i = 0; i < listaClientes.size(); i++){
-                            if(listaClientes.get(i).getRut() == rut){
-                                listaClientes.remove(i);
-                                System.out.println("Se a eliminado con exito");
-                                break;
-                            }  
-                        }
-                    }  
-                    break; 
-                    
-                case "5":
-                    for(Cliente cliente:listaClientes)
-                        System.out.println(cliente.mostrarDatos());
                     break;
                              
                 default:

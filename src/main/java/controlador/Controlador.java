@@ -765,16 +765,26 @@ public class Controlador implements ActionListener {
         panelBuscarContr.setLabelPrecio("Precio del contrato : ");
         
         panelBuscarContr.getButBuscarContr().addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            int rutBuscar = Integer.parseInt(panelBuscarContr.getTxtpRutCliente());
-            if(modeloG.buscarContrato(rutBuscar) != null){
-                Contrato contrCliente = modeloG.buscarContrato(rutBuscar);
-                panelBuscarContr.setLabelNombre("Nombre : " + contrCliente.getNombreCompleto());
-                panelBuscarContr.setLabelRut("Rut : " + Integer.toString(contrCliente.getRut()));
-                panelBuscarContr.setLabelCantPlanes("Cantidad de planes : " + Integer.toString(contrCliente.getCantidadPlanes()));
-                panelBuscarContr.setLabelPrecio("Precio del contrato : " + Double.toString(contrCliente.getPrecioPlanes()));
-            }
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    String rutBuscarContrato = panelBuscarContr.getTxtpRutCliente();
+                    modeloG.existeCliente(rutBuscarContrato);
+                    int rutBuscar = Integer.parseInt(rutBuscarContrato);
+                    Contrato contratoCliente = modeloG.buscarContrato(rutBuscar);
+                    if(contratoCliente != null) {
+                        panelBuscarContr.setJlbValidarRut("Cliente validado", new Color (102,102,102));
+                        panelBuscarContr.setLabelNombre("Nombre : " + contratoCliente.getNombreCompleto());
+                        panelBuscarContr.setLabelRut("Rut : " + Integer.toString(contratoCliente.getRut()));
+                        panelBuscarContr.setLabelCantPlanes("Cantidad de planes : " + Integer.toString(contratoCliente.getCantidadPlanes()));
+                        panelBuscarContr.setLabelPrecio("Precio del contrato : $" + Double.toString(contratoCliente.getPrecioPlanes()));
+                    }
+                    else {
+                        panelBuscarContr.setJlbValidarRut("El cliente " + rutBuscar + " no tiene contratos", new Color(153,153,0));
+                    }
+                } catch (RutNoRegistradoException | RutInvalidoException ex) {
+                    panelBuscarContr.setJlbValidarRut("Error: " + ex.getMessage(), red);
+                }
             }
             
         });

@@ -4,7 +4,9 @@
  */
 package vistasPanel;
 
+import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -41,6 +43,15 @@ public class ContratoOpPanel1 extends javax.swing.JPanel {
 
     public JButton getButBuscarContr() {
         return butBuscarContr;
+    }
+
+    public JLabel getJlbValidarRut() {
+        return jlbValidarRut;
+    }
+
+    public void setJlbValidarRut(String msg, Color color) {
+        this.jlbValidarRut.setText(msg);
+        this.jlbValidarRut.setForeground(color);
     }
     
     /**

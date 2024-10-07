@@ -5,20 +5,15 @@
 package controlador;
 
 import com.opencsv.exceptions.CsvValidationException;
+import excepciones.*;
+import java.awt.Color;
+import static java.awt.Color.*;
 import javax.swing.JFrame;
 import vistas.*;
 import vistasPanel.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import modelo.Cliente;
-import modelo.Contrato;
-import modelo.Modelo;
-import modelo.Plan;
-import vistas.MenuPlan;
+import modelo.*;
 
 /**
  *
@@ -35,6 +30,7 @@ public class Controlador implements ActionListener {
     
     private int rutMenuPlan;
     private String numMenuPlan;
+    private int rutModificar;
     
     public Controlador () {
         inicializarVentanas();
@@ -51,6 +47,12 @@ public class Controlador implements ActionListener {
     }
     public void setNumMenuPlan(String numMenuPlan) {
         this.numMenuPlan = numMenuPlan;
+    }
+    public int getRutModificar() {
+        return rutModificar;
+    }
+    public void setRutModificar(int rutModificar) {
+        this.rutModificar = rutModificar;
     }
     
     public void inicializarVentanas() {
@@ -93,7 +95,6 @@ public class Controlador implements ActionListener {
         menuG.getBtnExitPr().addActionListener(this);
         menuG.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         menuG.setVisible(true);
-
     }
 
     @Override
@@ -119,13 +120,6 @@ public class Controlador implements ActionListener {
         else if (ae.getSource() ==  menuCliente.getButOpcionModificarCliente()) { //Opcion modificar clientes
             ClienteOpPanel3 panelModificar = new ClienteOpPanel3();
             menuCliente.mostrarPanel(panelModificar);
-            panelModificar.setViewLabelNomMod(0);
-            panelModificar.setViewLabelNomApPat(0);
-            panelModificar.setViewLabelApMat(0);
-            panelModificar.setViewTextNombreMod(0);
-            panelModificar.setViewTextApellPatMod(0);
-            panelModificar.setViewTextApellMatMod(0);
-            panelModificar.setViewButCambiar(0);
             modDatosClientes(panelModificar);              
             return;
         }
@@ -174,36 +168,30 @@ public class Controlador implements ActionListener {
             return;
         }
         else if (ae.getSource() == menuPlan.getBtnBuscarRut()) { //Opciones de cambio de menu planes
-            setRutMenuPlan(Integer.parseInt(menuPlan.getTxtRutBuscado()));
-            buscarRut(rutMenuPlan);
-            return;
+            buscarRut(menuPlan.getTxtRutBuscado());
         }
-        else if (ae.getSource() == menuPlan.getBtnAgregarPlan()) {
+        else if (ae.getSource() == menuPlan.getBtnAgregarPlan()) { //Agregar plan a un cliente
             PlanOpPanel1 panelAgregarPlan = new PlanOpPanel1();
-            System.out.println("rut buscado: "+ getRutMenuPlan());
             menuPlan.mostrarPanel(panelAgregarPlan);
             agregarPlan(panelAgregarPlan, getRutMenuPlan());
             return;
         }
-        else if (ae.getSource() == menuPlan.getBtnMostrarPlanes()) {
-            PlanOpPanel2 panelMostrar = new PlanOpPanel2();
-            menuPlan.mostrarPanel(panelMostrar);
-            mostrarPlanes(panelMostrar, getRutMenuPlan());
+        else if (ae.getSource() == menuPlan.getBtnMostrarPlanes()) { // Mostrar planes de un cliente
+            PlanOpPanel2 panelMostrarPlan = new PlanOpPanel2();
+            menuPlan.mostrarPanel(panelMostrarPlan);
+            mostrarPlanes(panelMostrarPlan, getRutMenuPlan());
             return;
         }
-        else if (ae.getSource() == menuPlan.getBtnEliminarPlan()) {
-            PlanOpPanel3 panelEliminar = new PlanOpPanel3();
-            menuPlan.mostrarPanel(panelEliminar);
-            eliminarPlan(panelEliminar,getRutMenuPlan());
+        else if (ae.getSource() == menuPlan.getBtnEliminarPlan()) { //Eliminar un plan de un cliente
+            PlanOpPanel3 panelEliminarPlan = new PlanOpPanel3();
+            menuPlan.mostrarPanel(panelEliminarPlan);
+            eliminarPlan(panelEliminarPlan,getRutMenuPlan());
             return;
         }
-        else if (ae.getSource() == menuPlan.getBtnModificarPlan()) {
-            PlanOpPanel4 panelModificar = new PlanOpPanel4();
-            System.out.println("Panel creado" );
-            menuPlan.mostrarPanel(panelModificar);
-            System.out.println("Mostrandose panel de modificar" );
-            modificarPlan(panelModificar, getRutMenuPlan());
-            System.out.println("Llamando funcionalidad del metodo modificar" );
+        else if (ae.getSource() == menuPlan.getBtnModificarPlan()) { //Modificar un plan de un cliente
+            PlanOpPanel4 panelModificarPlan = new PlanOpPanel4();
+            menuPlan.mostrarPanel(panelModificarPlan);
+            modificarPlan(panelModificarPlan, getRutMenuPlan());
             return;
         }
         else if (ae.getSource() == menuPlan.getBtnVolver()) { //Opcion salir de la ventana planes
@@ -211,7 +199,7 @@ public class Controlador implements ActionListener {
             menuG.setVisible(true);
             return;
         }
-        else if (ae.getSource() == menuG.getBtnExitPr()) {
+        else if (ae.getSource() == menuG.getBtnExitPr()) { //Opcion para finalizar correctamente el programa
             modeloG.guardarDatos();
             modeloG.guardarDatosPlanes();
             System.exit(0);
@@ -225,132 +213,269 @@ public class Controlador implements ActionListener {
     // -----------------------------------------------------------------------------------------------        
     public void agregarCliente(ClienteOpPanel1 panelAgregar){
         panelAgregar.getButEnviarAgregarCliente().addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-                String nombre = panelAgregar.getTxtFiNombre();
-                String apellPat = panelAgregar.getTxtFiApellPat();
-                String apellMat = panelAgregar.getTxtFiApellMate();
-                int rut = Integer.parseInt(panelAgregar.getTxtFiRut());
-                System.out.println(nombre+apellPat+apellMat+rut);
-                modeloG.agregarCliente(nombre, apellPat, apellMat, rut);
-                panelAgregar.setjLabelConf("El cliente: ¡El cliente se a agregado con exito!");
-            return;
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    String nombre = panelAgregar.getTxtFiNombre();
+                    String apellPat = panelAgregar.getTxtFiApellPat();
+                    String apellMat = panelAgregar.getTxtFiApellMate();
+                    int rut = Integer.parseInt(panelAgregar.getTxtFiRut());
+                    modeloG.noExisteCliente(rut+"");
+                    modeloG.nombreApellidosValido(nombre, apellPat, apellMat);
+                    modeloG.agregarCliente(nombre, apellPat, apellMat, rut);
+                    panelAgregar.setjLabelConf("El cliente: ¡El cliente se a agregado con exito!",GREEN);
+                } catch (RutYaRegistradoException | RutInvalidoException | ClienteInvalidoException ex) {
+                    panelAgregar.setjLabelConf("Error : " + ex.getMessage(),RED);
+                } catch (NumberFormatException ex) {
+                    panelAgregar.setjLabelConf("Error: " + "El RUT ingresado contiene caracteres no numericos", RED);
+                }
             }
-            
         });
     }
     
     public void buscarCliente(ClienteOpPanel2 panelBuscar){
-        HashMap<Integer, Cliente> mapaClientes = modeloG.mostrarCliente();
         panelBuscar.getButEnviarBusCliente().addActionListener(new ActionListener() {
-        @Override   
-        public void actionPerformed(ActionEvent ae) {
-                //Se reinicia los label
+            @Override   
+            public void actionPerformed(ActionEvent ae) {
                 panelBuscar.setLabelViewNombre("Nombre: ");
                 panelBuscar.setLabelViewApllPat("Apellido Paterno: ");
                 panelBuscar.setLabelViewApllMat("Apellido Materno: ");
                 panelBuscar.setLabelViewRut("Rut: ");
                 panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: ");
-                panelBuscar.setLabelViewSeEncontroClie("El cliente: ",2);
-                //inicia busqueda de cliente
-                int rutBuscar = Integer.parseInt(panelBuscar.getTextFieldRutBuscar());
-                Cliente clienteAux = mapaClientes.get(rutBuscar);
-                if(clienteAux != null){ //verifivar si el cliente existe
-                    panelBuscar.setLabelViewNombre("Nombre: " + clienteAux.getNombre());
-                    panelBuscar.setLabelViewApllPat("Apellido Paterno: " + clienteAux.getApellidoPaterno());
-                    panelBuscar.setLabelViewApllMat("Apellido Materno: " + clienteAux.getApellidoMaterno());
-                    panelBuscar.setLabelViewRut("Rut: " +  clienteAux.getRut());
-                    boolean tieneContrato = clienteAux.getTieneContrato();
+                panelBuscar.setLabelViewSeEncontroClie("El cliente: ",black);
+            
+                try {
+                    Cliente clienteBuscado = modeloG.existeCliente(panelBuscar.getTextFieldRutBuscar());
+                
+                    panelBuscar.setLabelViewNombre("Nombre: " + clienteBuscado.getNombre());
+                    panelBuscar.setLabelViewApllPat("Apellido Paterno: " + clienteBuscado.getApellidoPaterno());
+                    panelBuscar.setLabelViewApllMat("Apellido Materno: " + clienteBuscado.getApellidoMaterno());
+                    panelBuscar.setLabelViewRut("Rut: " +  clienteBuscado.getRut());
+                    boolean tieneContrato = clienteBuscado.getTieneContrato();
                     if(tieneContrato)
                         panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: SI");
                     else
                         panelBuscar.setLabelViewTieneContr("Tiene un contrato activo: NO");
-                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡SE ENCONTRO!",1);
+                
+                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡SE ENCONTRO!",green);
+                } catch (NumberFormatException ex) {
+                    panelBuscar.setLabelViewSeEncontroClie("Error: El RUT ingresado contiene caracteres no numericos",red);
+                } catch (RutNoRegistradoException | RutInvalidoException ex) {
+                    panelBuscar.setLabelViewSeEncontroClie("Error: " + ex.getMessage(),red);
                 }
-                else{
-                    panelBuscar.setLabelViewSeEncontroClie("El cliente: ¡NO SE ENCONTRO!",0);
-                }
-            }
-        });
-        
-    }
-    
-    public void modDatosClientes(ClienteOpPanel3 panelModificar){
-        
-        panelModificar.getButBuscarMod().addActionListener(new ActionListener() {
-        @Override   
-        public void actionPerformed(ActionEvent ae) {
-            //Se reinicia los label y txtfield
-            panelModificar.setViewLabelNomMod(0);
-            panelModificar.setViewLabelNomApPat(0);
-            panelModificar.setViewLabelApMat(0);
-            panelModificar.setViewTextNombreMod(0);
-            panelModificar.setViewTextApellPatMod(0);
-            panelModificar.setViewTextApellMatMod(0);
-            panelModificar.setViewButCambiar(0);
-            String nombre = panelModificar.getTextRutMod();
-            String opcion = panelModificar.getTextOpMod(); 
-            //Se hace visible la opcion correspondiente
-            if("1".equals(opcion)){
-                panelModificar.setViewLabelNomMod(1);
-                panelModificar.setViewTextNombreMod(1);
-                panelModificar.setViewButCambiar(1);
-            }
-            else if("2".equals(opcion)){
-                panelModificar.setViewLabelNomApPat(1);
-                panelModificar.setViewLabelApMat(1);
-                panelModificar.setViewTextApellPatMod(1);
-                panelModificar.setViewTextApellMatMod(1);
-                panelModificar.setViewButCambiar(1);
-            }
-            else if("3".equals(opcion)){
-                panelModificar.setViewLabelNomMod(1);
-                panelModificar.setViewTextNombreMod(1); 
-                panelModificar.setViewLabelNomApPat(1);
-                panelModificar.setViewLabelApMat(1);
-                panelModificar.setViewTextApellPatMod(1);
-                panelModificar.setViewTextApellMatMod(1);
-                panelModificar.setViewButCambiar(1);
-            }
-            panelModificar.getButCambiar().addActionListener(new ActionListener() {
-                @Override   
-                public void actionPerformed(ActionEvent al) {
-                    int rut = Integer.parseInt(panelModificar.getTextRutMod());
-                    if("1".equals(opcion)){
-                        modeloG.modificarDatosCliente(rut,panelModificar.getTextNombreMod(),"","",opcion);
-                        panelModificar.setLabelConfirmacionMod("El cliente: ¡SE CAMBIARON LOS DATOS CON EXITO!",1);
-                    }
-                    else if("2".equals(opcion)){
-                        String apPat = panelModificar.getTextApellPatMod();
-                        String apMat = panelModificar.getTextApellMatMod();
-                        modeloG.modificarDatosCliente(rut,"",apPat,apMat,opcion);
-                        panelModificar.setLabelConfirmacionMod("El cliente: ¡SE CAMBIARON LOS DATOS CON EXITO!",1);
-                    }else if("3".equals(opcion)){
-                        String apPat = panelModificar.getTextApellPatMod();
-                        String apMat = panelModificar.getTextApellMatMod();
-                        modeloG.modificarDatosCliente(rut,panelModificar.getTextNombreMod(),apPat,apMat,opcion);
-                        panelModificar.setLabelConfirmacionMod("El cliente: ¡SE CAMBIARON LOS DATOS CON EXITO!",1);
-                    }
-                    else
-                        panelModificar.setLabelConfirmacionMod("El cliente: ¡OCURRIO UN ERROR!",0);
-                }
-                });
             
             }
         });
+        
     }
     
+    public void seEncontroCliente(ClienteOpPanel3 panel, boolean visibilidad) {
+        panel.getJlbClientePretModificacion().setVisible(visibilidad);
+        panel.getJlbPreApellidoMaterno().setVisible(visibilidad);
+        panel.getJlbPreApellidoPaterno().setVisible(visibilidad);
+        panel.getJlbPreNombre().setVisible(visibilidad);
+        panel.getJlbQueDeseaModificar().setVisible(visibilidad);
+        panel.getBtnModificarApellidos().setVisible(visibilidad);
+        panel.getBtnModificarNombre().setVisible(visibilidad);
+        panel.getBtnModificarNombreApellidos().setVisible(visibilidad);
+        panel.getBtnConfirmModN().setVisible(false);
+        panel.getBtnConfirmModApAm().setVisible(false);
+        panel.getBtnConfirmModNApAm().setVisible(false);
+        panel.getJlbIngresarNombre().setVisible(false);
+        panel.getJlbIngresarApellidoPaterno().setVisible(false);
+        panel.getJlbIngresarApellidoMaterno().setVisible(false);
+        panel.getTxtNuevoNombre().setVisible(false);
+        panel.getTxtNuevoApellidoPaterno().setVisible(false);
+        panel.getTxtNuevoApellidoMaterno().setVisible(false);
+        panel.getJlbErrorModificacion().setVisible(false);
+        panel.getJlbClientePostModificacion().setVisible(false);
+        panel.getJlbPostApellidoMaterno().setVisible(false);
+        panel.getJlbPostApellidoPaterno().setVisible(false);
+        panel.getJlbPostNombre().setVisible(false);
+    }
+    
+    public void modificarNombre(ClienteOpPanel3 panel) {
+        panel.getBtnConfirmModN().setVisible(true);
+        panel.getBtnConfirmModApAm().setVisible(false);
+        panel.getBtnConfirmModNApAm().setVisible(false);
+        panel.getJlbIngresarNombre().setVisible(true);
+        panel.getJlbIngresarApellidoPaterno().setVisible(false);
+        panel.getJlbIngresarApellidoMaterno().setVisible(false);
+        panel.getTxtNuevoNombre().setVisible(true);
+        panel.getTxtNuevoApellidoPaterno().setVisible(false);
+        panel.getTxtNuevoApellidoMaterno().setVisible(false);
+    }
+    
+    public void modificarApellidos(ClienteOpPanel3 panel) {
+        panel.getBtnConfirmModN().setVisible(false);
+        panel.getBtnConfirmModApAm().setVisible(true);
+        panel.getBtnConfirmModNApAm().setVisible(false);
+        panel.getJlbIngresarNombre().setVisible(false);
+        panel.getJlbIngresarApellidoPaterno().setVisible(true);
+        panel.getJlbIngresarApellidoMaterno().setVisible(true);
+        panel.getTxtNuevoNombre().setVisible(false);
+        panel.getTxtNuevoApellidoPaterno().setVisible(true);
+        panel.getTxtNuevoApellidoMaterno().setVisible(true);
+    }    
+
+    public void modificarNombreApellidos(ClienteOpPanel3 panel) {
+        panel.getBtnConfirmModN().setVisible(false);
+        panel.getBtnConfirmModApAm().setVisible(false);
+        panel.getBtnConfirmModNApAm().setVisible(true);
+        panel.getJlbIngresarNombre().setVisible(true);
+        panel.getJlbIngresarApellidoPaterno().setVisible(true);
+        panel.getJlbIngresarApellidoMaterno().setVisible(true);
+        panel.getTxtNuevoNombre().setVisible(true);
+        panel.getTxtNuevoApellidoPaterno().setVisible(true);
+        panel.getTxtNuevoApellidoMaterno().setVisible(true);
+    }
+    
+    public void modDatosClientes(ClienteOpPanel3 panelModificar) {
+        seEncontroCliente(panelModificar,false);
+        panelModificar.getJlbClienteNoEncontrado().setVisible(false);
+        
+        panelModificar.getBtnRutClienteModificar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    String rutModificar = panelModificar.getRutClienteModificado();
+                    Cliente clientePreModificado = modeloG.existeCliente(rutModificar);
+                    
+                    panelModificar.setJlbPreNombre(clientePreModificado.getNombre()+" ");
+                    panelModificar.setJlbPreApellidoPaterno(clientePreModificado.getApellidoPaterno()+" ");
+                    panelModificar.setJlbPreApellidoMaterno(clientePreModificado.getApellidoMaterno());
+                    setRutModificar(Integer.parseInt(rutModificar));
+                    panelModificar.getJlbClienteNoEncontrado().setVisible(false);
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                    seEncontroCliente(panelModificar,true);
+                } catch (RutNoRegistradoException | RutInvalidoException ex) {
+                    panelModificar.setJlbClienteNoEncontrado("Error: " + ex.getMessage(), red);
+                    panelModificar.getJlbClienteNoEncontrado().setVisible(true);
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                    seEncontroCliente(panelModificar,false);
+                }
+            }
+        });
+        
+        panelModificar.getBtnModificarNombre().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                modificarNombre(panelModificar);
+            }
+        });
+        
+        panelModificar.getBtnModificarApellidos().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                modificarApellidos(panelModificar);
+            }
+        });
+        
+        panelModificar.getBtnModificarNombreApellidos().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                modificarNombreApellidos(panelModificar);
+            }
+        });
+        
+        panelModificar.getBtnConfirmModN().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nuevoNombre = panelModificar.getNuevoNombre();
+                try {
+                    modeloG.nombreValido(nuevoNombre);
+                    
+                    modeloG.modificarDatosCliente(getRutModificar(), nuevoNombre, "", "", "1");
+                    
+                    Cliente clientePostModificado = modeloG.existeCliente(getRutModificar()+"");
+                    
+                    panelModificar.setJlbPostNombre(clientePostModificado.getNombre()+" ");
+                    panelModificar.getJlbPostNombre().setVisible(true);
+                    panelModificar.setJlbPostApellidoPaterno(clientePostModificado.getApellidoPaterno()+" ");
+                    panelModificar.getJlbPostApellidoPaterno().setVisible(true);
+                    panelModificar.setJlbPostApellidoMaterno(clientePostModificado.getApellidoMaterno());
+                    panelModificar.getJlbPostApellidoMaterno().setVisible(true);
+                    
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                } catch (ClienteInvalidoException | RutNoRegistradoException | RutInvalidoException ex){
+                    panelModificar.setJlbErrorModificacion("Error: " + ex.getMessage(), red);
+                    panelModificar.getJlbErrorModificacion().setVisible(true);
+                }
+            }
+        });
+        
+        panelModificar.getBtnConfirmModApAm().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nuevoApPaterno = panelModificar.getNuevoApellidoPaterno();
+                String nuevoApMaterno =panelModificar.getNuevoApellidoMaterno();
+                try {
+                    modeloG.apellidoPaternoValido(nuevoApPaterno);
+                    modeloG.apellidoMaternoValido(nuevoApMaterno);
+                    
+                    modeloG.modificarDatosCliente(getRutModificar(), "", nuevoApPaterno, nuevoApMaterno, "2");
+                    
+                    Cliente clientePostModificado = modeloG.existeCliente(getRutModificar()+"");
+                    
+                    panelModificar.setJlbPostNombre(clientePostModificado.getNombre()+" ");
+                    panelModificar.getJlbPostNombre().setVisible(true);
+                    panelModificar.setJlbPostApellidoPaterno(clientePostModificado.getApellidoPaterno()+" ");
+                    panelModificar.getJlbPostApellidoPaterno().setVisible(true);
+                    panelModificar.setJlbPostApellidoMaterno(clientePostModificado.getApellidoMaterno());
+                    panelModificar.getJlbPostApellidoMaterno().setVisible(true);
+                    
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                } catch (ClienteInvalidoException | RutNoRegistradoException | RutInvalidoException ex){
+                    panelModificar.setJlbErrorModificacion("Error: " + ex.getMessage(), red);
+                    panelModificar.getJlbErrorModificacion().setVisible(true);
+                }
+                
+            }
+        });
+        
+        panelModificar.getBtnConfirmModNApAm().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String nuevoNombre = panelModificar.getNuevoNombre();
+                String nuevoApPaterno = panelModificar.getNuevoApellidoPaterno();
+                String nuevoApMaterno =panelModificar.getNuevoApellidoMaterno();
+                try {
+                    modeloG.nombreApellidosValido(nuevoNombre, nuevoApPaterno, nuevoApMaterno);
+                    
+                    modeloG.modificarDatosCliente(getRutModificar(), nuevoNombre, nuevoApPaterno, nuevoApMaterno, "3");
+                    Cliente clientePostModificado = modeloG.existeCliente(getRutModificar()+"");
+                    
+                    panelModificar.setJlbPostNombre(clientePostModificado.getNombre()+" ");
+                    panelModificar.getJlbPostNombre().setVisible(true);
+                    panelModificar.setJlbPostApellidoPaterno(clientePostModificado.getApellidoPaterno()+" ");
+                    panelModificar.getJlbPostApellidoPaterno().setVisible(true);
+                    panelModificar.setJlbPostApellidoMaterno(clientePostModificado.getApellidoMaterno());
+                    panelModificar.getJlbPostApellidoMaterno().setVisible(true);
+                    
+                    panelModificar.getJlbErrorModificacion().setVisible(false);
+                } catch (ClienteInvalidoException | RutNoRegistradoException | RutInvalidoException ex){
+                    panelModificar.setJlbErrorModificacion("Error: " + ex.getMessage(), red);
+                    panelModificar.getJlbErrorModificacion().setVisible(true);
+                }
+                
+            }
+        });
+    }
+
     public void eliminarCliente(ClienteOpPanel4 panelEliminar){  
         panelEliminar.getButDelete().addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
-                panelEliminar.setLabelConfirmacionDelete("El cliente: ",2);
-                int rutDelete = Integer.parseInt(panelEliminar.getTextRutDelete());
-                if(modeloG.deleteCliente(rutDelete))
-                    panelEliminar.setLabelConfirmacionDelete("El cliente: ¡SE ELIMINO CORRECTAMENTE!",1);
-                else
-                    panelEliminar.setLabelConfirmacionDelete("El cliente: ¡OCURRIO UN ERROR!",0);
-            return;
+                try {
+                    panelEliminar.setLabelConfirmacionDelete("El cliente: ",black);
+                    int rutDelete = Integer.parseInt(panelEliminar.getTextRutDelete());
+                    modeloG.deleteCliente(rutDelete);
+                    panelEliminar.setLabelConfirmacionDelete("El cliente: ¡SE ELIMINO CORRECTAMENTE!",green);
+                } catch (RutNoRegistradoException | RutInvalidoException ex) {
+                    panelEliminar.setLabelConfirmacionDelete("Error: " + ex.getMessage(),red);
+                } catch (NumberFormatException ex) {
+                    panelEliminar.setLabelConfirmacionDelete("Error: " + "El RUT ingresado contiene caracteres no numericos",red);
+                }
             }
             
         });
@@ -364,42 +489,49 @@ public class Controlador implements ActionListener {
     // -----------------------------------------------------------------------------------------------
     // Metodos Ventana MenuPlan.java
     // -----------------------------------------------------------------------------------------------    
-    private void buscarRut(int rutBuscado) {
-        HashMap<Integer, Cliente> mapaClientesClonado = modeloG.mostrarCliente();
-        
-        Cliente clienteAux = mapaClientesClonado.get(rutBuscado);
-        
-        if(clienteAux == null){
-            menuPlan.setJlbExisteRut(rutBuscado +" no existe como cliente");
-            menuPlan.getJlbTituloOpciones().setVisible(false);
-            menuPlan.getBtnAgregarPlan().setVisible(false);
-            menuPlan.getBtnMostrarPlanes().setVisible(false);
-            menuPlan.getBtnEliminarPlan().setVisible(false);
-            menuPlan.getBtnModificarPlan().setVisible(false);
+    private void buscarRut(String rutBuscado)  {
+        try {
+            modeloG.existeCliente(rutBuscado);
+            mostrarOpcionesMenuPlan(true);
+            menuPlan.setJlbExisteRut("Cliente encontrado", green);
+            setRutMenuPlan(Integer.parseInt(rutBuscado));
+        } catch (RutNoRegistradoException | RutInvalidoException ex) {
+            menuPlan.setJlbExisteRut(ex.getMessage(), red);
+            mostrarOpcionesMenuPlan(false);
         }
-        else {
-            menuPlan.setJlbExisteRut("Cliente "+rutBuscado+" encontrado");
-            menuPlan.getJlbTituloOpciones().setVisible(true);
-            menuPlan.getBtnAgregarPlan().setVisible(true);
-            menuPlan.getBtnMostrarPlanes().setVisible(true);
-            menuPlan.getBtnEliminarPlan().setVisible(true);
-            menuPlan.getBtnModificarPlan().setVisible(true);
-        }
+    }
+    
+    private void mostrarOpcionesMenuPlan(boolean visible) {
+        menuPlan.getJlbTituloOpciones().setVisible(visible);
+        menuPlan.getBtnAgregarPlan().setVisible(visible);
+        menuPlan.getBtnMostrarPlanes().setVisible(visible);
+        menuPlan.getBtnEliminarPlan().setVisible(visible);
+        menuPlan.getBtnModificarPlan().setVisible(visible);
     }
     
     private void agregarPlan(PlanOpPanel1 panelAgregarPlan, int rut) {
         panelAgregarPlan.getBtnSelecPlanPerso().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int cantGigaBytes = Integer.parseInt(panelAgregarPlan.getTxtGigasPlanPerso());
-                int cantMinutos = Integer.parseInt(panelAgregarPlan.getTxtMinutosPlanPerso());
-                String numeroTelefono = panelAgregarPlan.getTxtNumeroPlanPerso();
-                
-                modeloG.agregarPlanPersonalizado(rut,cantGigaBytes, cantMinutos,numeroTelefono);
-                
-                Plan planContratado = modeloG.ultimoPlanContratado(rut);
-                
-                mostrarUltimoPlanContratado(panelAgregarPlan, planContratado);
+                try {
+                    int cantGigaBytes = Integer.parseInt(panelAgregarPlan.getTxtGigasPlanPerso());
+                    int cantMinutos = Integer.parseInt(panelAgregarPlan.getTxtMinutosPlanPerso());
+                    String numeroTelefono = panelAgregarPlan.getTxtNumeroPlanPerso();
+
+                    modeloG.cantidadValida(cantGigaBytes);
+                    modeloG.cantidadValida(cantMinutos);
+                    modeloG.agregarPlan(rut,cantGigaBytes, cantMinutos,numeroTelefono);
+
+                    Plan planContratado = modeloG.ultimoPlanContratado(rut);
+                    mostrarUltimoPlanContratado(panelAgregarPlan, planContratado);
+                    panelAgregarPlan.setJlbNumeroPersoVacio("Si no introduce un numero le generaremos uno", new Color(102,102,102));
+                } catch (NumberFormatException ex) {
+                    panelAgregarPlan.setJlbNumeroPersoVacio("Error: "+"cantidad de GB's y/o minutos invalida.", red);
+                } catch (NumeroInvalidoException | NumeroYaRegistradoException ex) {
+                    panelAgregarPlan.setJlbNumeroPersoVacio("Error: "+ ex.getMessage(), red);
+                } catch (CantidadValidaException ex) {
+                    panelAgregarPlan.setJlbNumeroPersoVacio("Error: cantidad de GB's y/o minutos menores a 0.", red);
+                }
             }
         });
         
@@ -455,44 +587,47 @@ public class Controlador implements ActionListener {
     }
     
     private void mostrarPlanes(PlanOpPanel2 panel, int rut) {
-        HashMap<Integer, Cliente> mapaClientesClonado = modeloG.mostrarCliente();
-        panel.setJlbNombreCliente(mapaClientesClonado.get(rut).getNombre());
         String[] arregloPlanes = modeloG.listarPlanes(rut);
         panel.listTabPlanes(arregloPlanes);
     }
 
     private void eliminarPlan(PlanOpPanel3 panel, int rut) {
         panel.getJlbEstadoPlan().setVisible(false);
-        panel.getBtnEliminarPlan().addActionListener((ActionEvent ae) -> {
-            String numPlanEliminar = panel.getTxtEliminarPlan();
-            if(modeloG.eliminarPlan(rut, numPlanEliminar)) {
-                panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " fue eliminado correctamente.");
-                panel.getJlbEstadoPlan().setVisible(true);
-            }
-            else {            
-                panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " no existe.");
-                panel.getJlbEstadoPlan().setVisible(true);
-            }
+        panel.getBtnEliminarPlan().addActionListener(new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String numPlanEliminar = panel.getTxtEliminarPlan();
+                try {
+                    modeloG.eliminarPlan(rut, numPlanEliminar);
+                    panel.setJlbEstadoPlan("El numero +56 9 " + numPlanEliminar + " fue eliminado correctamente.", green);
+                    panel.getJlbEstadoPlan().setVisible(true);
+                } catch (NumeroInvalidoException | NumeroNoRegistradoException ex) {
+                    panel.setJlbEstadoPlan("Error: "+ ex.getMessage(), red);
+                 }
+            } 
         });
     }
 
     private void modificarPlan(PlanOpPanel4 panel, int rut) {
         actualizarPanelModificar(panel,false,-1);
-        panel.getJlbNumeroNoEncontrado().setVisible(false);
+        panel.setJlbNumeroNoEncontrado("",black);
         
         panel.getBtnModificarPlan().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 int planActual;
                 setNumMenuPlan(panel.getTxtModificarPlan());
-                if (modeloG.existeNumero(getNumMenuPlan(),rut)) {
-                    panel.getJlbNumeroNoEncontrado().setVisible(false);
+                try {
+                    modeloG.existeNumeroEnCliente(getNumMenuPlan(), rut);
                     planActual = modeloG.planActual(rut, getNumMenuPlan());
                     actualizarPanelModificar(panel,true,planActual);
-                }
-                else {
-                    panel.getJlbNumeroNoEncontrado().setVisible(true);
+                    panel.setJlbNumeroNoEncontrado("",black);
+                } catch (NumeroInvalidoException | NumeroNoRegistradoException ex) {
                     actualizarPanelModificar(panel,false,-1);
+                    panel.setJlbNumeroNoEncontrado("Error: " + ex.getMessage(),red);
+                } catch (Exception ex) {
+                    actualizarPanelModificar(panel,false,-1);
+                    panel.setJlbNumeroNoEncontrado("Error: " + ex.getMessage(),red);
                 }
             }
         });
@@ -631,29 +766,51 @@ public class Controlador implements ActionListener {
         panelBuscarContr.setLabelPrecio("Precio del contrato : ");
         
         panelBuscarContr.getButBuscarContr().addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            int rutBuscar = Integer.parseInt(panelBuscarContr.getTxtpRutCliente());
-            if(modeloG.buscarContrato(rutBuscar) != null){
-                Contrato contrCliente = modeloG.buscarContrato(rutBuscar);
-                panelBuscarContr.setLabelNombre("Nombre : " + contrCliente.getNombreCompleto());
-                panelBuscarContr.setLabelRut("Rut : " + Integer.toString(contrCliente.getRut()));
-                panelBuscarContr.setLabelCantPlanes("Cantidad de planes : " + Integer.toString(contrCliente.getCantidadPlanes()));
-                panelBuscarContr.setLabelPrecio("Precio del contrato : " + Double.toString(contrCliente.getPrecioPlanes()));
-            }
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    String rutBuscarContrato = panelBuscarContr.getTxtpRutCliente();
+                    modeloG.existeCliente(rutBuscarContrato);
+                    int rutBuscar = Integer.parseInt(rutBuscarContrato);
+                    Contrato contratoCliente = modeloG.buscarContrato(rutBuscar);
+                    if(contratoCliente != null) {
+                        panelBuscarContr.setJlbValidarRut("Cliente validado", new Color (102,102,102));
+                        panelBuscarContr.setLabelNombre("Nombre : " + contratoCliente.getNombreCompleto());
+                        panelBuscarContr.setLabelRut("Rut : " + Integer.toString(contratoCliente.getRut()));
+                        panelBuscarContr.setLabelCantPlanes("Cantidad de planes : " + Integer.toString(contratoCliente.getCantidadPlanes()));
+                        panelBuscarContr.setLabelPrecio("Precio del contrato : $" + Double.toString(contratoCliente.getPrecioPlanes()));
+                    }
+                    else {
+                        panelBuscarContr.setJlbValidarRut("El cliente " + rutBuscar + " no tiene contratos", new Color(153,153,0));
+                    }
+                } catch (RutNoRegistradoException | RutInvalidoException ex) {
+                    panelBuscarContr.setJlbValidarRut("Error: " + ex.getMessage(), red);
+                }
             }
             
         });
     }
 
     public void listarContrato(ContratoOpPanel2 panelListarContr){
+        panelListarContr.getJlbError().setVisible(false);
         
         panelListarContr.getButListarContr().addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-                int filtro = Integer.parseInt(panelListarContr.getTextFiltro());
-                String[] arregloContratos = modeloG.listarContratos(filtro);
-                panelListarContr.listTabContratos(arregloContratos);
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    int filtro = Integer.parseInt(panelListarContr.getTextFiltro());
+                    modeloG.cantidadValida(filtro);
+                        
+                    String[] arregloContratos = modeloG.listarContratos(filtro);
+                    panelListarContr.listTabContratos(arregloContratos);
+                    panelListarContr.getJlbError().setVisible(false);
+                } catch (NumberFormatException ex) {
+                    panelListarContr.setJlbError("Error: el precio ingresado no es valido", red);
+                    panelListarContr.getJlbError().setVisible(true);
+                } catch (CantidadValidaException ex) {
+                    panelListarContr.setJlbError("Error: el precio ingresado es menor a 0", red);
+                    panelListarContr.getJlbError().setVisible(true);
+                }
             }
         });
         }

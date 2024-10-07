@@ -4,15 +4,9 @@
  */
 package vistas;
 
-import modelo.Cliente;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import vistasPanel.ClienteOpPanel1;
-import vistasPanel.ClienteOpPanel2;
 
 /**
  *

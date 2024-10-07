@@ -1,8 +1,5 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class Plan {
     private String nombrePlan;
     private String numeroTelefono;
@@ -34,7 +31,7 @@ public class Plan {
         this.numeroTelefono = numeroTelefono;
         this.cantGigaBytes = cantGigaBytes;
         this.cantMinutos = cantMinutos;
-        this.precio = cantGigaBytes * 500.4 + cantMinutos * 24.78;
+        this.precio = cantGigaBytes * 24 + cantMinutos * 6.392;
     }
     
     public Plan(String nombrePlan, String numeroTelefono, int cantGigaBytes, int cantMinutos, double cuotaMensual) {
